@@ -10,7 +10,7 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>SpringCloud-eureka-server</module>
+        <module>SpringCloud-Eureka-Server</module>
         <module>SpringCloud-Provider-Payment8001</module>
     </modules>
 
