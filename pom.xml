@@ -12,6 +12,7 @@
     <modules>
         <module>SpringCloud-Eureka-Server</module>
         <module>SpringCloud-Provider-Payment8001</module>
+        <module>SpringCloud-Consumer-Order80</module>
     </modules>
 
     <properties>
