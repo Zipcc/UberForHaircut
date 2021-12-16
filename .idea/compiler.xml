@@ -8,22 +8,22 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="SpringCloud-Consumer-Order80" />
-        <module name="SpringCloud-Eureka-Server" />
         <module name="SpringCloud-Api-Commons" />
+        <module name="SpringCloud-Eureka-Server7001" />
         <module name="SpringCloud-Provider-Payment8001" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="SpringCloud-Api-Commons" target="8" />
       <module name="SpringCloud-Consumer-Order80" target="8" />
-      <module name="SpringCloud-Eureka-Server" target="1.8" />
+      <module name="SpringCloud-Eureka-Server7001" target="1.8" />
       <module name="SpringCloud-Provider-Payment8001" target="8" />
       <module name="UberForHaircut" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="SpringCloud-Eureka-Server" options="" />
+      <module name="SpringCloud-Eureka-Server7001" options="" />
     </option>
   </component>
 </project>
