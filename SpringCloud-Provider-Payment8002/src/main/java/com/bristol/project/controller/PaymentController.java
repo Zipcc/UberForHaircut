@@ -3,12 +3,10 @@ package com.bristol.project.controller;
 import com.bristol.project.entities.CommonResult;
 import com.bristol.project.entities.Payment;
 import com.bristol.project.service.PaymentService;
-import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 @RestController
 public class PaymentController {
@@ -18,9 +16,6 @@ public class PaymentController {
 
     @Value("${server.port}")
     private String serverPort;
-
-    @Resource
-    private DiscoveryClient discoveryClient;
 
     @PostMapping(value = "/payments")
     public CommonResult create(@RequestBody Payment payment){
@@ -44,9 +39,4 @@ public class PaymentController {
         }
     }
 
-    @GetMapping(value = "/payments/discovery")
-    public Object discovery(){
-        List<String> services = discoveryClient.getServices();
-        return services.get(0);
-    }
 }
