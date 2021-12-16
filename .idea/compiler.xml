@@ -8,15 +8,17 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="SpringCloud-Consumer-Order80" />
-        <module name="SpringCloud-Api-Commons" />
         <module name="SpringCloud-Eureka-Server7001" />
         <module name="SpringCloud-Eureka-Server7002" />
+        <module name="SpringCloud-Consumer-Feign-Order80" />
+        <module name="SpringCloud-Api-Commons" />
         <module name="SpringCloud-Provider-Payment8001" />
         <module name="SpringCloud-Provider-Payment8002" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="SpringCloud-Api-Commons" target="8" />
+      <module name="SpringCloud-Consumer-Feign-Order80" target="8" />
       <module name="SpringCloud-Consumer-Order80" target="8" />
       <module name="SpringCloud-Eureka-Server7001" target="1.8" />
       <module name="SpringCloud-Eureka-Server7002" target="8" />

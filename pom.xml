@@ -16,6 +16,7 @@
         <module>SpringCloud-Api-Commons</module>
         <module>SpringCloud-Eureka-Server7002</module>
         <module>SpringCloud-Provider-Payment8002</module>
+        <module>SpringCloud-Consumer-Feign-Order80</module>
     </modules>
 
     <properties>
