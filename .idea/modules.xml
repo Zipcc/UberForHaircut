@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/SpringCloud-Api-Commons/SpringCloud-Api-Commons.iml" filepath="$PROJECT_DIR$/SpringCloud-Api-Commons/SpringCloud-Api-Commons.iml" />
       <module fileurl="file://$PROJECT_DIR$/SpringCloud-Consumer-Order80/SpringCloud-Consumer-Order80.iml" filepath="$PROJECT_DIR$/SpringCloud-Consumer-Order80/SpringCloud-Consumer-Order80.iml" />
       <module fileurl="file://$PROJECT_DIR$/SpringCloud-Eureka-Server/SpringCloud-Eureka-Server.iml" filepath="$PROJECT_DIR$/SpringCloud-Eureka-Server/SpringCloud-Eureka-Server.iml" />
       <module fileurl="file://$PROJECT_DIR$/SpringCloud-Provider-Payment8001/SpringCloud-Provider-Payment8001.iml" filepath="$PROJECT_DIR$/SpringCloud-Provider-Payment8001/SpringCloud-Provider-Payment8001.iml" />

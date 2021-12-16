@@ -13,6 +13,8 @@
         <module>SpringCloud-Eureka-Server</module>
         <module>SpringCloud-Provider-Payment8001</module>
         <module>SpringCloud-Consumer-Order80</module>
+        <module>SpringCloud-Api-Commons</module>
+        <module>SpringCloud-Api-Commons</module>
     </modules>
 
     <properties>
@@ -87,7 +89,7 @@
         </dependencies>
     </dependencyManagement>
 
-    <build>
+<!--    <build>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -98,6 +100,6 @@
                 </configuration>
             </plugin>
         </plugins>
-    </build>
+    </build>-->
 
 </project>

@@ -25,6 +25,8 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="SpringCloud-Api-Commons" />
+    <orderEntry type="library" name="Maven: cn.hutool:hutool-all:5.1.0" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-web:2.4.6" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter:2.4.6" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot:2.4.6" level="project" />

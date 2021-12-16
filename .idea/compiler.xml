@@ -9,10 +9,12 @@
         <outputRelativeToContentRoot value="true" />
         <module name="SpringCloud-Consumer-Order80" />
         <module name="SpringCloud-Eureka-Server" />
+        <module name="SpringCloud-Api-Commons" />
         <module name="SpringCloud-Provider-Payment8001" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="SpringCloud-Api-Commons" target="8" />
       <module name="SpringCloud-Consumer-Order80" target="8" />
       <module name="SpringCloud-Eureka-Server" target="1.8" />
       <module name="SpringCloud-Provider-Payment8001" target="8" />
