@@ -3,10 +3,7 @@ package com.bristol.project.controller;
 import com.bristol.project.entities.CommonResult;
 import com.bristol.project.entities.Payment;
 import com.bristol.project.service.PaymentService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -17,7 +14,7 @@ public class PaymentController {
     private PaymentService paymentService;
 
     @PostMapping(value = "/payments")
-    public CommonResult create(Payment payment){
+    public CommonResult create(@RequestBody Payment payment){
 
         int result = paymentService.create(payment);
         if (result > 0) {
