@@ -19,6 +19,12 @@
     <file url="file://$PROJECT_DIR$/SpringCloud-Provider-Payment8001/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/SpringCloud-Provider-Payment8002/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/SpringCloud-Provider-Payment8002/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/SpringCloudAlibaba-Consumer-Nacos-Order90/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/SpringCloudAlibaba-Consumer-Nacos-Order90/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/SpringCloudAlibaba-provider-payment9001/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/SpringCloudAlibaba-provider-payment9001/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/SpringCloudAlibaba-provider-payment9002/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/SpringCloudAlibaba-provider-payment9002/src/main/resources" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

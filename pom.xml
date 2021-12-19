@@ -19,6 +19,9 @@
         <module>SpringCloud-Consumer-Feign-Order80</module>
         <module>SpringCloud-Provider-Hystrix-Payment8001</module>
         <module>SpringCloud-Gateway-Gateway9500</module>
+        <module>SpringCloudAlibaba-provider-payment9001</module>
+        <module>SpringCloudAlibaba-provider-payment9002</module>
+        <module>SpringCloudAlibaba-Consumer-Nacos-Order90</module>
     </modules>
 
     <properties>
@@ -33,8 +36,9 @@
 
         <mysql.version>8.0.26</mysql.version>
 
-        <spring-boot.version>2.4.6</spring-boot.version>
-        <spring-cloud.version>2020.0.3</spring-cloud.version>
+        <spring-boot.version>2.4.2</spring-boot.version>
+        <spring-cloud.version>2020.0.1</spring-cloud.version>
+        <spring-cloudAlibaba.version>2021.1</spring-cloudAlibaba.version>
 
         <mybatis.spring.boot.version>2.2.0</mybatis.spring.boot.version>
     </properties>
@@ -60,7 +64,14 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-
+            <!--SpringCloudAlibaba-->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring-cloudAlibaba.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
             <!--MySQL-->
             <dependency>
                 <groupId>mysql</groupId>

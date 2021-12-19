@@ -8,11 +8,14 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="SpringCloud-Consumer-Order80" />
+        <module name="SpringCloudAlibaba-provider-payment9002" />
         <module name="SpringCloud-Eureka-Server7001" />
         <module name="SpringCloud-Eureka-Server7002" />
+        <module name="SpringCloudAlibaba-provider-payment9001" />
         <module name="SpringCloud-Consumer-Feign-Order80" />
         <module name="SpringCloud-Api-Commons" />
         <module name="SpringCloud-Gateway-Gateway9500" />
+        <module name="SpringCloudAlibaba-Consumer-Nacos-Order90" />
         <module name="SpringCloud-Provider-Payment8001" />
         <module name="SpringCloud-Provider-Payment8002" />
         <module name="SpringCloud-Provider-Hystrix-Payment8001" />
@@ -28,6 +31,9 @@
       <module name="SpringCloud-Provider-Hystrix-Payment8001" target="8" />
       <module name="SpringCloud-Provider-Payment8001" target="8" />
       <module name="SpringCloud-Provider-Payment8002" target="8" />
+      <module name="SpringCloudAlibaba-Consumer-Nacos-Order90" target="8" />
+      <module name="SpringCloudAlibaba-provider-payment9001" target="8" />
+      <module name="SpringCloudAlibaba-provider-payment9002" target="8" />
       <module name="UberForHaircut" target="1.8" />
     </bytecodeTargetLevel>
   </component>

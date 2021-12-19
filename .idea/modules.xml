@@ -11,6 +11,9 @@
       <module fileurl="file://$PROJECT_DIR$/SpringCloud-Provider-Hystrix-Payment8001/SpringCloud-Provider-Hystrix-Payment8001.iml" filepath="$PROJECT_DIR$/SpringCloud-Provider-Hystrix-Payment8001/SpringCloud-Provider-Hystrix-Payment8001.iml" />
       <module fileurl="file://$PROJECT_DIR$/SpringCloud-Provider-Payment8001/SpringCloud-Provider-Payment8001.iml" filepath="$PROJECT_DIR$/SpringCloud-Provider-Payment8001/SpringCloud-Provider-Payment8001.iml" />
       <module fileurl="file://$PROJECT_DIR$/SpringCloud-Provider-Payment8002/SpringCloud-Provider-Payment8002.iml" filepath="$PROJECT_DIR$/SpringCloud-Provider-Payment8002/SpringCloud-Provider-Payment8002.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SpringCloudAlibaba-Consumer-Nacos-Order90/SpringCloudAlibaba-Consumer-Nacos-Order90.iml" filepath="$PROJECT_DIR$/SpringCloudAlibaba-Consumer-Nacos-Order90/SpringCloudAlibaba-Consumer-Nacos-Order90.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SringCloudAlibaba-provider-payment9001/SpringCloudAlibaba-provider-payment9001.iml" filepath="$PROJECT_DIR$/SringCloudAlibaba-provider-payment9001/SpringCloudAlibaba-provider-payment9001.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SringCloudAlibaba-provider-payment9002/SpringCloudAlibaba-provider-payment9002.iml" filepath="$PROJECT_DIR$/SringCloudAlibaba-provider-payment9002/SpringCloudAlibaba-provider-payment9002.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/UberForHaircut.iml" filepath="$PROJECT_DIR$/.idea/UberForHaircut.iml" />
     </modules>
   </component>
