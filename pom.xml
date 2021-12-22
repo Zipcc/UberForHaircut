@@ -23,6 +23,8 @@
         <module>SpringCloudAlibaba-provider-payment9002</module>
         <module>SpringCloudAlibaba-Consumer-Nacos-Order90</module>
         <module>SpringCloudAlibaba-Config-Nacos-Client3001</module>
+        <module>service-user</module>
+        <module>api-common</module>
     </modules>
 
     <properties>

@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="SpringCloud-Consumer-Order80" />
         <module name="SpringCloud-Consumer-Feign-Order80" />
+        <module name="api-common" />
         <module name="SpringCloud-Api-Commons" />
         <module name="SpringCloud-Gateway-Gateway9500" />
         <module name="SpringCloudAlibaba-Consumer-Nacos-Order90" />
@@ -16,6 +17,7 @@
         <module name="SpringCloudAlibaba-provider-payment9002" />
         <module name="SpringCloud-Eureka-Server7001" />
         <module name="SpringCloud-Eureka-Server7002" />
+        <module name="service-user" />
         <module name="SpringCloudAlibaba-provider-payment9001" />
         <module name="SpringCloudAlibaba-Config-Nacos-Client3001" />
         <module name="SpringCloud-Provider-Payment8001" />
@@ -23,6 +25,8 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="api-common" target="8" />
+      <module name="service-user" target="8" />
       <module name="SpringCloud-Api-Commons" target="8" />
       <module name="SpringCloud-Consumer-Feign-Order80" target="8" />
       <module name="SpringCloud-Consumer-Order80" target="8" />

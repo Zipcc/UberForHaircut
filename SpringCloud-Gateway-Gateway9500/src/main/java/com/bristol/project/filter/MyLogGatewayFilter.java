@@ -12,6 +12,7 @@ import java.util.Date;
 
 @Component
 public class MyLogGatewayFilter implements GlobalFilter, Ordered {
+
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         System.out.println(new Date());
