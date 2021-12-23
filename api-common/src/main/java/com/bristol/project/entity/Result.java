@@ -13,6 +13,6 @@ public class Result<T> {
     private T       data;
 
     public Result(Integer code, String message){
-        this(code,message,null);
+        this(code,message,(T)new Integer(-1));
     }
 }

@@ -13,5 +13,5 @@ public class User {
     private Long id;
     private String username;
     private String password;
-    private int userType; // 0 Administrator  1 Client  2 Barber
+    private int role; // 0 Administrator  1 Client  2 Barber
 }

@@ -13,10 +13,11 @@
       <module fileurl="file://$PROJECT_DIR$/SpringCloud-Provider-Payment8002/SpringCloud-Provider-Payment8002.iml" filepath="$PROJECT_DIR$/SpringCloud-Provider-Payment8002/SpringCloud-Provider-Payment8002.iml" />
       <module fileurl="file://$PROJECT_DIR$/SpringCloudAlibaba-Config-Nacos-Client3001/SpringCloudAlibaba-Config-Nacos-Client3001.iml" filepath="$PROJECT_DIR$/SpringCloudAlibaba-Config-Nacos-Client3001/SpringCloudAlibaba-Config-Nacos-Client3001.iml" />
       <module fileurl="file://$PROJECT_DIR$/SpringCloudAlibaba-Consumer-Nacos-Order90/SpringCloudAlibaba-Consumer-Nacos-Order90.iml" filepath="$PROJECT_DIR$/SpringCloudAlibaba-Consumer-Nacos-Order90/SpringCloudAlibaba-Consumer-Nacos-Order90.iml" />
-      <module fileurl="file://$PROJECT_DIR$/SringCloudAlibaba-provider-payment9001/SpringCloudAlibaba-provider-payment9001.iml" filepath="$PROJECT_DIR$/SringCloudAlibaba-provider-payment9001/SpringCloudAlibaba-provider-payment9001.iml" />
-      <module fileurl="file://$PROJECT_DIR$/SringCloudAlibaba-provider-payment9002/SpringCloudAlibaba-provider-payment9002.iml" filepath="$PROJECT_DIR$/SringCloudAlibaba-provider-payment9002/SpringCloudAlibaba-provider-payment9002.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SpringCloudAlibaba-provider-payment9001/SpringCloudAlibaba-provider-payment9001.iml" filepath="$PROJECT_DIR$/SpringCloudAlibaba-provider-payment9001/SpringCloudAlibaba-provider-payment9001.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SpringCloudAlibaba-provider-payment9002/SpringCloudAlibaba-provider-payment9002.iml" filepath="$PROJECT_DIR$/SpringCloudAlibaba-provider-payment9002/SpringCloudAlibaba-provider-payment9002.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/UberForHaircut.iml" filepath="$PROJECT_DIR$/.idea/UberForHaircut.iml" />
       <module fileurl="file://$PROJECT_DIR$/api-common/api-common.iml" filepath="$PROJECT_DIR$/api-common/api-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/service-uaa/service-uaa.iml" filepath="$PROJECT_DIR$/service-uaa/service-uaa.iml" />
       <module fileurl="file://$PROJECT_DIR$/service-user/service-user.iml" filepath="$PROJECT_DIR$/service-user/service-user.iml" />
     </modules>
   </component>

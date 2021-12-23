@@ -25,6 +25,7 @@
         <module>SpringCloudAlibaba-Config-Nacos-Client3001</module>
         <module>service-user</module>
         <module>api-common</module>
+        <module>service-uaa</module>
     </modules>
 
     <properties>

@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="SpringCloud-Consumer-Order80" />
+        <module name="service-uaa" />
         <module name="SpringCloud-Consumer-Feign-Order80" />
         <module name="api-common" />
         <module name="SpringCloud-Api-Commons" />
@@ -26,6 +27,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="api-common" target="8" />
+      <module name="service-uaa" target="8" />
       <module name="service-user" target="8" />
       <module name="SpringCloud-Api-Commons" target="8" />
       <module name="SpringCloud-Consumer-Feign-Order80" target="8" />

@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: service-user
+  cloud:
+    nacos:
+      config:
+

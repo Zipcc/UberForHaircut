@@ -1,7 +1,9 @@
 server:
-  port: 9001
+  port: 8000
 
 spring:
+  application:
+    name: service-uaa
   cloud:
     nacos:
       discovery:
@@ -23,5 +25,4 @@ mybatis:
     map-underscore-to-camel-case: true
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.bristol.project.entity
-
 
