@@ -17,18 +17,15 @@ public class UserController implements UserApi {
         System.out.println(user);
 
         if(user == null || user.getUsername() == null){
-            return new Result<>(444, "Please enter username",UserService.NO_USERNAME);
+            return new Result<>(444, "Please enter username",UserService.NOT_EXIST);
         }
 
         return userService.create(user);
     }
 
-    public Result getUserByUsername(String username){
-        User user = userService.getUserByUsername(username);
-        if (user == null){
-            return new Result<>(555,"User -> " + username + " <- not exist.");
-        }
-        return new Result<>(200,"Find user -> " + username + " <- successfully!",user);
+    public Result<User> getUserByUsername(String username){
+        return userService.getUserByUsername(username);
+
     }
 
 

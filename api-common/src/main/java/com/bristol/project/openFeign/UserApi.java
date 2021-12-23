@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.*;
 public interface UserApi {
 
     @PostMapping
-    Result<Integer> create(@RequestBody(required = true) User user);
+    Result<Integer> create(@RequestBody User user);
 
     @GetMapping("/{username}")
-    Result getUserByUsername(@PathVariable("username") String username);
+    Result<User> getUserByUsername(@PathVariable("username") String username);
 }

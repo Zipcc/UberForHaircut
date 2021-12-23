@@ -17,7 +17,6 @@ public class UserServiceImpl implements UserService {
     public Result<Integer> create(User user) {
 
         if(userDao.getUserByUsername(user.getUsername()) == null){
-
             int userId = userDao.create(user);
             if (userId > 0) {
                 //Success.
@@ -30,11 +29,15 @@ public class UserServiceImpl implements UserService {
             //Already exist.
             return new Result<>(444,"Username -> " + user.getUsername() + " <- already exists.", ALREADY_EXIST);
         }
-
     }
 
     @Override
-    public User getUserByUsername(String username) {
-        return userDao.getUserByUsername(username);
+    public Result<User> getUserByUsername(String username) {
+        User user = userDao.getUserByUsername(username);
+
+        if (user == null){
+            return new Result<>(555,"User -> " + username + " <- not exist.", null);
+        }
+        return new Result<>(200,"Find user -> " + username + " <- successfully!",user);
     }
 }
