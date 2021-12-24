@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/users")
 public interface UserApi {
 
+    @PostMapping("/login")
+    Result Login(@RequestBody String username,@RequestBody String password);
+
     @PostMapping
     Result<Integer> create(@RequestBody User user);
 

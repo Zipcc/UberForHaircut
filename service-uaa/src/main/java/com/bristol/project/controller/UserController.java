@@ -9,6 +9,6 @@ import java.security.Principal;
 public class UserController {
     @RequestMapping("/authentication")
     public Principal authentication(Principal user){
-        return new Pri;
+        return user.;
     }
 }

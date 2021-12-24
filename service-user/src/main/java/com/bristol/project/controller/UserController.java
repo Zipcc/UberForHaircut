@@ -12,12 +12,22 @@ public class UserController implements UserApi {
     @Resource
     private UserService userService;
 
+    @Override
+    public Result Login(String username, String password) {
+
+        if(username == null || password == null){
+            return new Result<>(444, "Please enter username and password.",UserService.NOT_EXIST);
+        }
+
+        return userService.login(username, password);
+    }
+
     public Result<Integer> create(User user){
 
         System.out.println(user);
 
         if(user == null || user.getUsername() == null){
-            return new Result<>(444, "Please enter username",UserService.NOT_EXIST);
+            return new Result<>(444, "Please enter username.",UserService.NOT_EXIST);
         }
 
         return userService.create(user);
