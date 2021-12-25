@@ -6,11 +6,13 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/Springboot-eureka-server/pom.xml" />
         <option value="$PROJECT_DIR$/SpringCloud-Eureka-Server/pom.xml" />
+        <option value="$PROJECT_DIR$/api-gateway-common/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/SpringCloud-eureka-server/pom.xml" />
+        <option value="$PROJECT_DIR$/gateway-user/pom.xml" />
       </set>
     </option>
   </component>

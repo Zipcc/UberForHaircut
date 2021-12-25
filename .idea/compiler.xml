@@ -20,6 +20,7 @@
         <module name="SpringCloud-Eureka-Server7002" />
         <module name="service-user" />
         <module name="SpringCloudAlibaba-provider-payment9001" />
+        <module name="api-gateway-user" />
         <module name="SpringCloudAlibaba-Config-Nacos-Client3001" />
         <module name="SpringCloud-Provider-Payment8001" />
         <module name="SpringCloud-Provider-Payment8002" />
@@ -27,6 +28,10 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="api-common" target="8" />
+      <module name="api-gateway-common" target="8" />
+      <module name="api-gateway-user" target="8" />
+      <module name="api-gatewayCommon" target="8" />
+      <module name="gateway-user" target="8" />
       <module name="service-uaa" target="8" />
       <module name="service-user" target="8" />
       <module name="SpringCloud-Api-Commons" target="8" />

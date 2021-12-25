@@ -1,18 +1,15 @@
 package com.bristol.project.service.impl;
 
 import cn.hutool.crypto.digest.BCrypt;
-import cn.hutool.json.JSON;
 import cn.hutool.json.JSONUtil;
 import com.bristol.project.dao.UserDao;
 import com.bristol.project.entity.Result;
 import com.bristol.project.entity.User;
 import com.bristol.project.service.UserService;
 import com.bristol.project.utils.Jwt;
-import com.fasterxml.jackson.core.JsonFactory;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.json.JsonMapper;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -25,8 +22,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Result login(String username, String password) {
-
+        System.out.println(username);
+        System.out.println(password);
         User user = userDao.getUserByUsername(username);
+        if(user == null){
+            return new Result<>(200, "User not exist.!", NOT_EXIST);
+        }
         if(BCrypt.checkpw(password, user.getPassword())){
 
             Map<String,Object> tokenMap = new HashMap<>();
@@ -35,7 +36,11 @@ public class UserServiceImpl implements UserService {
             tokenMap.put("role", user.getRole());
             String token = Jwt.createJWT(UUID.randomUUID().toString(),JSONUtil.toJsonStr(tokenMap),null);
 
-            return new Result<>(200, "Login successfully!", user);
+            Cookie cookie = new Cookie("Authorization", token);
+            cookie.setDomain("localhost");
+            cookie.setPath("/");
+
+            return new Result<>(200, "Login successfully!", token);
         }
         return new Result(444, "Password is wrong.", PASSWORD_WRONG);
     }
@@ -44,6 +49,7 @@ public class UserServiceImpl implements UserService {
     public Result<Integer> create(User user) {
 
         if(userDao.getUserByUsername(user.getUsername()) == null){
+            user.setPassword(BCrypt.hashpw(user.getPassword()));
             int userId = userDao.create(user);
             if (userId > 0) {
                 //Success.

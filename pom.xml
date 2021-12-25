@@ -26,6 +26,9 @@
         <module>service-user</module>
         <module>api-common</module>
         <module>service-uaa</module>
+        <module>api-gateway</module>
+        <module>gateway-user</module>
+        <module>api-gateway-common</module>
     </modules>
 
     <properties>

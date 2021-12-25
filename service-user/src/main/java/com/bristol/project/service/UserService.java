@@ -4,6 +4,8 @@ import com.bristol.project.entity.Result;
 import com.bristol.project.entity.User;
 import org.apache.ibatis.annotations.Param;
 
+import javax.servlet.http.HttpServletResponse;
+
 public interface UserService{
 
     int CREATE_FAILED   = -1;

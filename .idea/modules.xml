@@ -17,6 +17,8 @@
       <module fileurl="file://$PROJECT_DIR$/SpringCloudAlibaba-provider-payment9002/SpringCloudAlibaba-provider-payment9002.iml" filepath="$PROJECT_DIR$/SpringCloudAlibaba-provider-payment9002/SpringCloudAlibaba-provider-payment9002.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/UberForHaircut.iml" filepath="$PROJECT_DIR$/.idea/UberForHaircut.iml" />
       <module fileurl="file://$PROJECT_DIR$/api-common/api-common.iml" filepath="$PROJECT_DIR$/api-common/api-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/api-gateway-common/api-gateway-common.iml" filepath="$PROJECT_DIR$/api-gateway-common/api-gateway-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/api-gateway-common/api-gateway-user/api-gateway-user.iml" filepath="$PROJECT_DIR$/api-gateway-common/api-gateway-user/api-gateway-user.iml" />
       <module fileurl="file://$PROJECT_DIR$/service-uaa/service-uaa.iml" filepath="$PROJECT_DIR$/service-uaa/service-uaa.iml" />
       <module fileurl="file://$PROJECT_DIR$/service-user/service-user.iml" filepath="$PROJECT_DIR$/service-user/service-user.iml" />
     </modules>
