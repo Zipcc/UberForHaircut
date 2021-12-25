@@ -9,17 +9,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 
 @RestController
 public class UserController implements UserApi {
 
-    @GetMapping("/1")
-    public String x(){
-        return "1111no";
-    }
-
     @Resource
     private UserService userService;
+
+    @Resource
+    private HttpServletResponse response;
 
     public Result Login(String username, String password) {
 
@@ -27,7 +26,7 @@ public class UserController implements UserApi {
             return new Result<>(444, "Please enter username and password.",UserService.NOT_EXIST);
         }
 
-        return userService.login(username, password);
+        return userService.login(username, password, response);
     }
 
     public Result<Integer> create(User user){

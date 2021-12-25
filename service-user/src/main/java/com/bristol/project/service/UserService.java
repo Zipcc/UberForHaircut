@@ -13,7 +13,7 @@ public interface UserService{
     int ALREADY_EXIST = -3;
     int PASSWORD_WRONG = -4;
 
-    Result login(String username, String password);
+    Result login(String username, String password, HttpServletResponse response);
 
     Result<Integer> create(User user);
 

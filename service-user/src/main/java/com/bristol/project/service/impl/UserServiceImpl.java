@@ -10,6 +10,7 @@ import com.bristol.project.utils.Jwt;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -21,7 +22,7 @@ public class UserServiceImpl implements UserService {
     private UserDao userDao;
 
     @Override
-    public Result login(String username, String password) {
+    public Result login(String username, String password, HttpServletResponse response) {
         System.out.println(username);
         System.out.println(password);
         User user = userDao.getUserByUsername(username);
@@ -39,6 +40,7 @@ public class UserServiceImpl implements UserService {
             Cookie cookie = new Cookie("Authorization", token);
             cookie.setDomain("localhost");
             cookie.setPath("/");
+            response.addCookie(cookie);
 
             return new Result<>(200, "User: " + username + " login successfully!", token);
         }

@@ -29,6 +29,11 @@ spring:
             - Path=/ios/users/**
           filters:
             - StripPrefix=1
+            - name: RequestRateLimiter
+              args:
+                key-resolver: "#{ipKeyResolver}"
+                redis-rate-limiter.replenishRate: 200
+                redis-rate-limiter.burstCapacity: 500
 
 
 management:
