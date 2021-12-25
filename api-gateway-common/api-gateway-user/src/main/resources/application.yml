@@ -9,6 +9,9 @@ spring:
       discovery:
         server-addr: localhost:8848
     gateway:
+      discovery:
+        locator:
+          enabled: true
       globalcors:
         cors-configurations:
           '[/**]':
@@ -18,7 +21,14 @@ spring:
               - POST
               - PUT
               - DELETE
-
+      routes:
+        - id: service-user-route
+          uri: lb://service-user
+          predicates:
+          #  - Host=localhost**
+            - Path=/ios/users/**
+          filters:
+            - StripPrefix=1
 
 
 management:

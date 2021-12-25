@@ -26,7 +26,7 @@ public class UserServiceImpl implements UserService {
         System.out.println(password);
         User user = userDao.getUserByUsername(username);
         if(user == null){
-            return new Result<>(200, "User not exist.!", NOT_EXIST);
+            return new Result<>(200, "User: " + username + " not exist!", NOT_EXIST);
         }
         if(BCrypt.checkpw(password, user.getPassword())){
 
@@ -40,7 +40,7 @@ public class UserServiceImpl implements UserService {
             cookie.setDomain("localhost");
             cookie.setPath("/");
 
-            return new Result<>(200, "Login successfully!", token);
+            return new Result<>(200, "User: " + username + " login successfully!", token);
         }
         return new Result(444, "Password is wrong.", PASSWORD_WRONG);
     }
@@ -60,7 +60,7 @@ public class UserServiceImpl implements UserService {
             }
         }else{
             //Already exist.
-            return new Result<>(444,"Username -> " + user.getUsername() + " <- already exists.", ALREADY_EXIST);
+            return new Result<>(444,"Username: " + user.getUsername() + " already exists.", ALREADY_EXIST);
         }
     }
 
