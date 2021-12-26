@@ -26,8 +26,6 @@
         <module>service-user</module>
         <module>api-common</module>
         <module>service-uaa</module>
-        <module>api-gateway</module>
-        <module>gateway-user</module>
         <module>api-gateway-common</module>
     </modules>
 
@@ -40,6 +38,7 @@
         <junit.version>5.5.0</junit.version>
         <log4j.version>1.2.17</log4j.version>
         <lombok.version>1.16.18</lombok.version>
+        <jwt.version>0.9.1</jwt.version>
 
         <mysql.version>8.0.26</mysql.version>
 
@@ -49,7 +48,6 @@
 
         <mybatis.spring.boot.version>2.2.0</mybatis.spring.boot.version>
     </properties>
-
 
     <dependencyManagement>
         <dependencies>
@@ -71,6 +69,7 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
             <!--SpringCloudAlibaba-->
             <dependency>
                 <groupId>com.alibaba.cloud</groupId>
@@ -79,6 +78,7 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
             <!--MySQL-->
             <dependency>
                 <groupId>mysql</groupId>
@@ -106,6 +106,13 @@
                 <groupId>org.junit.jupiter</groupId>
                 <artifactId>junit-jupiter-api</artifactId>
                 <version>${junit.version}</version>
+            </dependency>
+
+            <!--Jwt-->
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt</artifactId>
+                <version>${jwt.version}</version>
             </dependency>
 
         </dependencies>

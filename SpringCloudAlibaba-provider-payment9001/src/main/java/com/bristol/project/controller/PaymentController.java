@@ -15,6 +15,10 @@ public class PaymentController {
     @Value("${server.port}")
     private String serverPort;
 
+    @GetMapping(value = "/users/{id}")
+    private String user(@PathVariable("id") Integer id){return "From 9012, id"+id ;
+    }
+
     @GetMapping(value = "/payments/nacos/{id}")
     public String getPayment(@PathVariable("id") Integer id){
         return "Nacos, serverPort" + serverPort +"id" + id;

@@ -4,8 +4,6 @@ import com.bristol.project.entity.Result;
 import com.bristol.project.entity.User;
 import com.bristol.project.openFeign.UserApi;
 import com.bristol.project.service.UserService;
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;

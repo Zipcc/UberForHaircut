@@ -8,8 +8,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
-import java.util.Objects;
-
 @SpringBootApplication
 @EnableDiscoveryClient
 public class gatewayUserMain {
@@ -17,12 +15,14 @@ public class gatewayUserMain {
         SpringApplication.run(gatewayUserMain.class, args);
     }
 
-    @Bean("ipKeyResolver")
+    @Bean(name = "ipKeyResolver")
     public KeyResolver userKeyResolver(){
         return new KeyResolver() {
             @Override
             public Mono<String> resolve(ServerWebExchange exchange) {
-                String ip = Objects.requireNonNull(exchange.getRequest().getRemoteAddress()).getHostName();
+
+                String ip = exchange.getRequest().getRemoteAddress().getHostString();
+
                 return Mono.just(ip);
             }
         };
