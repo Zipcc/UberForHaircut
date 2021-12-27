@@ -7,8 +7,8 @@ import java.security.Principal;
 
 @RestController
 public class UserController {
-    @RequestMapping("/authentication")
+    @RequestMapping("/auth")
     public Principal authentication(Principal user){
-        return user.;
+        return user;
     }
 }
