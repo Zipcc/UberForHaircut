@@ -5,6 +5,7 @@ import com.bristol.project.entity.User;
 import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("/users")
+
 public interface UserApi {
 
     @PostMapping("/login")

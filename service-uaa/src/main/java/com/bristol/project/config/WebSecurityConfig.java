@@ -5,7 +5,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -18,21 +17,6 @@ import javax.annotation.Resource;
 @EnableWebSecurity
 class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Resource
-    private UserDetailsService userDetailsService;
-
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-
-        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());    }
-
- //  @Override
- //  public void configure(WebSecurity web) throws Exception {
- //      web.ignoring().antMatchers(
- //              "/uaa/login",
- //              "/uaa/logout/*");
- //  }
-
     @Bean
     PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
@@ -43,12 +27,22 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }
-/*
-    /****
-     *
-     * @param http
-     * @throws Exception
-     */
+
+    @Resource
+    private UserDetailsService userDetailsService;
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+    }
+
+ //  @Override
+ //  public void configure(WebSecurity web) throws Exception {
+ //      web.ignoring().antMatchers(
+ //              "/uaa/login",
+ //              "/uaa/logout/*");
+ //  }
+
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
@@ -57,9 +51,9 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                 .and()
-                .httpBasic()        //启用Http基本身份验证
+                .httpBasic()        //HttpBasic authorization(Base64)
                 .and()
-                .formLogin()       //启用表单身份验证
+                .formLogin()       //启用表单身份验证name and password
 ;       //其他请求都需要经过验证
 
     }

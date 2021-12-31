@@ -26,23 +26,20 @@ mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.bristol.project.entity
 
-
-
-
-
 auth:
   ttl: 3600  #token存储到redis的过期时间
   clientId: jianchen
   clientSecret: jianchen
-#  cookieDomain: localhost
-#  cookieMaxAge: -1
-#
+  cookieDomain: localhost
+  cookieMaxAge: -1
+
 #encrypt:
-#  key-store:
-#    location: classpath:/bristolproject.jks
-#    secret: jianchen
-#    alias: jianchen
-#    password: jianchen
+ # key-store:
+  #  location: classpath:/bristolproject.jks
+   # secret: jianchen
+    #alias: jianchen
+    #password: jianchen
+
 logging:
   level:
     com: debug

@@ -15,6 +15,8 @@ import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import javax.annotation.Resource;
+
 /*****
  * 自定义授权认证类
  * @author robod
@@ -22,7 +24,7 @@ import org.springframework.util.StringUtils;
 @Service("userDetailsService")
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-    @Autowired
+    @Resource
     ClientDetailsService clientDetailsService;
 
   //  @Autowired
@@ -35,12 +37,13 @@ public class UserDetailsServiceImpl implements UserDetailsService {
   //      Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         //没有认证统一采用httpbasic认证，httpbasic中存储了client_id和client_secret，开始认证client_id和client_secret
     //    if(authentication==null){
-     //       ClientDetails clientDetails = clientDetailsService.loadClientByClientId(username);
+       //     ClientDetails clientDetails = clientDetailsService.loadClientByClientId(username);
     //        if(clientDetails!=null){
                 //秘钥
     //            String clientSecret = clientDetails.getClientSecret();
                 //静态方式
-        System.out.println("userdetail" + username);
+        System.out.println("userdetail-------" + username);
+        System.out.println("userdetail-------" + username);
                 return new User(username,new BCryptPasswordEncoder().encode("c"), AuthorityUtils.commaSeparatedStringToAuthorityList("king"));
                 //数据库查找方式
                // return new User(username,clientSecret, AuthorityUtils.commaSeparatedStringToAuthorityList(""));

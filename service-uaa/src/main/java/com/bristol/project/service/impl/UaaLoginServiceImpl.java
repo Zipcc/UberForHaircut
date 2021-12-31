@@ -4,7 +4,6 @@ import com.bristol.project.service.UaaLoginService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
@@ -14,7 +13,6 @@ import org.springframework.web.client.RestTemplate;
 import javax.annotation.Resource;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
 import java.util.Base64;
 import java.util.Map;
 
@@ -41,7 +39,7 @@ public class UaaLoginServiceImpl implements UaaLoginService {
         //Header
         HttpHeaders httpHeaders = new HttpHeaders();
         String authorization = "Basic " +
-                new String(Base64.getEncoder().encode((clientId + ":" + clientSecret).getBytes()),"UTF-8");
+                new String(Base64.getEncoder().encode((clientId + ":" + clientSecret).getBytes()), StandardCharsets.UTF_8);
         httpHeaders.add("Authorization", authorization);
 
         System.out.println(url);
@@ -54,9 +52,7 @@ public class UaaLoginServiceImpl implements UaaLoginService {
 
         HttpEntity httpEntity = new HttpEntity(bodyMap,httpHeaders);
         ResponseEntity<Map> responseEntity = restTemplate.postForEntity(url, httpEntity, Map.class);
-//        ResponseEntity<Map> responseEntity = restTemplate.exchange(url, HttpMethod.POST, httpEntity, Map.class);
         System.out.println(responseEntity.getBody());
-        System.out.println("sssssss");
     }
 
 }

@@ -37,7 +37,7 @@
 
         <junit.version>5.5.0</junit.version>
         <log4j.version>1.2.17</log4j.version>
-        <lombok.version>1.16.18</lombok.version>
+        <lombok.version>1.18.10</lombok.version>
         <jwt.version>0.9.1</jwt.version>
 
         <mysql.version>8.0.26</mysql.version>
@@ -45,6 +45,9 @@
         <spring-boot.version>2.4.2</spring-boot.version>
         <spring-cloud.version>2020.0.1</spring-cloud.version>
         <spring-cloudAlibaba.version>2021.1</spring-cloudAlibaba.version>
+        <!--<spring-boot.version>2.3.2.RELEASE</spring-boot.version>
+        <spring-cloud.version>Hoxton.SR9</spring-cloud.version>
+        <spring-cloudAlibaba.version>2.2.6.RELEASE</spring-cloudAlibaba.version>-->
 
         <mybatis.spring.boot.version>2.2.0</mybatis.spring.boot.version>
     </properties>
@@ -118,17 +121,33 @@
         </dependencies>
     </dependencyManagement>
 
-<!--    <build>
+    <build>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>1.3.5.RELEASE</version>
                 <configuration>
                     <fork>true</fork>
                     <addResources>true</addResources>
                 </configuration>
             </plugin>
         </plugins>
-    </build>-->
-
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <excludes>
+                    <exclude>**/*.jks</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>false</filtering>
+                <includes>
+                    <include>**/*.jks</include>
+                </includes>
+            </resource>
+        </resources>
+    </build>
 </project>
