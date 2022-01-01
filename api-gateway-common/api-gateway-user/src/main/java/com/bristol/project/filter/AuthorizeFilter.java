@@ -26,15 +26,13 @@ public class AuthorizeFilter implements GlobalFilter, Ordered {
 
         //Whether token is in headers.
         String token = request.getHeaders().getFirst(AUTHORIZE_TOKEN);
-
-        System.out.println("head"+token);
+        boolean headerHasToken = true;
 
         //Whether token is in parameters.
         if(token == null || token.isEmpty()){
             token = request.getQueryParams().getFirst(AUTHORIZE_TOKEN);
+            headerHasToken = false;
         }
-
-        System.out.println("para"+token);
 
         //Whether token is in cookies.
         if(token == null || token.isEmpty()){
@@ -44,25 +42,18 @@ public class AuthorizeFilter implements GlobalFilter, Ordered {
             }
         }
 
-        System.out.println("cook"+token);
-
         //If all are not, there is no authorized token.
         if(token == null || token.isEmpty()){
             response.setStatusCode(HttpStatus.UNAUTHORIZED);
             return response.setComplete();
+        }else{
+            if(!headerHasToken){
+                if(!token.startsWith("bearer ") && !token.startsWith("Bearer ")){
+                    token = "bearer " + token;
+                }
+                request.mutate().header(AUTHORIZE_TOKEN, token);
+            }
         }
-
-        System.out.println("pwd");
-
-        try {
-            Jwt.parseJWT(token);
-        } catch (Exception e) {
-            response.setStatusCode(HttpStatus.UNAUTHORIZED);
-            return response.setComplete();
-        }
-
-        System.out.println("done");
-
         return chain.filter(exchange);
     }
 
