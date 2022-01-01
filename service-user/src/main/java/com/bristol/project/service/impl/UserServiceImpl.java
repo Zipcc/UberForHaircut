@@ -7,6 +7,7 @@ import com.bristol.project.entity.Result;
 import com.bristol.project.entity.User;
 import com.bristol.project.service.UserService;
 import com.bristol.project.utils.Jwt;
+import com.bristol.project.utils.StatusCode;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
@@ -23,11 +24,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Result login(String username, String password, HttpServletResponse response) {
-        System.out.println(username);
-        System.out.println(password);
+
         User user = userDao.getUserByUsername(username);
         if(user == null){
-            return new Result<>(200, "User: " + username + " not exist!", NOT_EXIST);
+            return new Result<>(StatusCode.NOT_EXIST, "User: " + username + " not exist!");
         }
         if(BCrypt.checkpw(password, user.getPassword())){
 
@@ -44,7 +44,7 @@ public class UserServiceImpl implements UserService {
 
             return new Result<>(200, "User: " + username + " login successfully!", token);
         }
-        return new Result(444, "Password is wrong.", PASSWORD_WRONG);
+        return new Result(StatusCode.PASSWORD_WRONG, "Password is wrong.");
     }
 
     @Override
@@ -55,14 +55,14 @@ public class UserServiceImpl implements UserService {
             int userId = userDao.create(user);
             if (userId > 0) {
                 //Success.
-                return new Result<>(200, "Register successfully!", userId);
+                return new Result<>(StatusCode.OK, "Register successfully!", userId);
             }else{
                 //Create failed.
-                return new Result<>(444,"Failed to register.", CREATE_FAILED);
+                return new Result<>(StatusCode.CREATE_FAILED,"Failed to register.");
             }
         }else{
             //Already exist.
-            return new Result<>(444,"Username: " + user.getUsername() + " already exists.", ALREADY_EXIST);
+            return new Result<>(StatusCode.ALREADY_EXIST,"Username: " + user.getUsername() + " already exists.");
         }
     }
 
@@ -71,8 +71,8 @@ public class UserServiceImpl implements UserService {
         User user = userDao.getUserByUsername(username);
 
         if (user == null){
-            return new Result<>(555,"User -> " + username + " <- not exist.", null);
+            return new Result<>(StatusCode.NOT_EXIST,"User -> " + username + " <- not exist.");
         }
-        return new Result<>(200,"Find user -> " + username + " <- successfully!",user);
+        return new Result<>(StatusCode.OK,"Find user -> " + username + " <- successfully!",user);
     }
 }

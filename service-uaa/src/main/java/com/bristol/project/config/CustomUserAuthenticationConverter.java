@@ -33,6 +33,7 @@ public class CustomUserAuthenticationConverter extends DefaultUserAuthentication
             UserDetails userDetails = userDetailsService.loadUserByUsername(name);
             authUser = (AuthUser) userDetails;
         }
+
         //Input customized properties
         response.put("name", authUser.getName());
         response.put("id", authUser.getId());
@@ -40,19 +41,10 @@ public class CustomUserAuthenticationConverter extends DefaultUserAuthentication
         response.put("role", authUser.getRole());
         response.put("sex",authUser.getSex());
 
-
-        System.out.println(authUser.getName());
-        System.out.println(authUser.getId());
-        System.out.println(authUser.getAddress());
-        System.out.println(authUser.getSex());
-        System.out.println("------------");
-
-
         if (authentication.getAuthorities() != null && !authentication.getAuthorities().isEmpty()) {
             response.put("authorities", AuthorityUtils.authorityListToSet(authentication.getAuthorities()));
         }
 
-        System.out.println(response);
         return response;
     }
 }

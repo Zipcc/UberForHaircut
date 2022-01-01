@@ -4,6 +4,7 @@ import com.bristol.project.entity.Result;
 import com.bristol.project.entity.User;
 import com.bristol.project.openFeign.UserApi;
 import com.bristol.project.service.UserService;
+import com.bristol.project.utils.StatusCode;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -21,7 +22,7 @@ public class UserController implements UserApi {
     public Result Login(String username, String password) {
 
         if(username == null || password == null){
-            return new Result<>(444, "Please enter username and password.",UserService.NOT_EXIST);
+            return new Result<>(StatusCode.NOT_EXIST, "Please enter username and password.");
         }
 
         return userService.login(username, password, response);
@@ -32,7 +33,7 @@ public class UserController implements UserApi {
         System.out.println(user);
 
         if(user == null || user.getUsername() == null){
-            return new Result<>(444, "Please enter username.",UserService.NOT_EXIST);
+            return new Result<>(StatusCode.NOT_EXIST, "Please enter username.");
         }
 
         return userService.create(user);

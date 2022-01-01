@@ -9,11 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 
 public interface UserService{
 
-    int CREATE_FAILED   = -1;
-    int NOT_EXIST = -2;
-    int ALREADY_EXIST = -3;
-    int PASSWORD_WRONG = -4;
-
     Result login(String username, String password, HttpServletResponse response);
 
     Result<Integer> create(User user);

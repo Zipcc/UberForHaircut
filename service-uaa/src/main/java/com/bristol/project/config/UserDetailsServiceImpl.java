@@ -1,6 +1,7 @@
 package com.bristol.project.config;
 //import com.changgou.oauth.util.UserJwt;
 //import com.robod.user.feign.UserFeign;
+import com.bristol.project.entity.AuthUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -21,7 +22,7 @@ import javax.annotation.Resource;
  * 自定义授权认证类
  * @author robod
  */
-@Service("userDetailsService")
+@Service("userDetailsServiceImpl")
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Resource
@@ -42,9 +43,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 //秘钥
     //            String clientSecret = clientDetails.getClientSecret();
                 //静态方式
-        System.out.println("userdetail-------" + username);
-        System.out.println("userdetail-------" + username);
-                return new User(username,new BCryptPasswordEncoder().encode("c"), AuthorityUtils.commaSeparatedStringToAuthorityList("king"));
+        AuthUser authUser = new AuthUser(username,new BCryptPasswordEncoder().encode("c"),
+                                        AuthorityUtils.commaSeparatedStringToAuthorityList("king"));
+        authUser.setSex(0);
+        authUser.setAddress("University of Bristol");
+                return authUser;
                 //数据库查找方式
                // return new User(username,clientSecret, AuthorityUtils.commaSeparatedStringToAuthorityList(""));
      //       }

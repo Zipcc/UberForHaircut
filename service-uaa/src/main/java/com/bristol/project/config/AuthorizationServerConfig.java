@@ -10,6 +10,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.jwt.crypto.sign.RsaVerifier;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
@@ -22,6 +23,7 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 import org.springframework.security.oauth2.provider.token.store.KeyStoreKeyFactory;
 import javax.annotation.Resource;
 import java.security.KeyPair;
+import java.security.interfaces.RSAPublicKey;
 
 
 @Configuration
@@ -31,7 +33,7 @@ class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
     @Resource
     private AuthenticationManager authenticationManager;
 
-    @Resource
+    @Resource(name = "")
     private UserDetailsService userDetailsService;
 
     @Resource(name = "customJWT")
@@ -45,7 +47,7 @@ class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 
         clients.inMemory()
-                .withClient("jianchen")          //客户端id
+                .withClient("jianchenclient")          //客户端id
                 .secret(new BCryptPasswordEncoder().encode("jianchen"))      //秘钥
     //            .redirectUris("http://localhost")       //重定向地址
                 .accessTokenValiditySeconds(3600)          //访问令牌有效期
@@ -84,8 +86,10 @@ class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
     public JwtAccessTokenConverter jwtAccessTokenConverter(CustomUserAuthenticationConverter customUserAuthenticationConverter) {
 
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-        KeyStoreKeyFactory keyStoreKeyFactory = new KeyStoreKeyFactory(new ClassPathResource("jianchenprojectkey.jks"), "jianchens".toCharArray());
-        converter.setKeyPair(keyStoreKeyFactory.getKeyPair("jianchena","jianchenp".toCharArray()));
+        KeyStoreKeyFactory keyStoreKeyFactory = new KeyStoreKeyFactory(new ClassPathResource("jianchenkey.jks"), "jianchens".toCharArray());
+        KeyPair keyPair = keyStoreKeyFactory.getKeyPair("jianchena","jianchenp".toCharArray());
+        converter.setKeyPair(keyPair);
+        converter.setVerifier(new RsaVerifier((RSAPublicKey)keyPair.getPublic()));
 
       //  converter.setSigningKey("00367171843C185C043DDFB90AA97677F11D02B629DEAFC04F935419D832E697");
 

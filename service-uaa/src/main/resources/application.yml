@@ -28,7 +28,7 @@ mybatis:
 
 auth:
   ttl: 3600  #token存储到redis的过期时间
-  clientId: jianchen
+  clientId: jianchenclient
   clientSecret: jianchen
   cookieDomain: localhost
   cookieMaxAge: -1

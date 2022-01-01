@@ -15,7 +15,7 @@ import java.util.Set;
 
 public class AuthUser extends User {
 
-    AuthUser(String username, String password, Collection<? extends GrantedAuthority > authorities){
+    public AuthUser(String username, String password, Collection<? extends GrantedAuthority> authorities){
         super(username, password, true, true, true, true, authorities);
     }
 

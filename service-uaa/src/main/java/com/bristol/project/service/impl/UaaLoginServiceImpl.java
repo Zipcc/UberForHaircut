@@ -1,5 +1,6 @@
 package com.bristol.project.service.impl;
 
+import com.bristol.project.entity.AuthToken;
 import com.bristol.project.service.UaaLoginService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -25,7 +26,7 @@ public class UaaLoginServiceImpl implements UaaLoginService {
     @Value("${server.port}")
     private String uaaPort;
 
-    public void login(String username, String password, String clientId, String clientSecret, String grant_type) throws UnsupportedEncodingException {
+    public AuthToken login(String username, String password, String clientId, String clientSecret, String grant_type) throws UnsupportedEncodingException {
 
         String uaaHost = "localhost";
         String url = "http://" + uaaHost + ":" + uaaPort + "/oauth/token";
@@ -42,17 +43,11 @@ public class UaaLoginServiceImpl implements UaaLoginService {
                 new String(Base64.getEncoder().encode((clientId + ":" + clientSecret).getBytes()), StandardCharsets.UTF_8);
         httpHeaders.add("Authorization", authorization);
 
-        System.out.println(url);
-        System.out.println(username);
-        System.out.println(password);
-        System.out.println(grant_type);
-        System.out.println(clientId);
-        System.out.println(clientSecret);
-
-
-        HttpEntity httpEntity = new HttpEntity(bodyMap,httpHeaders);
-        ResponseEntity<Map> responseEntity = restTemplate.postForEntity(url, httpEntity, Map.class);
-        System.out.println(responseEntity.getBody());
+        HttpEntity<MultiValueMap<String,String>> httpEntity = new HttpEntity<>(bodyMap,httpHeaders);
+        ResponseEntity<Map> response = restTemplate.postForEntity(url, httpEntity, Map.class);
+        Map<String,String> responseMap = response.getBody();
+        AuthToken authToken = new AuthToken(responseMap.get("access_token"),responseMap.get("refresh_token"),responseMap.get("jti"));
+        return authToken;
     }
 
 }
