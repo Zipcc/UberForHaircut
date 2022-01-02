@@ -28,7 +28,12 @@ public class UaaLoginController {
     public Result<AuthToken> login(String username, String password) throws UnsupportedEncodingException {
 
         String grant_type = "password";
-        AuthToken authToken = uaaLoginService.login(username, password, clientId, clientSecret, grant_type);
+        AuthToken authToken;
+        try {
+            authToken = uaaLoginService.login(username, password, clientId, clientSecret, grant_type);
+        }catch (Exception e){
+            return new Result<>(StatusCode.ERROR,e.getMessage());
+        }
         if(authToken!=null){
             return new Result<>(StatusCode.OK, "User: " + username + " login successfully!", authToken);
         }
