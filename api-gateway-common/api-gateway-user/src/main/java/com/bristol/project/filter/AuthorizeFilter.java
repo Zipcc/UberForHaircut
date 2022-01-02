@@ -23,6 +23,11 @@ public class AuthorizeFilter implements GlobalFilter, Ordered {
         ServerHttpRequest request = exchange.getRequest();
         ServerHttpResponse response = exchange.getResponse();
 
+        String url = request.getURI().getPath();
+        if(!URLFilter.needAuthorize(url)){
+            return chain.filter(exchange);
+        }
+
         //Whether token is in headers.
         String token = request.getHeaders().getFirst(AUTHORIZE_TOKEN);
         boolean headerHasToken = true;
