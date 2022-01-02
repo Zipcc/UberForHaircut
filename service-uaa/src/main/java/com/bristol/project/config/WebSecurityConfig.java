@@ -28,12 +28,9 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return super.authenticationManagerBean();
     }
 
-    @Resource
-    private UserDetailsService userDetailsService;
-
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+        super.configure(auth);
     }
 
  //  @Override
@@ -46,15 +43,15 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
-        http.authorizeRequests()
-                .antMatchers("/uaa/**").permitAll()
+        http.httpBasic()        //HttpBasic authorization(Base64)
                 .and()
                 .formLogin()
                 .and()
-                .httpBasic()        //HttpBasic authorization(Base64)
-                .and()
-                .formLogin()       //启用表单身份验证name and password
-;       //其他请求都需要经过验证
+                .authorizeRequests()
+                .antMatchers("/uaa/**").permitAll()
+                .anyRequest().authenticated();
+     //启用表单身份验证name and password
+       //其他请求都需要经过验证
 
     }
 

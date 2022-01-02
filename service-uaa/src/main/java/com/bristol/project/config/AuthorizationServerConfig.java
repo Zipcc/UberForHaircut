@@ -16,12 +16,15 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.A
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.ClientDetailsService;
+import org.springframework.security.oauth2.provider.client.JdbcClientDetailsService;
 import org.springframework.security.oauth2.provider.token.DefaultAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 import org.springframework.security.oauth2.provider.token.store.KeyStoreKeyFactory;
 import javax.annotation.Resource;
+import javax.sql.DataSource;
 import java.security.KeyPair;
 import java.security.interfaces.RSAPublicKey;
 
@@ -33,54 +36,59 @@ class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
     @Resource
     private AuthenticationManager authenticationManager;
 
-    @Resource(name = "")
+    @Resource(name = "userDetailsServiceImpl")
     private UserDetailsService userDetailsService;
 
     @Resource(name = "customJWT")
-    public JwtAccessTokenConverter jwtAccessTokenConverter;
+    private JwtAccessTokenConverter jwtAccessTokenConverter;
 
+    @Resource
+    private DataSource dataSource;
 
- //   @Resource(name = "keyProp")
-//    private KeyProperties keyProperties;
+    @Resource
+    TokenStore tokenStore;
+
+    @Bean
+    public ClientDetailsService jdbcclientDetails(){
+        return new JdbcClientDetailsService(dataSource);
+    };
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 
-        clients.inMemory()
-                .withClient("jianchenclient")          //客户端id
-                .secret(new BCryptPasswordEncoder().encode("jianchen"))      //秘钥
-    //            .redirectUris("http://localhost")       //重定向地址
-                .accessTokenValiditySeconds(3600)          //访问令牌有效期
-                .refreshTokenValiditySeconds(3600)         //刷新令牌有效期
-                .authorizedGrantTypes(
-                        "authorization_code",          //根据授权码生成令牌
-                        "client_credentials",          //客户端认证
-                        "refresh_token",                //刷新令牌
-                        "password")                     //密码方式认证
-                .scopes("app");                         //客户端范围，名称自定义，必填
-        // clients.jdbc(dataSource).clients(clientDetails());
+      //clients.inMemory()
+      //        .withClient("jianchenclient")          //客户端id
+      //        .secret(new BCryptPasswordEncoder().encode("jianchen"))      //秘钥
+      //        .redirectUris("http://localhost")       //重定向地址
+      //        .accessTokenValiditySeconds(3600)          //访问令牌有效期
+      //        .refreshTokenValiditySeconds(3600)         //刷新令牌有效期
+      //        .authorizedGrantTypes(
+      //                "authorization_code",          //根据授权码生成令牌
+      //                "client_credentials",          //客户端认证
+      //                "refresh_token",                //刷新令牌
+      //                "password")                     //密码方式认证
+      //        .scopes("app");                         //客户端范围，名称自定义，必填
+        clients.jdbc(dataSource).clients(jdbcclientDetails());
     }
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpointsConfigurer){
 
-        //刷新令牌时需要的认证管理和用户信息来源
         endpointsConfigurer
                 .authenticationManager(authenticationManager)
                 .accessTokenConverter(jwtAccessTokenConverter)
                 .allowedTokenEndpointRequestMethods(HttpMethod.GET,HttpMethod.POST)
-                .authenticationManager(authenticationManager)
-                .userDetailsService(userDetailsService);
+                .userDetailsService(userDetailsService)
+                .tokenStore(tokenStore);
     }
 
     @Override
     public void configure(AuthorizationServerSecurityConfigurer oauthServer) throws Exception {
         oauthServer.allowFormAuthenticationForClients()
                 .passwordEncoder(new BCryptPasswordEncoder())
-                .tokenKeyAccess("permitAll()");
-        //        .checkTokenAccess("isAuthenticated()");
+                .tokenKeyAccess("permitAll()")
+                .checkTokenAccess("isAuthenticated()");
     }
-
 
     @Bean(name = "customJWT")
     public JwtAccessTokenConverter jwtAccessTokenConverter(CustomUserAuthenticationConverter customUserAuthenticationConverter) {
@@ -102,6 +110,7 @@ class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
     public TokenStore tokenStore(@Qualifier("customJWT") JwtAccessTokenConverter jwtAccessTokenConverter) {
         return new JwtTokenStore(jwtAccessTokenConverter);
     }
+
 
     /*    @Bean("resJwtAccessTokenConverter")
     public JwtAccessTokenConverter resJwtAccessTokenConverter() {

@@ -35,14 +35,14 @@ public class UserServiceImpl implements UserService {
             tokenMap.put("id", user.getId());
             tokenMap.put("username", user.getUsername());
             tokenMap.put("role", user.getRole());
-            String token = Jwt.createJWT(UUID.randomUUID().toString(),JSONUtil.toJsonStr(tokenMap),null);
+           // String token = Jwt.createJWT(UUID.randomUUID().toString(),JSONUtil.toJsonStr(tokenMap),null);
 
-            Cookie cookie = new Cookie("Authorization", token);
-            cookie.setDomain("localhost");
-            cookie.setPath("/");
-            response.addCookie(cookie);
+           // Cookie cookie = new Cookie("Authorization", token);
+           // cookie.setDomain("localhost");
+           // cookie.setPath("/");
+           // response.addCookie(cookie);
 
-            return new Result<>(200, "User: " + username + " login successfully!", token);
+            return new Result<>(StatusCode.OK, "User: " + username + " login successfully!");
         }
         return new Result(StatusCode.PASSWORD_WRONG, "Password is wrong.");
     }
