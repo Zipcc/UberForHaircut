@@ -33,6 +33,8 @@
     <file url="file://$PROJECT_DIR$/api-gateway-common/api-gateway-user/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/api-gateway-common/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/api-gateway-common/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service-booking/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service-booking/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/service-uaa/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/service-uaa/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/service-user/src/main/java" charset="UTF-8" />

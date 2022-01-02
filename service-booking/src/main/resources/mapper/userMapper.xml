@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bristol.project.dao.UserDao">
+
+    <insert id="" parameterType="" useGeneratedKeys="" keyProperty="">
+        insert into user(username, password) values(#{username},#{password});
+    </insert>
+
+    <resultMap id="UserResultMap" type="com.bristol.project.entity.User">
+        <id column="username" property="username" jdbcType="VARCHAR"/>
+        <result column="id" property="id" jdbcType="BIGINT"/>
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+        <result column="role" property="role" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <select id="getUserByUsername" parameterType="String" resultMap="UserResultMap">
+        select * from user where username=#{username} and length(username)=length(#{username});
+    </select>
+
+</mapper>

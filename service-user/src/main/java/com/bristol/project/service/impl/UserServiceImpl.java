@@ -1,20 +1,16 @@
 package com.bristol.project.service.impl;
 
 import cn.hutool.crypto.digest.BCrypt;
-import cn.hutool.json.JSONUtil;
 import com.bristol.project.dao.UserDao;
 import com.bristol.project.entity.Result;
 import com.bristol.project.entity.User;
 import com.bristol.project.service.UserService;
-import com.bristol.project.utils.Jwt;
 import com.bristol.project.utils.StatusCode;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 @Service
 public class UserServiceImpl implements UserService {

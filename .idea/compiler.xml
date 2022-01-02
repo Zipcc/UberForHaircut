@@ -16,6 +16,7 @@
         <module name="SpringCloudAlibaba-Consumer-Nacos-Order90" />
         <module name="SpringCloud-Provider-Hystrix-Payment8001" />
         <module name="SpringCloudAlibaba-provider-payment9002" />
+        <module name="service-booking" />
         <module name="SpringCloud-Eureka-Server7001" />
         <module name="SpringCloud-Eureka-Server7002" />
         <module name="service-user" />
@@ -32,6 +33,7 @@
       <module name="api-gateway-user" target="8" />
       <module name="api-gatewayCommon" target="8" />
       <module name="gateway-user" target="8" />
+      <module name="service-booking" target="8" />
       <module name="service-uaa" target="8" />
       <module name="service-user" target="8" />
       <module name="SpringCloud-Api-Commons" target="8" />

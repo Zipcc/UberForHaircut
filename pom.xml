@@ -27,6 +27,7 @@
         <module>api-common</module>
         <module>service-uaa</module>
         <module>api-gateway-common</module>
+        <module>service-booking</module>
     </modules>
 
     <properties>
