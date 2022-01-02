@@ -5,10 +5,13 @@ import com.bristol.project.entity.User;
 import com.bristol.project.openFeign.UserApi;
 import com.bristol.project.service.UserService;
 import com.bristol.project.utils.StatusCode;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 @RestController
 public class UserController implements UserApi {
@@ -19,26 +22,38 @@ public class UserController implements UserApi {
     @Resource
     private HttpServletResponse response;
 
+    @Override
     public Result Login(String username, String password) {
-
         if(username == null || password == null){
             return new Result<>(StatusCode.NOT_EXIST, "Please enter username and password.");
         }
-
         return userService.login(username, password, response);
     }
 
+    @Override
     public Result<Integer> create(User user){
-
-        System.out.println(user);
-
         if(user == null || user.getUsername() == null){
             return new Result<>(StatusCode.NOT_EXIST, "Please enter username.");
         }
-
         return userService.create(user);
     }
 
+    @Override
+    public Result<User> updateUserByUsername(String username, User user){
+        if(username == null || user == null){
+            return new Result<>(StatusCode.NOT_EXIST,"User not exist.");
+        }
+        return userService.updateUserByUsername(username, user);
+    }
+
+    @PreAuthorize("hasAuthority('admin')")
+    @Override
+    public Result<List<User>> getAllUser() {
+        return userService.getAllUser();
+    }
+
+    @PreAuthorize("hasAuthority('admin')")
+    @Override
     public Result<User> getUserByUsername(String username){
         return userService.getUserByUsername(username);
 

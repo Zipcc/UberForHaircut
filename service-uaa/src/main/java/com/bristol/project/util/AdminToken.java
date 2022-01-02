@@ -23,10 +23,9 @@ public class AdminToken {
         RSAPrivateKey rsaPrivateKey = (RSAPrivateKey) keyPair.getPrivate();
 
         Map<String, Object> payload = new HashMap<>();
-        payload.put("authorities", new String[]{"admin", "oauth"});
+        payload.put("authorities", new String[]{"admin"});
 
         Jwt jwt = JwtHelper.encode(JSONUtil.toJsonStr(payload), new RsaSigner(rsaPrivateKey));
-
         return jwt.getEncoded();
     }
 }

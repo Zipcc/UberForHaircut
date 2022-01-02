@@ -48,7 +48,6 @@ public class UaaLoginServiceImpl implements UaaLoginService {
         ResponseEntity<Map> response = restTemplate.postForEntity(url, httpEntity, Map.class);
         Map<String,String> responseMap = response.getBody();
 
-        System.out.println("-------------------"+ responseMap);
         AuthToken authToken = new AuthToken(responseMap.get("access_token"),responseMap.get("refresh_token"),responseMap.get("jti"));
         return authToken;
     }

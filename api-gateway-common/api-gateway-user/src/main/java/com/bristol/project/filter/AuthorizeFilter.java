@@ -51,6 +51,7 @@ public class AuthorizeFilter implements GlobalFilter, Ordered {
             response.setStatusCode(HttpStatus.UNAUTHORIZED);
             return response.setComplete();
         }else{
+            //Add token to header
             if(!headerHasToken){
                 if(!token.startsWith("bearer ") && !token.startsWith("Bearer ")){
                     token = "bearer " + token;

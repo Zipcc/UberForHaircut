@@ -1,8 +1,6 @@
 package com.bristol.project.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.cloud.bootstrap.encrypt.KeyProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
@@ -51,7 +49,7 @@ class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
     @Bean
     public ClientDetailsService jdbcclientDetails(){
         return new JdbcClientDetailsService(dataSource);
-    };
+    }
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
@@ -83,7 +81,7 @@ class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
     }
 
     @Override
-    public void configure(AuthorizationServerSecurityConfigurer oauthServer) throws Exception {
+    public void configure(AuthorizationServerSecurityConfigurer oauthServer) {
         oauthServer.allowFormAuthenticationForClients()
                 .passwordEncoder(new BCryptPasswordEncoder())
                 .tokenKeyAccess("permitAll()")
