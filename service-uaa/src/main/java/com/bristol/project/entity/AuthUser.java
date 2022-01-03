@@ -21,19 +21,11 @@ public class AuthUser extends User {
 
     @Getter
     @Setter
-    private Integer id;
-
-    @Getter
-    @Setter
-    private int sex;
+    private long id;
 
     @Getter
     @Setter
     private String name;
-
-    @Getter
-    @Setter
-    private String address;
 
     @Getter
     @Setter

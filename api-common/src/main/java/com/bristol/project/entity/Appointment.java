@@ -12,7 +12,7 @@ import java.util.Date;
 public class Appointment {
 
         private Long id;
-        private Date date;
+        private String date;
         private String clientUserName;
         private String barberShopName;
         private String serviceType;

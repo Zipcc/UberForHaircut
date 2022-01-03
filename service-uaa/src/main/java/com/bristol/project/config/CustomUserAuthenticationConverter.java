@@ -37,14 +37,11 @@ public class CustomUserAuthenticationConverter extends DefaultUserAuthentication
         //Input customized properties
         response.put("name", authUser.getName());
         response.put("id", authUser.getId());
-        response.put("address", authUser.getAddress());
         response.put("role", authUser.getRole());
-        response.put("sex",authUser.getSex());
 
         if (authentication.getAuthorities() != null && !authentication.getAuthorities().isEmpty()) {
             response.put("authorities", AuthorityUtils.authorityListToSet(authentication.getAuthorities()));
         }
-
         return response;
     }
 }

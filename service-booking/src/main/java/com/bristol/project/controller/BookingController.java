@@ -16,7 +16,7 @@ public class BookingController implements BookingApi {
     @Resource
     BookingService bookingService;
 
-    @PreAuthorize("hasAuthority('admin,barber')")
+    @PreAuthorize("hasAnyAuthority('admin','barber')")
     @Override
     public Result<Appointment> create(Appointment appointment) {
 
@@ -26,7 +26,7 @@ public class BookingController implements BookingApi {
         return bookingService.create(appointment);
     }
 
-    @PreAuthorize("hasAuthority('admin,barber')")
+    @PreAuthorize("hasAnyAuthority('admin','barber')")
     @Override
     public Result<Appointment> deleteAppointmentById(String id) {
 

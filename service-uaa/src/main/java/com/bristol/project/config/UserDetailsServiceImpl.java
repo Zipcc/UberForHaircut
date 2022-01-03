@@ -3,12 +3,12 @@ package com.bristol.project.config;
 //import com.robod.user.feign.UserFeign;
 import com.bristol.project.entity.AuthUser;
 import com.bristol.project.entity.Result;
+import com.bristol.project.entity.User;
 import com.bristol.project.openFeign.UserApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -35,23 +35,23 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         //取出身份，如果身份为空说明没有认证
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         //没有认证统一采用httpbasic认证，httpbasic中存储了client_id和client_secret，开始认证client_id和client_secret
-       // if(authentication == null) {
-       //     // Query table oauth_client_details
-       //     ClientDetails clientDetails = clientDetailsService.loadClientByClientId(username);
-       //     if (clientDetails != null) {
-       //         String clientSecret = clientDetails.getClientSecret();
-       //         System.out.println("-----------------------------"+username);
-       //         System.out.println("-----------------------------"+clientSecret);
-       //         return new User(username, clientSecret, AuthorityUtils.commaSeparatedStringToAuthorityList(""));
-       //     }
-       //     //AuthUser authUser = new AuthUser(username,new BCryptPasswordEncoder().encode("c"),
-       //     //                                AuthorityUtils.commaSeparatedStringToAuthorityList("king"));
-       //     //authUser.setSex(0);
-       //     //authUser.setAddress("University of Bristol");
-       //     //        return authUser;
-       // }
+        // if(authentication == null) {
+        //     // Query table oauth_client_details
+        //     ClientDetails clientDetails = clientDetailsService.loadClientByClientId(username);
+        //     if (clientDetails != null) {
+        //         String clientSecret = clientDetails.getClientSecret();
+        //         System.out.println("-----------------------------"+username);
+        //         System.out.println("-----------------------------"+clientSecret);
+        //         return new User(username, clientSecret, AuthorityUtils.commaSeparatedStringToAuthorityList(""));
+        //     }
+        //     //AuthUser authUser = new AuthUser(username,new BCryptPasswordEncoder().encode("c"),
+        //     //                                AuthorityUtils.commaSeparatedStringToAuthorityList("king"));
+        //     //authUser.setSex(0);
+        //     //authUser.setAddress("University of Bristol");
+        //     //        return authUser;
+        // }
 
-        if(username == null || username.isEmpty()){
+        if (username == null || username.isEmpty()) {
             return null;
         }
 
@@ -59,16 +59,23 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         if (userResult == null || userResult.getData() == null) {
             return null;
         }
-        String password = userResult.getData().getPassword();
-        int roles = userResult.getData().getRole();
+        User user = userResult.getData();
+
+        String password = user.getPassword();
+        int role = user.getRole();
         String permissions = "null";
-        if(roles == 0){
+        if (role == 0) {
             permissions = "admin,client,barber";
-        }else if(roles == 1){
+        } else if (role == 1) {
             permissions = "client";
-        }else if(roles == 2){
+        } else if (role == 2) {
             permissions = "barber";
         }
-        return new AuthUser(username,password,AuthorityUtils.commaSeparatedStringToAuthorityList(permissions));
+
+        AuthUser authUser = new AuthUser(username, password, AuthorityUtils.commaSeparatedStringToAuthorityList(permissions));
+        authUser.setRole(role);
+        authUser.setId(user.getId());
+        authUser.setName(user.getUsername());
+        return authUser;
     }
 }

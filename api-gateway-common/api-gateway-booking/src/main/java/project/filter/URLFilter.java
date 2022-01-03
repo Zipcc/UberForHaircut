@@ -1,10 +1,8 @@
 package project.filter;
 
-import java.util.Arrays;
-
 public class URLFilter {
 
-    private static final String permittedURL = "/ios/shops";
+    private static final String permittedURL = "";
 
     public static boolean needAuthorize(String url){
 

@@ -26,11 +26,13 @@
         <module name="SpringCloudAlibaba-Config-Nacos-Client3001" />
         <module name="service-shop" />
         <module name="SpringCloud-Provider-Payment8001" />
+        <module name="api-gateway-booking" />
         <module name="SpringCloud-Provider-Payment8002" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="api-common" target="8" />
+      <module name="api-gateway-booking" target="8" />
       <module name="api-gateway-common" target="8" />
       <module name="api-gateway-shop" target="8" />
       <module name="api-gateway-user" target="8" />
