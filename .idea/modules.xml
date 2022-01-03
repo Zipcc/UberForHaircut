@@ -18,8 +18,10 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/UberForHaircut.iml" filepath="$PROJECT_DIR$/.idea/UberForHaircut.iml" />
       <module fileurl="file://$PROJECT_DIR$/api-common/api-common.iml" filepath="$PROJECT_DIR$/api-common/api-common.iml" />
       <module fileurl="file://$PROJECT_DIR$/api-gateway-common/api-gateway-common.iml" filepath="$PROJECT_DIR$/api-gateway-common/api-gateway-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/api-gateway-common/api-gateway-shop/api-gateway-shop.iml" filepath="$PROJECT_DIR$/api-gateway-common/api-gateway-shop/api-gateway-shop.iml" />
       <module fileurl="file://$PROJECT_DIR$/api-gateway-common/api-gateway-user/api-gateway-user.iml" filepath="$PROJECT_DIR$/api-gateway-common/api-gateway-user/api-gateway-user.iml" />
       <module fileurl="file://$PROJECT_DIR$/service-booking/service-booking.iml" filepath="$PROJECT_DIR$/service-booking/service-booking.iml" />
+      <module fileurl="file://$PROJECT_DIR$/service-shop/service-shop.iml" filepath="$PROJECT_DIR$/service-shop/service-shop.iml" />
       <module fileurl="file://$PROJECT_DIR$/service-uaa/service-uaa.iml" filepath="$PROJECT_DIR$/service-uaa/service-uaa.iml" />
       <module fileurl="file://$PROJECT_DIR$/service-user/service-user.iml" filepath="$PROJECT_DIR$/service-user/service-user.iml" />
     </modules>

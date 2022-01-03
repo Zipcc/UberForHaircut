@@ -43,7 +43,7 @@ public class UaaLoginServiceImpl implements UaaLoginService {
                 new String(Base64.getEncoder().encode((clientId + ":" + clientSecret).getBytes()), StandardCharsets.UTF_8);
         httpHeaders.add("Authorization", authorization);
 
-        HttpEntity<MultiValueMap<String,String>> httpEntity = new HttpEntity<>(bodyMap,httpHeaders);
+        HttpEntity<MultiValueMap<String,String>> httpEntity = new HttpEntity<>(bodyMap, httpHeaders);
 
         ResponseEntity<Map> response = restTemplate.postForEntity(url, httpEntity, Map.class);
         Map<String,String> responseMap = response.getBody();

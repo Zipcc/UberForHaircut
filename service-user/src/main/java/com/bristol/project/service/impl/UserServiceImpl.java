@@ -21,7 +21,7 @@ public class UserServiceImpl implements UserService {
     @Resource
     private UserDao userDao;
 
-    @Override
+    //@Override
     public Result login(String username, String password, HttpServletResponse response) {
 
         User user = userDao.getUserByUsername(username);
@@ -66,9 +66,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Result<User> updateUserByUsername(@Param("username") String username, User user) {
+    public Result<User> updateUserByUsername(String username, User user) {
 
         User oldUser = userDao.getUserByUsername(username);
+        if(oldUser == null){
+            return new Result<>(StatusCode.NOT_EXIST,"User not exist.");
+        }
         if(user.getPassword()==null){
             user.setPassword(oldUser.getPassword());
         }
@@ -91,7 +94,7 @@ public class UserServiceImpl implements UserService {
         int result = userDao.updateUserByUsername(user);
         if (result > 0) {
             //Success.
-            return new Result<User>(StatusCode.OK, "Update successfully!", user);
+            return new Result<>(StatusCode.OK, "Update successfully!", user);
         }else{
             //Update failed.
             return new Result<>(StatusCode.CREATE_FAILED,"Failed to update.");
@@ -106,12 +109,13 @@ public class UserServiceImpl implements UserService {
         if (user == null){
             return new Result<>(StatusCode.NOT_EXIST,"User -> " + username + " <- not exist.");
         }
-        return new Result<>(StatusCode.OK,"Find user -> " + username + " <- successfully!",user);
+        return new Result<>(StatusCode.OK,"Find user -> " + username + " <- successfully!", user);
     }
 
     @Override
     public Result<List<User>> getAllUser() {
-        List<User> list = new ArrayList<>();
+
+        List<User> list;
         list = userDao.getAllUser();
         if(list == null){
             return new Result<>(StatusCode.NOT_EXIST,"User not exist.");

@@ -1,5 +1,5 @@
 server:
-  port: 19111
+  port: 19100
 
 spring:
   application:
@@ -42,20 +42,6 @@ spring:
           predicates:
             #  - Host=localhost**
             - Path=/ios/users/**
-          filters:
-            - StripPrefix=1
-            - name: RequestRateLimiter
-              args:
-                key-resolver: "#{@ipKeyResolver}"
-                redis-rate-limiter.replenishRate: 30
-                redis-rate-limiter.burstCapacity: 100
-
-        - id: service-booking-route
-          #uri: http://localhost:9011
-          uri: lb://service-booking
-          predicates:
-            #  - Host=localhost**
-            - Path=/ios/bookings/**
           filters:
             - StripPrefix=1
             - name: RequestRateLimiter

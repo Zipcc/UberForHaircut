@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bristol.project.dao.ShopDao">
+
+    <insert id="create" parameterType="Shop" useGeneratedKeys="true" keyProperty="id">
+        insert into shop(username, shopName, locationDescription, serviceForGender, phoneNumber)
+        values(#{username},#{shopName},#{locationDescription},#{serviceForGender},#{phoneNumber});
+    </insert>
+
+    <update id="updateShopByUsername">
+        update shop
+        set shopName=#{shop.shopName},locationDescription=#{shop.locationDescription},serviceForGender=#{shop.serviceForGender}
+        where username=#{username};
+    </update>
+
+    <select id="getShopByUsername" resultType="com.bristol.project.entity.Shop">
+        select * from shop
+        where username=#{username} and length(username)=length(#{username});
+    </select>
+
+    <select id="getAllShop" resultType="Shop">
+        select * from shop;
+    </select>
+
+</mapper>

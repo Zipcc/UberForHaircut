@@ -14,6 +14,7 @@
         <module name="SpringCloud-Api-Commons" />
         <module name="SpringCloud-Gateway-Gateway9500" />
         <module name="SpringCloudAlibaba-Consumer-Nacos-Order90" />
+        <module name="api-gateway-shop" />
         <module name="SpringCloud-Provider-Hystrix-Payment8001" />
         <module name="SpringCloudAlibaba-provider-payment9002" />
         <module name="service-booking" />
@@ -23,6 +24,7 @@
         <module name="SpringCloudAlibaba-provider-payment9001" />
         <module name="api-gateway-user" />
         <module name="SpringCloudAlibaba-Config-Nacos-Client3001" />
+        <module name="service-shop" />
         <module name="SpringCloud-Provider-Payment8001" />
         <module name="SpringCloud-Provider-Payment8002" />
       </profile>
@@ -30,10 +32,12 @@
     <bytecodeTargetLevel>
       <module name="api-common" target="8" />
       <module name="api-gateway-common" target="8" />
+      <module name="api-gateway-shop" target="8" />
       <module name="api-gateway-user" target="8" />
       <module name="api-gatewayCommon" target="8" />
       <module name="gateway-user" target="8" />
       <module name="service-booking" target="8" />
+      <module name="service-shop" target="8" />
       <module name="service-uaa" target="8" />
       <module name="service-user" target="8" />
       <module name="SpringCloud-Api-Commons" target="8" />

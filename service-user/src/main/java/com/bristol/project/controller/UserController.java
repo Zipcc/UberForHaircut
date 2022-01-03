@@ -24,15 +24,18 @@ public class UserController implements UserApi {
 
     @Override
     public Result Login(String username, String password) {
+
         if(username == null || password == null){
             return new Result<>(StatusCode.NOT_EXIST, "Please enter username and password.");
         }
-        return userService.login(username, password, response);
+        return null;
+        //return userService.login(username, password, response);
     }
 
     @Override
     public Result<Integer> create(User user){
-        if(user == null || user.getUsername() == null){
+
+        if(user == null || user.getUsername() == null || user.getUsername().trim().isEmpty()){
             return new Result<>(StatusCode.NOT_EXIST, "Please enter username.");
         }
         return userService.create(user);
@@ -40,6 +43,7 @@ public class UserController implements UserApi {
 
     @Override
     public Result<User> updateUserByUsername(String username, User user){
+
         if(username == null || user == null){
             return new Result<>(StatusCode.NOT_EXIST,"User not exist.");
         }
@@ -48,16 +52,18 @@ public class UserController implements UserApi {
 
     @PreAuthorize("hasAuthority('admin')")
     @Override
-    public Result<List<User>> getAllUser() {
-        return userService.getAllUser();
+    public Result<User> getUserByUsername(String username){
+
+        return userService.getUserByUsername(username);
     }
 
     @PreAuthorize("hasAuthority('admin')")
     @Override
-    public Result<User> getUserByUsername(String username){
-        return userService.getUserByUsername(username);
+    public Result<List<User>> getAllUser() {
 
+        return userService.getAllUser();
     }
+
 
 
  /*   @GetMapping(value = "/payments/{id}")

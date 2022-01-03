@@ -5,6 +5,7 @@ import com.bristol.project.entity.Result;
 import com.bristol.project.service.UaaLoginService;
 import com.bristol.project.utils.StatusCode;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,7 +26,7 @@ public class UaaLoginController {
     private UaaLoginService uaaLoginService;
 
     @RequestMapping("/login")
-    public Result<AuthToken> login(String username, String password) throws UnsupportedEncodingException {
+    public Result<AuthToken> login(@RequestHeader("username") String username, @RequestHeader("password") String password) throws UnsupportedEncodingException {
 
         String grant_type = "password";
         AuthToken authToken;

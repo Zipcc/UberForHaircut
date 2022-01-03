@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+//port:9100
 @RequestMapping("/users")
 @FeignClient(value = "service-user")
 public interface UserApi {
@@ -17,12 +18,14 @@ public interface UserApi {
     @PostMapping
     Result<Integer> create(@RequestBody User user);
 
+    //@PreAuthorize("hasAuthority('admin')")
     @PutMapping("/{username}")
     Result<User> updateUserByUsername(@PathVariable("username") String username, @RequestBody User user);
 
-    @GetMapping
-    Result<List<User>> getAllUser();
-
     @GetMapping("/{username}")
     Result<User> getUserByUsername(@PathVariable("username") String username);
+
+    //@PreAuthorize("hasAuthority('admin')")
+    @GetMapping
+    Result<List<User>> getAllUser();
 }
