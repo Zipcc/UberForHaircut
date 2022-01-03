@@ -12,14 +12,17 @@ import java.util.List;
 @FeignClient(value = "service-booking")
 public interface BookingApi {
 
+    //@PreAuthorize("hasAuthority('admin,barber')")
     @PostMapping
     Result<Appointment> create(@RequestBody Appointment appointment);
 
-    Result<Appointment> deleteAppointmentById(String id);
+    //@PreAuthorize("hasAuthority('admin,barber')")
+    @DeleteMapping("/{id}")
+    Result<Appointment> deleteAppointmentById(@PathVariable("id") String id);
 
     //@PreAuthorize("hasAuthority('admin')")
     @GetMapping("/{username}")
-    Result<Shop> getAppointmentById(@PathVariable("username") String id);
+    Result<Appointment> getAppointmentById(@PathVariable("username") String id);
 
     //@PreAuthorize("hasAuthority('admin')")
     @GetMapping

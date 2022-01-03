@@ -73,7 +73,7 @@ public class ShopServiceImpl implements ShopService {
         Shop shop = shopDao.getShopByUsername(username);
 
         if (shop == null){
-            return new Result<>(StatusCode.NOT_EXIST,"User: " + username + " don't hold a shop.");
+            return new Result<>(StatusCode.NOT_EXIST,"User: " + username + " doesn't hold a shop.");
         }
         return new Result<>(StatusCode.OK,"Find shop of " + username + " successfully!", shop);
     }

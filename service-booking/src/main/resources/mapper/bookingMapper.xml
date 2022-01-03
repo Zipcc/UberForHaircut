@@ -6,20 +6,18 @@
         insert into user(username, password) values(#{username},#{password});
     </insert>
 
-    <resultMap id="UserResultMap" type="com.bristol.project.entity.User">
-        <id column="username" property="username" jdbcType="VARCHAR"/>
-        <result column="id" property="id" jdbcType="BIGINT"/>
-        <result column="password" property="password" jdbcType="VARCHAR"/>
-        <result column="role" property="role" jdbcType="INTEGER"/>
-    </resultMap>
-
     <delete id="deleteAppointmentById">
-        delete from booking
+        delete from appointment
         where id=#{id};
     </delete>
     
-    <select id="getUserByUsername" parameterType="String" resultMap="UserResultMap">
-        select * from user where username=#{username} and length(username)=length(#{username});
+    <select id="getAppointmentById" resultType="Appointment">
+        select * from appointment
+        where id=#{id} and length(id)=length(#{id});
+    </select>
+
+    <select id="getAllAppointment" resultType="Appointment">
+        select * from appointment;
     </select>
 
 </mapper>

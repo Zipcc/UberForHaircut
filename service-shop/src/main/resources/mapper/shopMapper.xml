@@ -13,7 +13,7 @@
         where username=#{username};
     </update>
 
-    <select id="getShopByUsername" resultType="com.bristol.project.entity.Shop">
+    <select id="getShopByUsername" resultType="Shop">
         select * from shop
         where username=#{username} and length(username)=length(#{username});
     </select>
