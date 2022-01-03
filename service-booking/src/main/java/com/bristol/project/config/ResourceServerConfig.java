@@ -46,7 +46,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
             BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
             return bufferedReader.lines().collect(Collectors.joining("\n"));
         } catch (IOException e){
-            return "ioiiiiiiiiiiiiiiiiiiiiiiiiiiiii";
+            return "IO public key failed!!!";
         }
     }
 

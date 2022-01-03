@@ -18,14 +18,16 @@ public interface UserApi {
     @PostMapping
     Result<Integer> create(@RequestBody User user);
 
-    //@PreAuthorize("hasAuthority('admin')")
+    //@PreAuthorize("hasAnyAuthority('admin','client','barber')")
     @PutMapping("/{username}")
     Result<User> updateUserByUsername(@PathVariable("username") String username, @RequestBody User user);
 
+    //@PreAuthorize("hasAnyAuthority('admin','client','barber')")
     @GetMapping("/{username}")
     Result<User> getUserByUsername(@PathVariable("username") String username);
 
     //@PreAuthorize("hasAuthority('admin')")
     @GetMapping
     Result<List<User>> getAllUser();
+
 }

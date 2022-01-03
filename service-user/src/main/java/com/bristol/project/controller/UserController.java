@@ -41,6 +41,7 @@ public class UserController implements UserApi {
         return userService.create(user);
     }
 
+    @PreAuthorize("hasAnyAuthority('admin','client','barber')")
     @Override
     public Result<User> updateUserByUsername(String username, User user){
 
@@ -50,7 +51,7 @@ public class UserController implements UserApi {
         return userService.updateUserByUsername(username, user);
     }
 
-    @PreAuthorize("hasAuthority('admin')")
+    @PreAuthorize("hasAnyAuthority('admin','client','barber')")
     @Override
     public Result<User> getUserByUsername(String username){
 

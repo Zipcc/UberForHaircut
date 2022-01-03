@@ -50,14 +50,12 @@ public class AuthorizeFilter implements GlobalFilter, Ordered {
         if(token == null || token.isEmpty()){
             response.setStatusCode(HttpStatus.UNAUTHORIZED);
             return response.setComplete();
-        }else{
+        }else if(!headerHasToken){
             //Add token to header
-            if(!headerHasToken){
-                if(!token.startsWith("bearer ") && !token.startsWith("Bearer ")){
-                    token = "bearer " + token;
-                }
-                request.mutate().header(AUTHORIZE_TOKEN, token);
+            if(!token.startsWith("bearer ") && !token.startsWith("Bearer ")){
+                    token = "Bearer " + token;
             }
+            request.mutate().header(AUTHORIZE_TOKEN, token);
         }
         return chain.filter(exchange);
     }

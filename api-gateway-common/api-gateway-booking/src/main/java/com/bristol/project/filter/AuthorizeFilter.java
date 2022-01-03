@@ -1,4 +1,4 @@
-package project.filter;
+package com.bristol.project.filter;
 
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
@@ -29,17 +29,17 @@ public class AuthorizeFilter implements GlobalFilter, Ordered {
             return chain.filter(exchange);
         }
 
-        //Whether token is in headers.
+        //Whether token is in headers
         String token = request.getHeaders().getFirst(AUTHORIZE_TOKEN);
         boolean headerHasToken = true;
 
-        //Whether token is in parameters.
+        //Whether token is in parameters
         if(token == null || token.isEmpty()){
             token = request.getQueryParams().getFirst(AUTHORIZE_TOKEN);
             headerHasToken = false;
         }
 
-        //Whether token is in cookies.
+        //Whether token is in cookies
         if(token == null || token.isEmpty()){
             HttpCookie httpCookie = request.getCookies().getFirst(AUTHORIZE_TOKEN);
             if(httpCookie != null){

@@ -1,4 +1,4 @@
-package project.util;
+package com.bristol.project.util;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;

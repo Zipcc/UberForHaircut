@@ -1,4 +1,4 @@
-package project.filter;
+package com.bristol.project.filter;
 
 public class URLFilter {
 

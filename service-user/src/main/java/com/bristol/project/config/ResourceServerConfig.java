@@ -1,5 +1,6 @@
 package com.bristol.project.config;
 
+import com.bristol.project.utils.TokenDecoder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
@@ -33,20 +34,9 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     public JwtAccessTokenConverter jwtAccessTokenConverter(){
 
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-        System.out.println(getPublicKey());
-        converter.setVerifierKey(getPublicKey());
-        return converter;
-    }
-
-    private String getPublicKey(){
         Resource resource = new ClassPathResource(PUBLIC_KEY);
-        try {
-            InputStreamReader inputStreamReader = new InputStreamReader(resource.getInputStream());
-            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-            return bufferedReader.lines().collect(Collectors.joining("\n"));
-        } catch (IOException e){
-            return "ioiiiiiiiiiiiiiiiiiiiiiiiiiiiii";
-        }
+        converter.setVerifierKey(TokenDecoder.readPublicKey(resource));
+        return converter;
     }
 
     @Override
