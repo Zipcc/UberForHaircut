@@ -2,6 +2,8 @@ server:
   port: 9300
 
 spring:
+  web:
+    locale: en_GB
   application:
     name: service-booking
   cloud:

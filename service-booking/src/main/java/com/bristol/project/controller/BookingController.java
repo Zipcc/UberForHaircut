@@ -46,7 +46,7 @@ public class BookingController implements BookingApi {
         return bookingService.getAppointmentById(id);
     }
 
-    @PreAuthorize("hasAuthority('admin')")
+    @PreAuthorize("hasAnyAuthority('admin','client')")
     @Override
     public Result<List<Appointment>> getAllAppointment() {
 
