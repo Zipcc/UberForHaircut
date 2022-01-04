@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 //port:9100
-@FeignClient(value = "service-user", path = "/users")
+@FeignClient(value = "service-user")
 public interface UserApi {
 
     //@PostMapping("/login")
@@ -16,7 +16,7 @@ public interface UserApi {
 
     //Register entry point
     @PostMapping
-    Result<Integer> create(@RequestBody User user);
+    Result<User> create(@RequestBody User user);
 
     @PreAuthorize("hasAnyAuthority('admin')")
     @DeleteMapping ("/{username}")

@@ -8,7 +8,7 @@ public interface UserService{
 
     //Result login(String username, String password, HttpServletResponse response);
 
-    Result<Integer> create(User user);
+    Result<User> create(User user);
 
     Result<Integer> deleteUserByUsername(String username);
 

@@ -5,7 +5,6 @@ import com.bristol.project.entity.Result;
 import com.bristol.project.openFeign.BookingApi;
 import com.bristol.project.service.BookingService;
 import com.bristol.project.utils.StatusCode;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
@@ -26,7 +25,39 @@ public class BookingController implements BookingApi {
         return bookingService.create(appointment);
     }
 
-  //  @PreAuthorize("hasAnyAuthority('admin','barber')")
+    @Override
+    public Result<Integer> completeAppointmentById(Long id) {
+
+        if(id == null){
+            return new Result<>(StatusCode.NOT_EXIST, "Please enter appointment id.");
+        }
+        return bookingService.updateAppointmentById(id, BookingService.UPDATE_TYPE.COMPLETE);
+    }
+
+    @Override
+    public Result<Integer> cancelAppointmentById(Long id) {
+
+        if(id == null){
+            return new Result<>(StatusCode.NOT_EXIST, "Please enter appointment id.");
+        }
+        return bookingService.updateAppointmentById(id, BookingService.UPDATE_TYPE.CANCEL);
+    }
+
+    @Override
+    public Result<Integer> deleteAppointmentById(Long id) {
+
+        if(id == null){
+            return new Result<>(StatusCode.NOT_EXIST, "Please enter appointment id.");
+        }
+        return bookingService.updateAppointmentById(id, BookingService.UPDATE_TYPE.DELETE);
+    }
+
+    @Override
+    public Result<Appointment> getAllCurrentAppointment(String id) {
+        return null;
+    }
+
+    //  @PreAuthorize("hasAnyAuthority('admin','barber')")
   //  @Override
   //  public Result<Appointment> deleteAppointmentById(String id) {
 //

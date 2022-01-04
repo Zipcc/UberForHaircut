@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface ShopService {
 
-    Result<Integer> create(Shop shop);
+    Result<Shop> create(Shop shop);
 
     Result<Integer> deletesShopByUsername(String username);
 

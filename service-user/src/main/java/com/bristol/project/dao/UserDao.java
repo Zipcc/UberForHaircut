@@ -11,7 +11,7 @@ import java.util.Map;
 @Mapper
 public interface UserDao
 {
-    int create(User user);
+    long create(User user);
 
     int deleteUserByUsername(String username);
 

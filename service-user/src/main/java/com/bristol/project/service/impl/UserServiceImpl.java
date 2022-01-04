@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService {
         if(BCrypt.checkpw(password, user.getPassword())){
 
             Map<String,Object> tokenMap = new HashMap<>();
-            tokenMap.put("id", user.getId());
+            tokenMap.put("id", user.getUserId());
             tokenMap.put("username", user.getUsername());
             tokenMap.put("role", user.getRole());
            // String token = Jwt.createJWT(UUID.randomUUID().toString(),JSONUtil.toJsonStr(tokenMap),null);
@@ -45,14 +45,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Result<Integer> create(User user) {
+    public Result<User> create(User user) {
 
         if(userDao.getUserByUsername(user.getUsername()) == null){
             user.setPassword(BCrypt.hashpw(user.getPassword()));
-            int userId = userDao.create(user);
+            long userId = userDao.create(user);
             if (userId > 0) {
                 //Success.
-                return new Result<>(StatusCode.OK, "Register successfully!", userId);
+                user.setUserId(userId);
+                return new Result<>(StatusCode.OK, "Register successfully!", user);
             }else{
                 //Create failed.
                 return new Result<>(StatusCode.CREATE_FAILED,"Failed to register.");

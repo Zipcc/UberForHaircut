@@ -13,7 +13,7 @@ public interface ShopApi {
 
     @PreAuthorize("hasAnyAuthority('barber','admin')")
     @PostMapping
-    Result<Integer> create(@RequestBody Shop shop);
+    Result<Shop> create(@RequestBody Shop shop);
 
     @PreAuthorize("hasAnyAuthority('admin')")
     @DeleteMapping ("/{username}")

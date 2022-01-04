@@ -5,7 +5,6 @@ import com.bristol.project.entity.Shop;
 import com.bristol.project.openFeign.ShopApi;
 import com.bristol.project.utils.StatusCode;
 import com.bristol.project.utils.TokenDecoder;
-import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.bristol.project.service.ShopService;
@@ -20,7 +19,7 @@ public class ShopController implements ShopApi {
     private ShopService shopService;
 
     @Override
-    public Result<Integer> create(Shop shop) {
+    public Result<Shop> create(Shop shop) {
 
         if(shop == null || shop.getShopName() == null || shop.getShopName().trim().isEmpty()){
             return new Result<>(StatusCode.NOT_EXIST, "Please enter shopName.");

@@ -10,7 +10,7 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 public class Appointment {
 
-        private Long id;
+        private Long AppointmentId;
         private String appointmentTime;
         private Timestamp bookingTime;
         private String clientUsername;

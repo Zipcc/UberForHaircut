@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ShopService {
 
-    private Long id;
+    private Long ShopServiceId;
     private Long shopId;
     private String serviceName;
     private String description;

@@ -75,7 +75,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
         AuthUser authUser = new AuthUser(username, password, AuthorityUtils.commaSeparatedStringToAuthorityList(permissions));
         authUser.setRole(role);
-        authUser.setId(user.getId());
+        authUser.setId(user.getUserId());
         authUser.setName(user.getUsername());
         return authUser;
     }

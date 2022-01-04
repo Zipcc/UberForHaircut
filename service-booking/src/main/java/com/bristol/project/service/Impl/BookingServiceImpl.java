@@ -37,13 +37,45 @@ public class BookingServiceImpl implements BookingService {
 
         //Generate id by timestamp and userId
         Long id = Long.parseLong((TimeUtil.getTime() + TimeUtil.getRandomNum()));
-        System.out.println(id+"11111111111111111111111111111111");
-        appointment.setId(id);
+        appointment.setAppointmentId(id);
         int result = bookingDao.create(appointment);
-        if(result < 0){
-            return new Result<>(StatusCode.CREATE_FAILED,"Create appointment: " + appointment + " failed.");
+        if(result > 0){
+            Appointment newAppointment = bookingDao.getAppointmentById(id);
+            return new Result<>(StatusCode.OK,"Create appointment:" + newAppointment + " successfully!");
         }else {
-            return new Result<>(StatusCode.OK,"Create appointment:" + appointment + " successfully!");
+            return new Result<>(StatusCode.CREATE_FAILED,"Create appointment: " + appointment + " failed.");
+        }
+    }
+
+    @Override
+    public Result<Integer> updateAppointmentById(Long id, UPDATE_TYPE update_type) {
+
+        Appointment appointment = bookingDao.getAppointmentById(id);
+        String type = "";
+        int result = -1;
+        if(update_type == UPDATE_TYPE.COMPLETE){
+            type = "complete";
+            if(appointment.isDone()){
+            return new Result<>(StatusCode.ALREADY_EXIST,"Appointment is already done.");
+            }
+            result = bookingDao.completeAppointmentById(id);
+        }else if(update_type == UPDATE_TYPE.CANCEL){
+            type = "cancel";
+            if(appointment.isCanceled()){
+                return new Result<>(StatusCode.ALREADY_EXIST,"Appointment is already canceled.");
+            }
+            result = bookingDao.cancelAppointmentById(id);
+        }else if(update_type == UPDATE_TYPE.DELETE) {
+            type = "delete";
+            if (appointment.isCanceled()) {
+                return new Result<>(StatusCode.ALREADY_EXIST, "Appointment is already deleted.");
+            }
+            result = bookingDao.deleteAppointmentById(id);
+        }
+            if(result > 0){
+            return new Result<>(StatusCode.OK,type + " appointment successfully!");
+        }else {
+            return new Result<>(StatusCode.ERROR,type + " appointment failed.");
         }
     }
 

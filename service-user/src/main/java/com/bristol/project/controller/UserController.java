@@ -34,7 +34,7 @@ public class UserController implements UserApi {
     }
 */
     @Override
-    public Result<Integer> create(User user){
+    public Result<User> create(User user){
 
         if(user == null || user.getUsername() == null || user.getUsername().trim().isEmpty() || user.getPassword().trim().isEmpty()){
             return new Result<>(StatusCode.NOT_EXIST, "Please enter username.");

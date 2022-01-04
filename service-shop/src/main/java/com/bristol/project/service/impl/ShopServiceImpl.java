@@ -16,7 +16,7 @@ public class ShopServiceImpl implements ShopService {
     private ShopDao shopDao;
 
     @Override
-    public Result<Integer> create(Shop shop) {
+    public Result<Shop> create(Shop shop) {
 
         String username = shop.getUsername();
         //Already exist
@@ -27,10 +27,11 @@ public class ShopServiceImpl implements ShopService {
             return new Result<>(StatusCode.ALREADY_EXIST,"Shop name: " + shop.getShopName() + " already exists.");
         }
         //Shop not exist
-        int result = shopDao.create(shop);
-        if (result > 0) {
+        long shopId = shopDao.create(shop);
+        if (shopId > 0) {
             //Success
-            return new Result<>(StatusCode.OK,"Shop of user: " + shop.getUsername() + " created successfully.", result);
+            shop.setShopId(shopId);
+            return new Result<>(StatusCode.OK,"Shop of user: " + shop.getUsername() + " created successfully.", shop);
         }else{
             //Create failed
             return new Result<>(StatusCode.CREATE_FAILED,"Failed to create shop.");

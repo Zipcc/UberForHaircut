@@ -8,7 +8,7 @@ import java.util.List;
 @Mapper
 public interface ShopDao{
 
-    int create(Shop shop);
+    long create(Shop shop);
 
     int deleteShopByUsername(String username);
 
