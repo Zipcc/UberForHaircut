@@ -8,8 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 //port:9200
-@RequestMapping("/shops")
-@FeignClient(value = "service-shop")
+@FeignClient(value = "service-shop", path = "/shops")
 public interface ShopApi {
 
     @PreAuthorize("hasAnyAuthority('barber','admin')")

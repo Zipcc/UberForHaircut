@@ -3,8 +3,10 @@
 <mapper namespace="com.bristol.project.dao.ShopDao">
 
     <insert id="create" parameterType="Shop" useGeneratedKeys="true" keyProperty="id">
-        insert into shop(username, shopName, locationDescription, serviceForGender, phoneNumber)
-        values(#{username},#{shopName},#{locationDescription},#{serviceForGender},#{phoneNumber});
+        insert into shop(username, shopName, locationDescription,
+                         serviceForGender, phoneNumber)
+        values(#{username},#{shopName},#{locationDescription},
+               #{serviceForGender},#{phoneNumber});
     </insert>
 
     <delete id="deleteShopByUsername">
@@ -12,16 +14,57 @@
         where username=#{username} and length(username)=length(#{username});
     </delete>
 
-    <update id="updateShopByUsername">
-        update shop
-        set shopName=#{shopName},locationDescription=#{locationDescription},serviceForGender=#{serviceForGender}
-        where username=#{username};
+    <!--       <parameterMap id="shopWithServices" type="com.bristol.project.entity.Shop">
+            <parameter property="id" jdbcType="BIGINT"/>
+            <parameter property="username" jdbcType="VARCHAR"/>
+            <parameter property="shopName" jdbcType="VARCHAR"/>
+            <parameter property="locationDescription" jdbcType="VARCHAR"/>
+            <parameter property="serviceForGender" jdbcType="VARCHAR"/>
+            <parameter property="ratePoints" jdbcType="VARCHAR"/>
+            <parameter property="phoneNumber" jdbcType="VARCHAR"/>
+            <parameter property="shopServices" javaType="com.bristol.project.entity.ShopS/>
+        </parameterMap>
+
+
+        <resultMap type="net.biancheng.po.User" id="userAndOrder2">
+            <id property="id" column="id" />
+            <result property="name" column="name" />
+            <result property="pwd" column="pwd" />
+            &lt;!&ndash; 一对多级联查询，ofType表示集合中的元素类型 &ndash;&gt;
+            <collection property="orderList"
+                        ofType="net.biancheng.po.Order">
+                <id property="oId" column="oId" />
+                <result property="ordernum" column="ordernum" />
+            </collection>
+        </resultMap>
+    -->
+    <update id="updateShopByUsername" parameterType="Shop">
+        update shop, shop_service
+        set shop_name=#{shopName},location_description=#{locationDescription},
+            service_for_gender=#{serviceForGender},service_name=#{serviceName},
+            description=#{description}
+        where shop.id=shop_service.shop_id and username=#{username};
     </update>
 
-    <select id="getShopByUsername" resultType="Shop">
+
+    <select id="getShopByShopName" resultType="Shop">
+        select * from shop
+        where shop_name=#{shopName} and length(shop_name)=length(#{shopName});
+    </select>
+
+
+    <select id="getShopByUsername" resultMap="shopWithService">
         select * from shop
         where username=#{username} and length(username)=length(#{username});
     </select>
+    <resultMap id="shopWithService" type="Shop" >
+        <collection property="shopServices" javaType="ArrayList" ofType="ShopService" select="getShopServiceByShopId" column="id"/>
+    </resultMap>
+    <select id="getShopServiceByShopId" resultType="ShopService">
+        select * from shop_service
+        where shop_id = #{id}
+    </select>
+
 
     <select id="getAllShop" resultType="Shop">
         select * from shop;

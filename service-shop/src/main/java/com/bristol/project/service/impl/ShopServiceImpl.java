@@ -19,20 +19,21 @@ public class ShopServiceImpl implements ShopService {
     public Result<Integer> create(Shop shop) {
 
         String username = shop.getUsername();
-        //Not exist
-        if(shopDao.getShopByUsername(username) == null){
-            int result = shopDao.create(shop);
-            if (result > 0) {
-                //Success
-                return new Result<>(StatusCode.OK,"Shop of user: " + shop.getUsername() + " created successfully.", result);
-            }else{
-                //Create failed
-                return new Result<>(StatusCode.CREATE_FAILED,"Failed to create shop.");
-            }
         //Already exist
-        }else{
-            //Update
+        if(shopDao.getShopByUsername(username) != null){
             return new Result<>(StatusCode.ALREADY_EXIST,"Shop of user: " + shop.getUsername() + " already exists.");
+        }
+        if(shopDao.getShopByShopName(shop.getShopName()) != null){
+            return new Result<>(StatusCode.ALREADY_EXIST,"Shop name: " + shop.getShopName() + " already exists.");
+        }
+        //Shop not exist
+        int result = shopDao.create(shop);
+        if (result > 0) {
+            //Success
+            return new Result<>(StatusCode.OK,"Shop of user: " + shop.getUsername() + " created successfully.", result);
+        }else{
+            //Create failed
+            return new Result<>(StatusCode.CREATE_FAILED,"Failed to create shop.");
         }
     }
 
@@ -60,7 +61,6 @@ public class ShopServiceImpl implements ShopService {
         if(oldShop == null){
             return new Result<>(StatusCode.NOT_EXIST,"Shop of user: " + username + " not exist.");
         }
-
         if(shop.getShopName()==null){
             shop.setShopName(oldShop.getShopName());
         }
@@ -70,10 +70,9 @@ public class ShopServiceImpl implements ShopService {
         if(shop.getServiceForGender()==null){
             shop.setServiceForGender(oldShop.getServiceForGender());
         }
-        if(shop.getPhoneNumber()==null){
-            shop.setPhoneNumber(oldShop.getPhoneNumber());
+        if(shop.getShopServices().size() != oldShop.getShopServices().size()){
+            shop.setShopServices(oldShop.getShopServices());
         }
-
         int result = shopDao.updateShopByUsername(shop);
         if (result > 0) {
             //Success.

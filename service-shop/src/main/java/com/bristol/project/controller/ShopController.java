@@ -5,12 +5,15 @@ import com.bristol.project.entity.Shop;
 import com.bristol.project.openFeign.ShopApi;
 import com.bristol.project.utils.StatusCode;
 import com.bristol.project.utils.TokenDecoder;
+import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.bristol.project.service.ShopService;
 import javax.annotation.Resource;
 import java.util.List;
 
 @RestController
+@RequestMapping("/shops")
 public class ShopController implements ShopApi {
 
     @Resource
@@ -19,9 +22,11 @@ public class ShopController implements ShopApi {
     @Override
     public Result<Integer> create(Shop shop) {
 
-        if(shop == null || shop.getUsername() == null || shop.getShopName().trim().isEmpty()){
+        if(shop == null || shop.getShopName() == null || shop.getShopName().trim().isEmpty()){
             return new Result<>(StatusCode.NOT_EXIST, "Please enter shopName.");
         }
+        String currentUsername = TokenDecoder.tokenUsername();
+        shop.setUsername(currentUsername);
         return shopService.create(shop);
     }
 

@@ -5,17 +5,16 @@ import com.bristol.project.entity.User;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 //port:9100
-@RequestMapping("/users")
-@FeignClient(value = "service-user")
+@FeignClient(value = "service-user", path = "/users")
 public interface UserApi {
 
     //@PostMapping("/login")
     //Result Login(@RequestParam("username") String username, @RequestParam("password") String password);
 
+    //Register entry point
     @PostMapping
     Result<Integer> create(@RequestBody User user);
 

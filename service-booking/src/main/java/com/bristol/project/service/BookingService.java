@@ -8,9 +8,9 @@ public interface BookingService {
 
     Result<Appointment> create(Appointment appointment);
 
-    Result<Appointment> deleteAppointmentById(String id);
+    //Result<Appointment> deleteAppointmentById(String id);
 
-    Result<Appointment> getAppointmentById(String id);
+    //Result<Appointment> getAppointmentById(String id);
 
-    Result<List<Appointment>> getAllAppointment();
+    //Result<List<Appointment>> getAllAppointment();
 }

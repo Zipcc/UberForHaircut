@@ -3,8 +3,7 @@ package com.bristol.project.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.Date;
+import java.sql.Timestamp;
 
 @Data
 @AllArgsConstructor
@@ -12,11 +11,13 @@ import java.util.Date;
 public class Appointment {
 
         private Long id;
-        private String date;
-        private String clientUserName;
+        private String appointmentTime;
+        private Timestamp bookingTime;
+        private String clientUsername;
         private String barberShopName;
-        private String serviceType;
-        private double cost;
-        private Date bookingTime;
+        private String serviceName;
+        boolean isDeleted;
+        boolean isCanceled;
+        boolean isDone;
 }
 
