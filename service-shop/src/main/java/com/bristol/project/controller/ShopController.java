@@ -1,17 +1,17 @@
 package com.bristol.project.controller;
 
 import com.bristol.project.entity.Result;
+import com.bristol.project.entity.Role;
 import com.bristol.project.entity.Shop;
 import com.bristol.project.openFeign.ShopApi;
 import com.bristol.project.utils.StatusCode;
 import com.bristol.project.utils.TokenDecoder;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationDetails;
 import org.springframework.web.bind.annotation.RestController;
 import com.bristol.project.service.ShopService;
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class ShopController implements ShopApi {
@@ -28,14 +28,19 @@ public class ShopController implements ShopApi {
         return shopService.create(shop);
     }
 
-    @PreAuthorize("hasAuthority('admin')")
     @Override
     public Result<Shop> getShopByUsername(String username) {
 
+        //If current user is admin, he can access any shops
+        Map<String, Object> currentUserInfo = TokenDecoder.getUserInfo();
+        String currentUsername = (String)currentUserInfo.get("username");
+        boolean isAdmin = (int)currentUserInfo.get("role") == Role.ADMIN_NUM;
+       if(!isAdmin){
+           username = currentUsername;
+       }
         return shopService.getShopByUsername(username);
     }
 
-    @PreAuthorize("hasAuthority('admin')")
     @Override
     public Result<List<Shop>> getAllShop() {
         return shopService.getAllShop();

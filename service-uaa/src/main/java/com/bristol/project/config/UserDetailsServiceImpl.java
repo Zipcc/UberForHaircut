@@ -3,6 +3,7 @@ package com.bristol.project.config;
 //import com.robod.user.feign.UserFeign;
 import com.bristol.project.entity.AuthUser;
 import com.bristol.project.entity.Result;
+import com.bristol.project.entity.Role;
 import com.bristol.project.entity.User;
 import com.bristol.project.openFeign.UserApi;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,11 +65,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         String password = user.getPassword();
         int role = user.getRole();
         String permissions = "null";
-        if (role == 0) {
+        if (role == Role.ADMIN_NUM) {
             permissions = "admin,client,barber";
-        } else if (role == 1) {
+        } else if (role == Role.Client_NUM) {
             permissions = "client";
-        } else if (role == 2) {
+        } else if (role == Role.Barber_NUM) {
             permissions = "barber";
         }
 

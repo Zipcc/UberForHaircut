@@ -18,18 +18,18 @@ public class TokenDecoder {
 
     private static final String PUBLIC_KEY = "public.key";
 
-    public static Map<String, String> getUserInfo(){
+    public static Map<String, Object> getUserInfo(){
 
         OAuth2AuthenticationDetails details = (OAuth2AuthenticationDetails) SecurityContextHolder.getContext().getAuthentication().getDetails();
         String token = details.getTokenValue();
         return decodeToken(token);
     }
 
-    public static Map<String,String> decodeToken(String token){
+    public static Map<String,Object> decodeToken(String token){
 
         Jwt jwt = JwtHelper.decodeAndVerify(token, new RsaVerifier(getPublicKey()));
         String claims = jwt.getClaims();
-        return (Map<String, String>) JSONUtil.parseObj(claims).toBean(Map.class);
+        return (Map<String, Object>) JSONUtil.parseObj(claims).toBean(Map.class);
     }
 
     private static String getPublicKey(){
