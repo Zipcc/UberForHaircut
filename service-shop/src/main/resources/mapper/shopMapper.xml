@@ -7,9 +7,14 @@
         values(#{username},#{shopName},#{locationDescription},#{serviceForGender},#{phoneNumber});
     </insert>
 
+    <delete id="deleteShopByUsername">
+        delete from shop
+        where username=#{username} and length(username)=length(#{username});
+    </delete>
+
     <update id="updateShopByUsername">
         update shop
-        set shopName=#{shop.shopName},locationDescription=#{shop.locationDescription},serviceForGender=#{shop.serviceForGender}
+        set shopName=#{shopName},locationDescription=#{locationDescription},serviceForGender=#{serviceForGender}
         where username=#{username};
     </update>
 

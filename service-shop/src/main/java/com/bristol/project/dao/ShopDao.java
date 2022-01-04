@@ -10,7 +10,9 @@ public interface ShopDao{
 
     int create(Shop shop);
 
-    int updateShopByUsername(String username, @Param("shop") Shop shop);
+    int deleteShopByUsername(String username);
+
+    int updateShopByUsername(Shop shop);
 
     Shop getShopByUsername(String username);
 

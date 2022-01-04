@@ -6,11 +6,9 @@ import com.bristol.project.entity.Result;
 import com.bristol.project.entity.User;
 import com.bristol.project.service.UserService;
 import com.bristol.project.utils.StatusCode;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -66,7 +64,24 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Result<User> updateUserByUsername(String username, User user) {
+    public Result<Integer> deleteUserByUsername(String username) {
+
+        if(userDao.getUserByUsername(username) == null) {
+            return new Result<>(StatusCode.NOT_EXIST,"User: " + username + " not exists.");
+        }else{
+            int userId = userDao.deleteUserByUsername(username);
+            if (userId > 0) {
+                //Success.
+                return new Result<>(StatusCode.OK, "Delete user successfully!", userId);
+            }else{
+                //Create failed.
+                return new Result<>(StatusCode.CREATE_FAILED,"Failed to delete user.");
+            }
+        }
+    }
+
+    @Override
+    public Result<Integer> updateUserByUsername(String username, User user) {
 
         User oldUser = userDao.getUserByUsername(username);
         if(oldUser == null){
@@ -94,7 +109,7 @@ public class UserServiceImpl implements UserService {
         int result = userDao.updateUserByUsername(user);
         if (result > 0) {
             //Success.
-            return new Result<>(StatusCode.OK, "Update successfully!", user);
+            return new Result<>(StatusCode.OK, "Update successfully!", result);
         }else{
             //Update failed.
             return new Result<>(StatusCode.CREATE_FAILED,"Failed to update.");
@@ -107,9 +122,9 @@ public class UserServiceImpl implements UserService {
         User user = userDao.getUserByUsername(username);
 
         if (user == null){
-            return new Result<>(StatusCode.NOT_EXIST,"User -> " + username + " <- not exist.");
+            return new Result<>(StatusCode.NOT_EXIST,"User: " + username + " not exist.");
         }
-        return new Result<>(StatusCode.OK,"Find user -> " + username + " <- successfully!", user);
+        return new Result<>(StatusCode.OK,"Find user: " + username + " successfully!", user);
     }
 
     @Override

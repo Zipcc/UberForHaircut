@@ -16,15 +16,15 @@ public class ShopServiceImpl implements ShopService {
     private ShopDao shopDao;
 
     @Override
-    public Result<Shop> create(Shop shop) {
+    public Result<Integer> create(Shop shop) {
 
         String username = shop.getUsername();
         //Not exist
         if(shopDao.getShopByUsername(username) == null){
-            int shopId = shopDao.create(shop);
-            if (shopId > 0) {
+            int result = shopDao.create(shop);
+            if (result > 0) {
                 //Success
-                return new Result<>(StatusCode.OK,"Shop of user: " + shop.getUsername() + " created successfully.", shop);
+                return new Result<>(StatusCode.OK,"Shop of user: " + shop.getUsername() + " created successfully.", result);
             }else{
                 //Create failed
                 return new Result<>(StatusCode.CREATE_FAILED,"Failed to create shop.");
@@ -32,16 +32,33 @@ public class ShopServiceImpl implements ShopService {
         //Already exist
         }else{
             //Update
-            return updateShopByUsername(username, shop);
+            return new Result<>(StatusCode.ALREADY_EXIST,"Shop of user: " + shop.getUsername() + " already exists.");
         }
     }
 
     @Override
-    public Result<Shop> updateShopByUsername(String username, Shop shop) {
+    public Result<Integer> deletesShopByUsername(String username) {
+
+        if(shopDao.getShopByUsername(username) == null) {
+            return new Result<>(StatusCode.NOT_EXIST,"Shop of user: " + username + " not exists.");
+        }else{
+            int result = shopDao.deleteShopByUsername(username);
+            if (result > 0) {
+                //Success.
+                return new Result<>(StatusCode.OK, "Delete shop successfully!", result);
+            }else{
+                //Create failed.
+                return new Result<>(StatusCode.CREATE_FAILED,"Failed to delete shop.");
+            }
+        }
+    }
+
+    @Override
+    public Result<Integer> updateShopByUsername(String username, Shop shop) {
 
         Shop oldShop = shopDao.getShopByUsername(username);
         if(oldShop == null){
-            return new Result<>(StatusCode.NOT_EXIST,"Shop of" + username + " not exist.");
+            return new Result<>(StatusCode.NOT_EXIST,"Shop of user: " + username + " not exist.");
         }
 
         if(shop.getShopName()==null){
@@ -57,10 +74,10 @@ public class ShopServiceImpl implements ShopService {
             shop.setPhoneNumber(oldShop.getPhoneNumber());
         }
 
-        int result = shopDao.updateShopByUsername(username, shop);
+        int result = shopDao.updateShopByUsername(shop);
         if (result > 0) {
             //Success.
-            return new Result<>(StatusCode.OK, "Update successfully!", shop);
+            return new Result<>(StatusCode.OK, "Update successfully!", result);
         }else{
             //Update failed.
             return new Result<>(StatusCode.CREATE_FAILED,"Failed to update.");

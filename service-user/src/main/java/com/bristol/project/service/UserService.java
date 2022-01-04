@@ -2,9 +2,6 @@ package com.bristol.project.service;
 
 import com.bristol.project.entity.Result;
 import com.bristol.project.entity.User;
-import org.apache.ibatis.annotations.Param;
-
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 public interface UserService{
@@ -13,7 +10,9 @@ public interface UserService{
 
     Result<Integer> create(User user);
 
-    Result<User> updateUserByUsername(String username, User user);
+    Result<Integer> deleteUserByUsername(String username);
+
+    Result<Integer> updateUserByUsername(String username, User user);
 
     Result<User> getUserByUsername(String username);
 

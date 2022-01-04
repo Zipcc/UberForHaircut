@@ -18,6 +18,12 @@ public class TokenDecoder {
 
     private static final String PUBLIC_KEY = "public.key";
 
+    public static String tokenUsername(){
+
+        Map<String, Object> currentUserInfo = TokenDecoder.getUserInfo();
+        return  (String)currentUserInfo.get("username");
+    }
+
     public static Map<String, Object> getUserInfo(){
 
         OAuth2AuthenticationDetails details = (OAuth2AuthenticationDetails) SecurityContextHolder.getContext().getAuthentication().getDetails();

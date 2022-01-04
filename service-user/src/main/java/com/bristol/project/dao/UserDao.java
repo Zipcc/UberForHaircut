@@ -1,5 +1,6 @@
 package com.bristol.project.dao;
 
+import com.bristol.project.entity.Result;
 import com.bristol.project.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -11,6 +12,8 @@ import java.util.Map;
 public interface UserDao
 {
     int create(User user);
+
+    int deleteUserByUsername(String username);
 
     int updateUserByUsername(User user);
 

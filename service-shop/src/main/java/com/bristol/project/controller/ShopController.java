@@ -1,17 +1,14 @@
 package com.bristol.project.controller;
 
 import com.bristol.project.entity.Result;
-import com.bristol.project.entity.Role;
 import com.bristol.project.entity.Shop;
 import com.bristol.project.openFeign.ShopApi;
 import com.bristol.project.utils.StatusCode;
 import com.bristol.project.utils.TokenDecoder;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RestController;
 import com.bristol.project.service.ShopService;
 import javax.annotation.Resource;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 public class ShopController implements ShopApi {
@@ -20,7 +17,7 @@ public class ShopController implements ShopApi {
     private ShopService shopService;
 
     @Override
-    public Result<Shop> create(Shop shop) {
+    public Result<Integer> create(Shop shop) {
 
         if(shop == null || shop.getUsername() == null || shop.getShopName().trim().isEmpty()){
             return new Result<>(StatusCode.NOT_EXIST, "Please enter shopName.");
@@ -29,20 +26,53 @@ public class ShopController implements ShopApi {
     }
 
     @Override
+    public Result<Integer> deleteShopByUsername(String username) {
+
+        if(username == null || username.trim().isEmpty()){
+            return new Result<>(StatusCode.NOT_EXIST, "Please enter username.");
+        }
+        return shopService.deletesShopByUsername(username);    }
+
+    @Override
+    public Result<Integer> updateCurrentShop(Shop shop) {
+
+        if(shop == null){
+            return new Result<>(StatusCode.NOT_EXIST,"Shop not exist.");
+        }
+        String currentUsername = TokenDecoder.tokenUsername();
+        shop.setUsername(currentUsername);
+        return shopService.updateShopByUsername(currentUsername, shop);
+    }
+
+    @Override
+    public Result<Integer> updateShopByUsername(String username, Shop shop) {
+
+        if(username == null || username.trim().isEmpty() || shop == null){
+            return new Result<>(StatusCode.NOT_EXIST, "Please enter username.");
+        }
+        shop.setUsername(username);
+        return shopService.updateShopByUsername(username, shop);
+
+    }
+
+    @Override
+    public Result<Shop> getCurrentShop() {
+
+        return shopService.getShopByUsername(TokenDecoder.tokenUsername());
+    }
+
+    @Override
     public Result<Shop> getShopByUsername(String username) {
 
-        //If current user is admin, he can access any shops
-        Map<String, Object> currentUserInfo = TokenDecoder.getUserInfo();
-        String currentUsername = (String)currentUserInfo.get("username");
-        boolean isAdmin = (int)currentUserInfo.get("role") == Role.ADMIN_NUM;
-       if(!isAdmin){
-           username = currentUsername;
-       }
+        if(username == null || username.trim().isEmpty()){
+            return new Result<>(StatusCode.NOT_EXIST, "Please enter username.");
+        }
         return shopService.getShopByUsername(username);
     }
 
     @Override
     public Result<List<Shop>> getAllShop() {
+
         return shopService.getAllShop();
     }
 

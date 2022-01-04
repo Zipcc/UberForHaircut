@@ -9,13 +9,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Shop {
 
-        private Long id;
-        private String username;
-        private String shopName;
-        private String ratePoints;
-        private String locationDescription;
-        private String serviceForGender;
-        private String[] serviceTypes;
-        private String phoneNumber;
-        private String photo;
+    private Long id;
+    private String username;
+    private String shopName;
+    private String ratePoints;
+    private String locationDescription;
+    private String serviceForGender;
+    private String[] serviceTypes;
+    private String phoneNumber;
+    private String photo;
 }

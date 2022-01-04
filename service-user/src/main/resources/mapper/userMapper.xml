@@ -14,16 +14,21 @@
         <result column="role" property="role" jdbcType="INTEGER"/>
     </resultMap>
 
-    <select id="getUserByUsername" parameterType="String" resultMap="UserResultMap">
-        select * from user
+    <delete id="deleteUserByUsername">
+        delete from user
         where username=#{username} and length(username)=length(#{username});
-    </select>
+    </delete>
 
     <update id="updateUserByUsername" parameterType="User">
         update user
         set password=#{password},age=#{age},firstName=#{firstName},lastName=#{lastName},emailAddress=#{emailAddress},phoneNumber=#{phoneNumber}
-        where username=#{username};
+        where username=#{username} and length(username)=length(#{username});
     </update>
+
+    <select id="getUserByUsername" parameterType="String" resultMap="UserResultMap">
+        select * from user
+        where username=#{username} and length(username)=length(#{username});
+    </select>
 
     <select id="getAllUser" resultType="User">
         select * from user;

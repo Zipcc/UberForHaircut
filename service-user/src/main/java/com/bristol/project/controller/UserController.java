@@ -5,6 +5,7 @@ import com.bristol.project.entity.User;
 import com.bristol.project.openFeign.UserApi;
 import com.bristol.project.service.UserService;
 import com.bristol.project.utils.StatusCode;
+import com.bristol.project.utils.TokenDecoder;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,10 +20,8 @@ public class UserController implements UserApi {
     @Resource
     private UserService userService;
 
-    @Resource
-    private HttpServletResponse response;
 
-    @Override
+/*  @Override
     public Result Login(String username, String password) {
 
         if(username == null || password == null){
@@ -31,34 +30,61 @@ public class UserController implements UserApi {
         return null;
         //return userService.login(username, password, response);
     }
-
+*/
     @Override
     public Result<Integer> create(User user){
 
-        if(user == null || user.getUsername() == null || user.getUsername().trim().isEmpty()){
+        if(user == null || user.getUsername() == null || user.getUsername().trim().isEmpty() || user.getPassword().trim().isEmpty()){
             return new Result<>(StatusCode.NOT_EXIST, "Please enter username.");
         }
         return userService.create(user);
     }
 
-    @PreAuthorize("hasAnyAuthority('admin','client','barber')")
     @Override
-    public Result<User> updateUserByUsername(String username, User user){
+    public Result<Integer> deleteUserByUsername(String username) {
 
-        if(username == null || user == null){
+        if(username == null || username.trim().isEmpty()){
+            return new Result<>(StatusCode.NOT_EXIST, "Please enter username.");
+        }
+        return userService.deleteUserByUsername(username);
+    }
+
+    @Override
+    public Result<Integer> updateCurrentUser(User user) {
+
+        if(user == null){
             return new Result<>(StatusCode.NOT_EXIST,"User not exist.");
         }
+        String currentUsername = TokenDecoder.tokenUsername();
+        user.setUsername(currentUsername);
+        return userService.updateUserByUsername(currentUsername, user);
+    }
+
+    @Override
+    public Result<Integer> updateUserByUsername(String username, User user){
+
+        if(username == null || username.trim().isEmpty() || user == null){
+            return new Result<>(StatusCode.NOT_EXIST, "Please enter username.");
+        }
+        user.setUsername(username);
         return userService.updateUserByUsername(username, user);
     }
 
-    @PreAuthorize("hasAnyAuthority('admin','client','barber')")
+    @Override
+    public Result<User> getCurrentUser() {
+
+        return userService.getUserByUsername(TokenDecoder.tokenUsername());
+    }
+
     @Override
     public Result<User> getUserByUsername(String username){
 
+        if(username == null || username.trim().isEmpty()){
+            return new Result<>(StatusCode.NOT_EXIST, "Please enter username.");
+        }
         return userService.getUserByUsername(username);
     }
 
-    @PreAuthorize("hasAuthority('admin')")
     @Override
     public Result<List<User>> getAllUser() {
 

@@ -11,9 +11,11 @@ import java.util.List;
 
 public interface ShopService {
 
-    Result<Shop> create(Shop shop);
+    Result<Integer> create(Shop shop);
 
-    Result<Shop> updateShopByUsername(String username, Shop shop);
+    Result<Integer> deletesShopByUsername(String username);
+
+    Result<Integer> updateShopByUsername(String username, Shop shop);
 
     Result<Shop> getShopByUsername(String username);
 
