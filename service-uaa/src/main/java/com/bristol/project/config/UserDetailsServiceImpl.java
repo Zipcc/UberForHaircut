@@ -5,19 +5,15 @@ import com.bristol.project.entity.AuthUser;
 import com.bristol.project.entity.Result;
 import com.bristol.project.entity.Role;
 import com.bristol.project.entity.User;
-import com.bristol.project.openFeign.UserApi;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.bristol.project.openFeign.UserFeignApi;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.oauth2.provider.ClientDetails;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 
@@ -28,7 +24,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     ClientDetailsService clientDetailsService;
 
     @Resource
-    private UserApi userApi;
+    private UserFeignApi userApi;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

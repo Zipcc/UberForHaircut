@@ -3,18 +3,12 @@ package com.bristol.project.service.Impl;
 import com.bristol.project.dao.BookingDao;
 import com.bristol.project.entity.Appointment;
 import com.bristol.project.entity.Result;
-import com.bristol.project.entity.User;
-import com.bristol.project.openFeign.UserApi;
+import com.bristol.project.openFeign.UserFeignApi;
 import com.bristol.project.service.BookingService;
 import com.bristol.project.utils.StatusCode;
 import com.bristol.project.utils.TimeUtil;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
-import java.sql.Date;
-import java.sql.Time;
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.util.List;
 
 @Service
 public class BookingServiceImpl implements BookingService {
@@ -23,7 +17,7 @@ public class BookingServiceImpl implements BookingService {
     private BookingDao bookingDao;
 
     @Resource
-    private UserApi userApi;
+    private UserFeignApi userApi;
     @Override
     public Result<Appointment> create(Appointment appointment) {
 

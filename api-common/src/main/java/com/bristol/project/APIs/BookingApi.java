@@ -1,4 +1,4 @@
-package com.bristol.project.openFeign;
+package com.bristol.project.APIs;
 
 import com.bristol.project.entity.Appointment;
 import com.bristol.project.entity.Result;
@@ -7,24 +7,24 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 //port:9300
-@FeignClient(value = "service-booking", path = "/bookings")
+@RequestMapping("/bookings")
 public interface BookingApi {
 
-    @PreAuthorize("hasAnyAuthority('admin')")
-    @PostMapping
+    @PreAuthorize("hasAnyAuthority('admin','client')")
+    @PostMapping("//{id}")
     Result<Appointment> create(@RequestBody Appointment appointment);
 
     @PreAuthorize("hasAnyAuthority('admin','barber')")
     @PutMapping("/completion/{id}")
-    Result<Integer> completeAppointmentById(@PathVariable Long id);
+    Result<Integer> completeAppointmentById(@PathVariable(value = "id") Long id);
 
     @PreAuthorize("hasAnyAuthority('admin','barber')")
     @PutMapping("/cancellation/{id}")
-    Result<Integer> cancelAppointmentById(@PathVariable Long id);
+    Result<Integer> cancelAppointmentById(@PathVariable(value = "id") Long id);
 
     @PreAuthorize("hasAnyAuthority('admin','barber')")
     @PutMapping("/deletion/{id}")
-    Result<Integer> deleteAppointmentById(@PathVariable Long id);
+    Result<Integer> deleteAppointmentById(@PathVariable(value = "id") Long id);
 
 
         //  @PreAuthorize("hasAnyAuthority('admin','barber','client')")

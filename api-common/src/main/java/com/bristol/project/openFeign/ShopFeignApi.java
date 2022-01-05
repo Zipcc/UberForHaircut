@@ -1,5 +1,7 @@
 package com.bristol.project.openFeign;
 
+import com.bristol.project.APIs.ShopApi;
+import com.bristol.project.entity.Appointment;
 import com.bristol.project.entity.Result;
 import com.bristol.project.entity.Shop;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -8,16 +10,17 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 //port:9200
-@FeignClient(value = "service-shop", path = "/shops")
-public interface ShopApi {
-
+@FeignClient(value = "service-shop")
+@RequestMapping(value = "feign/shops")
+public interface ShopFeignApi extends ShopApi {
+/*
     @PreAuthorize("hasAnyAuthority('admin','barber')")
     @PostMapping
     Result<Shop> create(@RequestBody Shop shop);
 
     @PreAuthorize("hasAnyAuthority('admin')")
-    @DeleteMapping ("/{username}")
-    Result<Integer> deleteShopByUsername(@PathVariable("username") String username);
+    @DeleteMapping ("/{shopId}")
+    Result<Integer> deleteShopByShopId(@PathVariable("shopId") long shopId);
 
     @PreAuthorize("hasAnyAuthority('admin','barber')")
     @PutMapping("/me")
@@ -42,4 +45,10 @@ public interface ShopApi {
     @PreAuthorize("hasAnyAuthority('admin')")
     @GetMapping
     Result<List<Shop>> getAllShop();
+
+    @PreAuthorize("hasAnyAuthority('admin','client')")
+    @PostMapping("/bookings/{serviceId}")
+    Result<Appointment> createBookingsByServiceId(@PathVariable("serviceId") long serviceId);
+
+ */
 }

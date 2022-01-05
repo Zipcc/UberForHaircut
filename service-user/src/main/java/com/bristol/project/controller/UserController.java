@@ -1,22 +1,19 @@
 package com.bristol.project.controller;
 
+import com.bristol.project.APIs.UserApi;
 import com.bristol.project.entity.Result;
 import com.bristol.project.entity.User;
-import com.bristol.project.openFeign.UserApi;
+import com.bristol.project.openFeign.UserFeignApi;
 import com.bristol.project.service.UserService;
 import com.bristol.project.utils.StatusCode;
 import com.bristol.project.utils.TokenDecoder;
-import org.apache.ibatis.annotations.Param;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @RestController
-@RequestMapping("/users")
 public class UserController implements UserApi {
 
     @Resource

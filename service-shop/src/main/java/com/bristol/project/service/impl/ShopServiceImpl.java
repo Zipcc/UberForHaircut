@@ -3,6 +3,7 @@ package com.bristol.project.service.impl;
 import com.bristol.project.dao.ShopDao;
 import com.bristol.project.entity.Result;
 import com.bristol.project.entity.Shop;
+import com.bristol.project.entity.ShopServ;
 import com.bristol.project.service.ShopService;
 import com.bristol.project.utils.StatusCode;
 import org.springframework.stereotype.Service;
@@ -23,9 +24,6 @@ public class ShopServiceImpl implements ShopService {
         if(shopDao.getShopByUsername(username) != null){
             return new Result<>(StatusCode.ALREADY_EXIST,"Shop of user: " + shop.getUsername() + " already exists.");
         }
-        if(shopDao.getShopByShopName(shop.getShopName()) != null){
-            return new Result<>(StatusCode.ALREADY_EXIST,"Shop name: " + shop.getShopName() + " already exists.");
-        }
         //Shop not exist
         long shopId = shopDao.create(shop);
         if (shopId > 0) {
@@ -39,19 +37,59 @@ public class ShopServiceImpl implements ShopService {
     }
 
     @Override
-    public Result<Integer> deletesShopByUsername(String username) {
+    public Result<ShopServ> createServ(ShopServ shopServ) {
 
-        if(shopDao.getShopByUsername(username) == null) {
-            return new Result<>(StatusCode.NOT_EXIST,"Shop of user: " + username + " not exists.");
+        long shopServId = shopDao.createServ(shopServ);
+        if (shopServId > 0) {
+            //Success
+            shopServ.setServiceId(shopServId);
+            return new Result<>(StatusCode.OK,"Shop of user: " + shopServ.getServiceName() + " created successfully.", shopServ);
         }else{
-            int result = shopDao.deleteShopByUsername(username);
+            //Create failed
+            return new Result<>(StatusCode.CREATE_FAILED,"Failed to create service.");
+        }
+    }
+
+    @Override
+    public Result<Integer> deleteShopByShopId(long shopId) {
+
+        if(shopDao.getShopByShopId(shopId) == null) {
+            return new Result<>(StatusCode.NOT_EXIST,"Shop : " + shopId + " not exists.");
+        }else{
+            int result = shopDao.deleteShopByShopId(shopId);
             if (result > 0) {
                 //Success.
                 return new Result<>(StatusCode.OK, "Delete shop successfully!", result);
             }else{
                 //Create failed.
-                return new Result<>(StatusCode.CREATE_FAILED,"Failed to delete shop.");
+                return new Result<>(StatusCode.ERROR,"Failed to delete shop.");
             }
+        }
+    }
+
+    @Override
+    public Result<Integer> deleteServiceByServiceId(long serviceId) {
+
+        int result = shopDao.deleteServiceByServiceId(serviceId);
+        if (result > 0) {
+            //Success.
+            return new Result<>(StatusCode.OK, "Delete service successfully!", result);
+        }else{
+            //Create failed.
+            return new Result<>(StatusCode.ERROR,"Failed to delete service.");
+        }
+    }
+
+    @Override
+    public Result<Integer> updateShopService(ShopServ shopServ) {
+
+        int result = shopDao.updateShopService(shopServ);
+        if (result > 0) {
+            //Success.
+            return new Result<>(StatusCode.OK, "Update service successfully!", result);
+        }else{
+            //Create failed.
+            return new Result<>(StatusCode.ERROR,"Failed to update service.");
         }
     }
 
@@ -71,8 +109,8 @@ public class ShopServiceImpl implements ShopService {
         if(shop.getServiceForGender()==null){
             shop.setServiceForGender(oldShop.getServiceForGender());
         }
-        if(shop.getShopServices().size() != oldShop.getShopServices().size()){
-            shop.setShopServices(oldShop.getShopServices());
+        if(shop.getShopServs().size() != oldShop.getShopServs().size()){
+            shop.setShopServs(oldShop.getShopServs());
         }
         int result = shopDao.updateShopByUsername(shop);
         if (result > 0) {

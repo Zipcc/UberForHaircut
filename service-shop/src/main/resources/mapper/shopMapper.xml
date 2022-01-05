@@ -6,31 +6,51 @@
         <selectKey resultType="java.lang.Long" order="AFTER" keyProperty="shopId">
             SELECT LAST_INSERT_ID()
         </selectKey>
-        insert into shop(username, shop_name, location_description,
-                         service_for_gender, phone_number)
-        values(#{username},#{shopName},#{locationDescription},
+        insert into shop(shop_name, location_description,
+                         service_for_gender,phone_number)
+        values(#{shopName},#{locationDescription},
                #{serviceForGender},#{phoneNumber});
     </insert>
 
 
-    <delete id="deleteShopByUsername">
+    <insert id="createServ" parameterType="ShopServ" useGeneratedKeys="true">
+        <selectKey resultType="java.lang.Long" order="AFTER" keyProperty="serviceId">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into shop_service(shop_id,service_name, description)
+        values(#{shopId},#{serviceName},
+               #{description});
+    </insert>
+
+
+    <delete id="deleteShopByShopId">
         delete from shop
-        where username=#{username} and length(username)=length(#{username});
+        where shop_id=#{shopId};
+    </delete>
+
+    <delete id="deleteServiceByServiceId">
+        delete from shop_service
+        where service_id=#{serviceId};
     </delete>
 
 
     <update id="updateShopByUsername" parameterType="Shop">
-        update shop, shop_service
+        update shop
         set shop_name=#{shopName},location_description=#{locationDescription},
-            service_for_gender=#{serviceForGender},service_name=#{serviceName},
-            description=#{description}
-        where shop.id=shop_service.shop_id and username=#{username};
+            service_for_gender=#{serviceForGender},phone_number=#{phoneNumber}
+        where username=#{username} and length(username)=length(#{username});
+    </update>
+
+    <update id="updateShopService" parameterType="ShopServ">
+        update shop_service
+        set service_name=#{serviceName},description=#{description}
+        where service_id=#{serviceId};
     </update>
 
 
-    <select id="getShopByShopName" resultType="Shop">
+    <select id="getShopByShopId" resultType="Shop">
         select * from shop
-        where shop_name=#{shopName} and length(shop_name)=length(#{shopName});
+        where shop_id=#{shopId};
     </select>
 
 
@@ -39,11 +59,15 @@
         where username=#{username} and length(username)=length(#{username});
     </select>
     <resultMap id="shopWithService" type="Shop" >
-        <collection property="shopServices" javaType="ArrayList" ofType="ShopService" select="getShopServiceByShopId" column="Shop_id"/>
+        <result property="shopId" jdbcType="BIGINT" column="shop_id"/>
+        <collection property="shopServs" javaType="ArrayList" ofType="ShopServ" select="getShopServiceByShopId" column="shop_id">
+            <result property="serviceName" jdbcType="VARCHAR" column="service_name"/>
+            <result property="description" jdbcType="VARCHAR" column="description"/>
+        </collection>
     </resultMap>
-    <select id="getShopServiceByShopId" resultType="ShopService">
+    <select id="getShopServiceByShopId" resultType="ShopServ">
         select * from shop_service
-        where shop_id = #{id}
+        where shop_id=#{id}
     </select>
 
 

@@ -10,11 +10,12 @@ import java.util.List;
 @NoArgsConstructor
 public class Shop {
 
-    private Long ShopId;
+    private long ShopId;
     private String username;
     private String shopName;
     private String locationDescription;
     private String serviceForGender;
     private String ratePoints;
-    private List<ShopService> shopServices;
+    private String phoneNumber;
+    private List<ShopServ> shopServs;
 }

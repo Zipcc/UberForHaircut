@@ -1,21 +1,19 @@
 package com.bristol.project.openFeign;
 
-import com.bristol.project.entity.Result;
-import com.bristol.project.entity.User;
+import com.bristol.project.APIs.UserApi;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import java.util.List;
 
 //port:9100
-@FeignClient(value = "service-user", path = "/users")
-public interface UserApi {
+@FeignClient(value = "service-user")
+@RequestMapping(value = "feign/users")
+public interface UserFeignApi extends UserApi {
 
     //@PostMapping("/login")
     //Result Login(@RequestParam("username") String username, @RequestParam("password") String password);
 
     //Register entry point
-    @PostMapping
+  /*  @PostMapping
     Result<User> create(@RequestBody User user);
 
     @PreAuthorize("hasAnyAuthority('admin')")
@@ -41,4 +39,6 @@ public interface UserApi {
     @PreAuthorize("hasAnyAuthority('admin')")
     @GetMapping
     Result<List<User>> getAllUser();
+
+   */
 }

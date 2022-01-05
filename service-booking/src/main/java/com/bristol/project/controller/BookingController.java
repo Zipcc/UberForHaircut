@@ -1,16 +1,15 @@
 package com.bristol.project.controller;
 
+import com.bristol.project.APIs.BookingApi;
 import com.bristol.project.entity.Appointment;
 import com.bristol.project.entity.Result;
-import com.bristol.project.openFeign.BookingApi;
+import com.bristol.project.openFeign.BookingFeignApi;
 import com.bristol.project.service.BookingService;
 import com.bristol.project.utils.StatusCode;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 
 @RestController
-@RequestMapping("/bookings")
 public class BookingController implements BookingApi {
 
     @Resource
