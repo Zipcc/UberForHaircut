@@ -26,6 +26,7 @@ public class AuthorizeFilter implements GlobalFilter, Ordered {
 
         String url = request.getURI().getPath();
         if(!URLFilter.needAuthorize(url) && request.getMethod() == HttpMethod.POST){
+            System.out.println(request.getMethod() + " -- " + url + " permitted");
             return chain.filter(exchange);
         }
 
@@ -50,6 +51,7 @@ public class AuthorizeFilter implements GlobalFilter, Ordered {
         //If all are not, there is no authorized token.
         if(token == null || token.isEmpty()){
             response.setStatusCode(HttpStatus.UNAUTHORIZED);
+            System.out.println(request.getMethod() + " -- " + url + " refused");
             return response.setComplete();
         }else if(!headerHasToken){
             //Add token to header

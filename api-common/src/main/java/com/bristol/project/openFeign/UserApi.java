@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 //port:9100
-@FeignClient(value = "service-user")
+@FeignClient(value = "service-user", path = "/users")
 public interface UserApi {
 
     //@PostMapping("/login")
@@ -22,7 +22,7 @@ public interface UserApi {
     @DeleteMapping ("/{username}")
     Result<Integer> deleteUserByUsername(@PathVariable("username") String username);
 
-    @PreAuthorize("hasAnyAuthority('client','barber','admin')")
+    @PreAuthorize("hasAnyAuthority('admin','barber','client')")
     @PutMapping("/me")
     Result<Integer> updateCurrentUser(@RequestBody User user);
 
@@ -30,7 +30,7 @@ public interface UserApi {
     @PutMapping("/{username}")
     Result<Integer> updateUserByUsername(@PathVariable("username") String username, @RequestBody User user);
 
-    @PreAuthorize("hasAnyAuthority('client','barber','admin')")
+    @PreAuthorize("hasAnyAuthority('admin','barber','client')")
     @GetMapping("/me")
     Result<User> getCurrentUser();
 

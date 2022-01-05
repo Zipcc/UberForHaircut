@@ -11,7 +11,7 @@ import java.util.List;
 @FeignClient(value = "service-shop", path = "/shops")
 public interface ShopApi {
 
-    @PreAuthorize("hasAnyAuthority('barber','admin')")
+    @PreAuthorize("hasAnyAuthority('admin','barber')")
     @PostMapping
     Result<Shop> create(@RequestBody Shop shop);
 
@@ -19,7 +19,7 @@ public interface ShopApi {
     @DeleteMapping ("/{username}")
     Result<Integer> deleteShopByUsername(@PathVariable("username") String username);
 
-    @PreAuthorize("hasAnyAuthority('barber','admin')")
+    @PreAuthorize("hasAnyAuthority('admin','barber')")
     @PutMapping("/me")
     Result<Integer> updateCurrentShop(@RequestBody Shop shop);
 
@@ -27,7 +27,7 @@ public interface ShopApi {
     @PutMapping("/{username}")
     Result<Integer> updateShopByUsername(@PathVariable("username") String username, @RequestBody Shop shop);
 
-    @PreAuthorize("hasAnyAuthority('barber','admin')")
+    @PreAuthorize("hasAnyAuthority('admin','barber')")
     @GetMapping("/me")
     Result<Shop> getCurrentShop();
 

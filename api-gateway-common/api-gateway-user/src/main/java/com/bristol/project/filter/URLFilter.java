@@ -1,8 +1,8 @@
 package com.bristol.project.filter;
 
 public class URLFilter {
-
-    private static final String permittedURL = "/uaa/login,/users";
+    // dont forget begin / !!!
+    private static final String permittedURL = "/ios/uaa/login,/ios/users";
 
     public static boolean needAuthorize(String url){
 
@@ -12,6 +12,8 @@ public class URLFilter {
             if(url.equals(uri)){
                 return false;
             }
+            System.out.println(uri);
+            System.out.println(url);
         }
         return true;
     }

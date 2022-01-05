@@ -3,8 +3,12 @@
 <mapper namespace="com.bristol.project.dao.BookingDao">
 
     <insert id="create" parameterType="Appointment">
-        insert into appointment(appointment_id, appointment_time, client_username, barber_shop_name, service_name)
-        values(#{id},#{appointmentTime},#{clientUsername},#{barberShopName},#{serviceName});
+        insert into appointment_main(appointment_id, appointment_time, client_username, barber_shop_name, service_name)
+        values(#{appointmentId},#{appointmentTime},#{clientUsername},#{barberShopName},#{serviceName});
+        insert into appointment_client(appointment_id, appointment_time, client_username, barber_shop_name, service_name)
+        values(#{appointmentId},#{appointmentTime},#{clientUsername},#{barberShopName},#{serviceName});
+        insert into appointment_barber(appointment_id, appointment_time, client_username, barber_shop_name, service_name)
+        values(#{appointmentId},#{appointmentTime},#{clientUsername},#{barberShopName},#{serviceName});
     </insert>
 
     <delete id="completeAppointmentById">
@@ -26,7 +30,7 @@
     </delete>
 
     <select id="getAppointmentById" resultType="Appointment">
-        select * from appointment
+        select * from appointment_main
         where appointment_id=#{appointmentId};
     </select>
 
