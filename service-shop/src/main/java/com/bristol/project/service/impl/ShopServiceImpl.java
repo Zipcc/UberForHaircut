@@ -96,14 +96,24 @@ public class ShopServiceImpl implements ShopService {
     }
 
     @Override
-    public Result<List<Shop>> getAllShop() {
+    public Result<List<Shop>> getSomeShop() {
 
-        List<Shop> list;
-        list = shopDao.getAllShop();
-        if(list == null){
+        List<Shop> someList;
+        someList = shopDao.getSomeShop();
+        if(someList == null){
             return new Result<>(StatusCode.NOT_EXIST,"Shop not exist.");
         }
-        return new Result<>(StatusCode.OK, "Find " + list.size()+ " shops", list);
+        return new Result<>(StatusCode.OK, "Find " + someList.size()+ " shops", someList);    }
+
+    @Override
+    public Result<List<Shop>> getAllShop() {
+
+        List<Shop> allList;
+        allList = shopDao.getAllShop();
+        if(allList == null){
+            return new Result<>(StatusCode.NOT_EXIST,"Shop not exist.");
+        }
+        return new Result<>(StatusCode.OK, "Find " + allList.size()+ " shops", allList);
     }
 
   /*  @Override

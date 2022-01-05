@@ -75,6 +75,12 @@ public class ShopController implements ShopApi {
     }
 
     @Override
+    public Result<List<Shop>> getSomeShop() {
+
+        return shopService.getSomeShop();
+    }
+
+    @Override
     public Result<List<Shop>> getAllShop() {
 
         return shopService.getAllShop();

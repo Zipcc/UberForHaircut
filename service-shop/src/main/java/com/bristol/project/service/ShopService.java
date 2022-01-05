@@ -19,5 +19,7 @@ public interface ShopService {
 
     Result<Shop> getShopByUsername(String username);
 
+    Result<List<Shop>> getSomeShop();
+
     Result<List<Shop>> getAllShop();
 }

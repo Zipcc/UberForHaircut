@@ -57,11 +57,12 @@ public class AuthorizeFilter implements GlobalFilter, Ordered {
             //Add token to header
             if(!headerHasToken){
                 if(!token.startsWith("bearer ") && !token.startsWith("Bearer ")){
-                    token = "bearer " + token;
+                    token = "Bearer " + token;
                 }
                 request.mutate().header(AUTHORIZE_TOKEN, token);
             }
         }
+        System.out.println(request.getMethod() + " -- " + url + " request with authorization");
         return chain.filter(exchange);
     }
 

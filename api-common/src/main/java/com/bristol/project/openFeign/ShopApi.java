@@ -35,6 +35,10 @@ public interface ShopApi {
     @GetMapping("/{username}")
     Result<Shop> getShopByUsername(@PathVariable("username") String username);
 
+    @PreAuthorize("hasAnyAuthority('admin','client','barber')")
+    @GetMapping("/explore")
+    Result<List<Shop>> getSomeShop();
+
     @PreAuthorize("hasAnyAuthority('admin')")
     @GetMapping
     Result<List<Shop>> getAllShop();

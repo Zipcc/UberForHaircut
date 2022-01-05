@@ -12,10 +12,12 @@
                #{serviceForGender},#{phoneNumber});
     </insert>
 
+
     <delete id="deleteShopByUsername">
         delete from shop
         where username=#{username} and length(username)=length(#{username});
     </delete>
+
 
     <update id="updateShopByUsername" parameterType="Shop">
         update shop, shop_service
@@ -37,7 +39,7 @@
         where username=#{username} and length(username)=length(#{username});
     </select>
     <resultMap id="shopWithService" type="Shop" >
-        <collection property="shopServices" javaType="ArrayList" ofType="ShopService" select="getShopServiceByShopId" column="id"/>
+        <collection property="shopServices" javaType="ArrayList" ofType="ShopService" select="getShopServiceByShopId" column="Shop_id"/>
     </resultMap>
     <select id="getShopServiceByShopId" resultType="ShopService">
         select * from shop_service
@@ -45,7 +47,12 @@
     </select>
 
 
-    <select id="getAllShop" resultType="Shop">
+    <select id="getSomeShop" resultMap="shopWithService">
+        select * from shop order by `rate_points` DESC limit 10;
+    </select>
+
+
+    <select id="getAllShop" resultMap="shopWithService">
         select * from shop;
     </select>
 

@@ -60,6 +60,7 @@ public class AuthorizeFilter implements GlobalFilter, Ordered {
             }
             request.mutate().header(AUTHORIZE_TOKEN, token);
         }
+        System.out.println(request.getMethod() + " -- " + url + " request with authorization");
         return chain.filter(exchange);
     }
 
