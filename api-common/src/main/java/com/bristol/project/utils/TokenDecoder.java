@@ -1,5 +1,6 @@
 package com.bristol.project.utils;
 
+import cn.hutool.core.lang.TypeReference;
 import cn.hutool.json.JSONUtil;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
@@ -18,24 +19,30 @@ public class TokenDecoder {
 
     private static final String PUBLIC_KEY = "public.key";
 
+    public static int tokenRole(){
+
+        Map<String, Object> currentUserInfo = TokenDecoder.getUserInfo();
+        return  (int)currentUserInfo.get("role");
+    }
+
     public static String tokenUsername(){
 
         Map<String, Object> currentUserInfo = TokenDecoder.getUserInfo();
         return  (String)currentUserInfo.get("username");
     }
 
-    public static Map<String, Object> getUserInfo(){
+    private static Map<String, Object> getUserInfo(){
 
         OAuth2AuthenticationDetails details = (OAuth2AuthenticationDetails) SecurityContextHolder.getContext().getAuthentication().getDetails();
         String token = details.getTokenValue();
         return decodeToken(token);
     }
 
-    public static Map<String,Object> decodeToken(String token){
+    private static Map<String,Object> decodeToken(String token){
 
         Jwt jwt = JwtHelper.decodeAndVerify(token, new RsaVerifier(getPublicKey()));
         String claims = jwt.getClaims();
-        return (Map<String, Object>) JSONUtil.parseObj(claims).toBean(Map.class);
+        return JSONUtil.parseObj(claims).toBean(new TypeReference<Map<String,Object>>(){});
     }
 
     private static String getPublicKey(){

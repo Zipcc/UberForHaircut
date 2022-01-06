@@ -3,29 +3,37 @@
 <mapper namespace="com.bristol.project.dao.BookingDao">
 
     <insert id="create" parameterType="Appointment">
-        insert into appointment_main(appointment_id, appointment_time, client_username, barber_shop_name, service_name)
-        values(#{appointmentId},#{appointmentTime},#{clientUsername},#{barberShopName},#{serviceName});
-        insert into appointment_client(appointment_id, appointment_time, client_username, barber_shop_name, service_name)
-        values(#{appointmentId},#{appointmentTime},#{clientUsername},#{barberShopName},#{serviceName});
-        insert into appointment_barber(appointment_id, appointment_time, client_username, barber_shop_name, service_name)
-        values(#{appointmentId},#{appointmentTime},#{clientUsername},#{barberShopName},#{serviceName});
+        insert into appointment_main(appointment_id, appointment_time, client_username
+        , barber_username, service_name, service_description)
+        values(#{appointmentId},#{appointmentTime},#{clientUsername}
+        ,#{barberUsername},#{serviceName},#{serviceDescription});
+
+        insert into appointment_user(appointment_id, username)
+        values(#{appointmentId},#{clientUsername});
+
+        insert into appointment_user(appointment_id, username)
+        values(#{appointmentId},#{barberUsername});
     </insert>
 
-    <delete id="completeAppointmentById">
-        update appointment
+    <update id="completeAppointmentById">
+        update appointment_main
         set is_done=true
         where appointment_id=#{appointmentId};
-    </delete>
+    </update>
 
-    <delete id="cancelAppointmentById">
-        update appointment
+    <update id="cancelAppointmentById">
+        update appointment_main
         set is_canceled=true
         where appointment_id=#{appointmentId};
-    </delete>
+    </update>
 
-    <delete id="deleteAppointmentById">
-        update appointment
-        set is_deleted=true
+    <update id="deleteAppointmentById">
+        update from appointment_user
+        where appointment_id=#{appointmentId};
+    </update>
+
+    <delete id="destroyAppointmentById">
+        delete from appointment_main
         where appointment_id=#{appointmentId};
     </delete>
 
@@ -34,8 +42,16 @@
         where appointment_id=#{appointmentId};
     </select>
 
-    <select id="getAllAppointment" resultType="Appointment">
-        select * from appointment;
+    <select id="getAllAppointmentByUsername" resultType="Appointment">
+        select * from appointment_main
+        where client_username=#{username} and length(client_username)=length(#{username})
+           or barber_username=#{username} and length(barber_username)=length(#{username})
+    </select>
+
+    <select id="getAllUserAppointmentIdByUsername" resultType="Appointment">
+        select * from appointment_user;
+        where username=#{username} and length(username)=length(#{username});
+
     </select>
 
 </mapper>

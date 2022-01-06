@@ -6,8 +6,6 @@ import java.util.List;
 
 public interface UserService{
 
-    //Result login(String username, String password, HttpServletResponse response);
-
     Result<User> create(User user);
 
     Result<Integer> deleteUserByUsername(String username);

@@ -17,7 +17,7 @@
         <selectKey resultType="java.lang.Long" order="AFTER" keyProperty="serviceId">
             SELECT LAST_INSERT_ID()
         </selectKey>
-        insert into shop_service(shop_id,service_name, description)
+        insert into shop_service(shop_id, service_name, description)
         values(#{shopId},#{serviceName},
                #{description});
     </insert>

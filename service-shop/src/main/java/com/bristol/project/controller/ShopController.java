@@ -1,13 +1,11 @@
 package com.bristol.project.controller;
 
 import com.bristol.project.APIs.ShopApi;
-import com.bristol.project.dao.ShopDao;
-import com.bristol.project.entity.Appointment;
 import com.bristol.project.entity.Result;
 import com.bristol.project.entity.Shop;
 import com.bristol.project.entity.ShopServ;
-import com.bristol.project.openFeign.BookingFeignApi;
 import com.bristol.project.utils.StatusCode;
+import com.bristol.project.utils.StringUtil;
 import com.bristol.project.utils.TokenDecoder;
 import org.springframework.web.bind.annotation.RestController;
 import com.bristol.project.service.ShopService;
@@ -20,13 +18,10 @@ public class ShopController implements ShopApi {
     @Resource
     private ShopService shopService;
 
-    @Resource
-    private BookingFeignApi bookingApi;
-
     @Override
     public Result<Shop> create(Shop shop) {
 
-        if(shop == null || shop.getShopName() == null || shop.getShopName().trim().isEmpty()){
+        if(shop == null || StringUtil.notExist(shop.getShopName())){
             return new Result<>(StatusCode.NOT_EXIST, "Please enter shopName.");
         }
         String currentUsername = TokenDecoder.tokenUsername();
@@ -37,7 +32,7 @@ public class ShopController implements ShopApi {
     @Override
     public Result<ShopServ> create(ShopServ shopServ) {
 
-        if(shopServ == null || shopServ.getServiceName() == null){
+        if(shopServ == null || StringUtil.notExist(shopServ.getServiceName())){
             return new Result<>(StatusCode.NOT_EXIST, "Please enter shopService.");
         }
         String currentUsername = TokenDecoder.tokenUsername();
@@ -45,24 +40,24 @@ public class ShopController implements ShopApi {
         if(shop == null){
             return new Result<>(StatusCode.NOT_EXIST, "Please create your shop.");
         }
-        long shopId = shop.getShopId();
+        Long shopId = shop.getShopId();
         shopServ.setShopId(shopId);
         return shopService.createServ(shopServ);
     }
 
     @Override
-    public Result<Integer> deleteShopByShopId(long shopId) {
+    public Result<Integer> deleteShopByShopId(Long shopId) {
 
-        if(shopId == 0){
-            return new Result<>(StatusCode.NOT_EXIST, "Please enter ShopId.");
+        if(shopId == null){
+            return new Result<>(StatusCode.NOT_EXIST, "Please enter shopId.");
         }
         return shopService.deleteShopByShopId(shopId);
     }
 
     @Override
-    public Result<Integer> deleteServiceByServiceId(long serviceId) {
+    public Result<Integer> deleteServiceByServiceId(Long serviceId) {
 
-        if(serviceId == 0){
+        if(serviceId == null){
             return new Result<>(StatusCode.NOT_EXIST, "Please enter serviceId.");
         }
         return shopService.deleteServiceByServiceId(serviceId);
@@ -91,12 +86,11 @@ public class ShopController implements ShopApi {
     @Override
     public Result<Integer> updateShopByUsername(String username, Shop shop) {
 
-        if(username == null || username.trim().isEmpty() || shop == null){
+        if(StringUtil.notExist(username) || shop == null){
             return new Result<>(StatusCode.NOT_EXIST, "Please enter username.");
         }
         shop.setUsername(username);
         return shopService.updateShopByUsername(username, shop);
-
     }
 
     @Override
@@ -108,7 +102,7 @@ public class ShopController implements ShopApi {
     @Override
     public Result<Shop> getShopByUsername(String username) {
 
-        if(username == null || username.trim().isEmpty()){
+        if(StringUtil.notExist(username)){
             return new Result<>(StatusCode.NOT_EXIST, "Please enter username.");
         }
         return shopService.getShopByUsername(username);
@@ -125,34 +119,4 @@ public class ShopController implements ShopApi {
 
         return shopService.getAllShop();
     }
-
-   // @Override
-    public Result<Appointment> createBookingsByServiceId(long serviceId) {
-
-        if(serviceId == 0){
-            return new Result<>(StatusCode.NOT_EXIST, "Please enter serviceId.");
-        }
-        return null;
-    }
-
-
-
- /*   @GetMapping(value = "/payments/{id}")
-    public CommonResult getPaymentById(@PathVariable("id") Long id){
-
-        Payment payment = userService.getPaymentById(id);
-
-        if (payment != null) {
-            return new CommonResult(200,"Successfully found data --" + serverPort,payment);
-        }else{
-            return new CommonResult(444,"Failed to find data",null);
-        }
-    }
-
-    @GetMapping(value = "/payments/discovery")
-    public Object discovery(){
-        List<String> services = discoveryClient.getServices();
-        return services.get(0);
-    }
-    */
 }

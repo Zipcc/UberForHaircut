@@ -5,7 +5,6 @@ import com.bristol.project.entity.Shop;
 import com.bristol.project.entity.ShopServ;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 //port:9200
@@ -22,11 +21,11 @@ public interface ShopApi {
 
     @PreAuthorize("hasAnyAuthority('admin')")
     @DeleteMapping ("/{shopId}")
-    Result<Integer> deleteShopByShopId(@PathVariable("shopId") long shopId);
+    Result<Integer> deleteShopByShopId(@PathVariable("shopId") Long shopId);
 
     @PreAuthorize("hasAnyAuthority('admin','barber')")
     @DeleteMapping ("services/{serviceId}")
-    Result<Integer> deleteServiceByServiceId(@PathVariable("serviceId") long serviceId);
+    Result<Integer> deleteServiceByServiceId(@PathVariable("serviceId") Long serviceId);
 
     @PreAuthorize("hasAnyAuthority('admin','barber')")
     @PutMapping("/me")

@@ -6,8 +6,10 @@
         <selectKey resultType="java.lang.Long" order="AFTER" keyProperty="userId">
             SELECT LAST_INSERT_ID()
         </selectKey>
-        insert into user(username, password, role, age, first_name, last_name, email_address, sex, phone_number)
-        values(#{username},#{password},#{role},#{age},#{firstName},#{lastName},#{emailAddress},#{sex},#{phoneNumber});
+        insert into user(username, password, role, age, first_name, last_name,
+                         email_address, sex, phone_number)
+        values(#{username},#{password},#{role},#{age},#{firstName},#{lastName},
+               #{emailAddress},#{sex},#{phoneNumber});
     </insert>
 
     <resultMap id="UserResultMap" type="com.bristol.project.entity.User">
@@ -24,7 +26,8 @@
 
     <update id="updateUserByUsername" parameterType="User">
         update user
-        set password=#{password},age=#{age},first_name=#{firstName},last_name=#{lastName},email_address=#{emailAddress},phone_number=#{phoneNumber}
+        set password=#{password},age=#{age},first_name=#{firstName},last_name=#{lastName},
+            email_address=#{emailAddress},phone_number=#{phoneNumber}
         where username=#{username} and length(username)=length(#{username});
     </update>
 

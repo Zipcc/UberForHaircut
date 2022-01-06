@@ -2,19 +2,13 @@ package com.bristol.project.APIs;
 
 import com.bristol.project.entity.Result;
 import com.bristol.project.entity.User;
-import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 //port:9100
-//@FeignClient(value = "service-user", path = "/users")
 @RequestMapping(value = "/users")
 public interface UserApi {
-
-    //@PostMapping("/login")
-    //Result Login(@RequestParam("username") String username, @RequestParam("password") String password);
 
     //Register entry point
     @PostMapping

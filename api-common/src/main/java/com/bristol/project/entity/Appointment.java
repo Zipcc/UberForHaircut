@@ -10,13 +10,14 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 public class Appointment {
 
-        private Long AppointmentId;
+        private Long appointmentId;
         private String appointmentTime;
         private Timestamp bookingTime;
         private String clientUsername;
+        private String barberUsername;
         private String barberShopName;
         private String serviceName;
-        boolean isDeleted;
+        private String serviceDescription;
         boolean isCanceled;
         boolean isDone;
 }

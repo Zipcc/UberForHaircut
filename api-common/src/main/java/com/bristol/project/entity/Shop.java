@@ -10,7 +10,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Shop {
 
-    private long ShopId;
+    private Long ShopId;
     private String username;
     private String shopName;
     private String locationDescription;

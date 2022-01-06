@@ -8,10 +8,7 @@ import com.bristol.project.service.UserService;
 import com.bristol.project.utils.StatusCode;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletResponse;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -19,47 +16,23 @@ public class UserServiceImpl implements UserService {
     @Resource
     private UserDao userDao;
 
-    //@Override
-    public Result login(String username, String password, HttpServletResponse response) {
-
-        User user = userDao.getUserByUsername(username);
-        if(user == null){
-            return new Result<>(StatusCode.NOT_EXIST, "User: " + username + " not exist!");
-        }
-        if(BCrypt.checkpw(password, user.getPassword())){
-
-            Map<String,Object> tokenMap = new HashMap<>();
-            tokenMap.put("id", user.getUserId());
-            tokenMap.put("username", user.getUsername());
-            tokenMap.put("role", user.getRole());
-           // String token = Jwt.createJWT(UUID.randomUUID().toString(),JSONUtil.toJsonStr(tokenMap),null);
-
-           // Cookie cookie = new Cookie("Authorization", token);
-           // cookie.setDomain("localhost");
-           // cookie.setPath("/");
-           // response.addCookie(cookie);
-
-            return new Result<>(StatusCode.OK, "User: " + username + " login successfully!");
-        }
-        return new Result(StatusCode.PASSWORD_WRONG, "Password is wrong.");
-    }
-
     @Override
     public Result<User> create(User user) {
 
+        //new username
         if(userDao.getUserByUsername(user.getUsername()) == null){
             user.setPassword(BCrypt.hashpw(user.getPassword()));
-            long userId = userDao.create(user);
-            if (userId > 0) {
-                //Success.
+            Long userId = userDao.create(user);
+            if (userId != null) {
+                //success
                 user.setUserId(userId);
-                return new Result<>(StatusCode.OK, "Register successfully!", user);
+                return new Result<>(StatusCode.OK, "Register successfully!",user);
             }else{
-                //Create failed.
+                //create failed
                 return new Result<>(StatusCode.CREATE_FAILED,"Failed to register.");
             }
         }else{
-            //Already exist.
+            //username already exist
             return new Result<>(StatusCode.ALREADY_EXIST,"Username: " + user.getUsername() + " already exists.");
         }
     }
@@ -70,13 +43,13 @@ public class UserServiceImpl implements UserService {
         if(userDao.getUserByUsername(username) == null) {
             return new Result<>(StatusCode.NOT_EXIST,"User: " + username + " not exists.");
         }else{
-            int userId = userDao.deleteUserByUsername(username);
-            if (userId > 0) {
-                //Success.
-                return new Result<>(StatusCode.OK, "Delete user successfully!", userId);
+            int result = userDao.deleteUserByUsername(username);
+            if (result > 0) {
+                //success
+                return new Result<>(StatusCode.OK, "Delete user successfully!");
             }else{
-                //Create failed.
-                return new Result<>(StatusCode.CREATE_FAILED,"Failed to delete user.");
+                //create failed
+                return new Result<>(StatusCode.ERROR,"Failed to delete user.");
             }
         }
     }
@@ -109,10 +82,10 @@ public class UserServiceImpl implements UserService {
         }
         int result = userDao.updateUserByUsername(user);
         if (result > 0) {
-            //Success.
-            return new Result<>(StatusCode.OK, "Update successfully!", result);
+            //success
+            return new Result<>(StatusCode.OK, "Update successfully!");
         }else{
-            //Update failed.
+            //update failed
             return new Result<>(StatusCode.CREATE_FAILED,"Failed to update.");
         }
     }
@@ -121,7 +94,6 @@ public class UserServiceImpl implements UserService {
     public Result<User> getUserByUsername(String username) {
 
         User user = userDao.getUserByUsername(username);
-
         if (user == null){
             return new Result<>(StatusCode.NOT_EXIST,"User: " + username + " not exist.");
         }
@@ -133,7 +105,7 @@ public class UserServiceImpl implements UserService {
 
         List<User> list;
         list = userDao.getAllUser();
-        if(list == null){
+        if(list == null || list.size() == 0){
             return new Result<>(StatusCode.NOT_EXIST,"User not exist.");
         }
         return new Result<>(StatusCode.OK, "Find " + list.size()+ " users", list);

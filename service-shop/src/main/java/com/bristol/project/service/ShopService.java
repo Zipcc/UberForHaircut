@@ -3,11 +3,6 @@ package com.bristol.project.service;
 import com.bristol.project.entity.Result;
 import com.bristol.project.entity.Shop;
 import com.bristol.project.entity.ShopServ;
-import com.bristol.project.entity.User;
-import org.apache.ibatis.annotations.Param;
-import org.springframework.web.bind.annotation.RequestBody;
-
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 public interface ShopService {
@@ -16,9 +11,9 @@ public interface ShopService {
 
     Result<ShopServ> createServ(ShopServ shopServ);
 
-    Result<Integer> deleteShopByShopId(long shopId);
+    Result<Integer> deleteShopByShopId(Long shopId);
 
-    Result<Integer> deleteServiceByServiceId(long serviceId);
+    Result<Integer> deleteServiceByServiceId(Long serviceId);
 
     Result<Integer> updateShopService(ShopServ shopServ);
 

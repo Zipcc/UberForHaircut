@@ -18,7 +18,5 @@ public class User {
     private String username;
     private String password;
     private String phoneNumber;
-    private int role; // 0 Administrator
-                      // 1 Client
-                      // 2 Barber
+    private int role;
 }

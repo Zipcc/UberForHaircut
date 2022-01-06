@@ -9,13 +9,13 @@ import java.util.List;
 @Mapper
 public interface ShopDao{
 
-    long create(Shop shop);
+    Long create(Shop shop);
 
-    long createServ(ShopServ shopServ);
+    Long createServ(ShopServ shopServ);
 
-    int deleteShopByShopId(long shopId);
+    int deleteShopByShopId(Long shopId);
 
-    int deleteServiceByServiceId(long serviceId);
+    int deleteServiceByServiceId(Long serviceId);
 
     int updateShopByUsername(Shop shop);
 
@@ -23,7 +23,7 @@ public interface ShopDao{
 
     Shop getShopByUsername(String username);
 
-    Shop getShopByShopId(long shopId);
+    Shop getShopByShopId(Long shopId);
 
     List<Shop> getSomeShop();
 
