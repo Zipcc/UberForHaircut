@@ -3,7 +3,6 @@ package com.bristol.project.dao;
 import com.bristol.project.entity.Shop;
 import com.bristol.project.entity.ShopServ;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 @Mapper

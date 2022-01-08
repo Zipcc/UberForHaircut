@@ -1,6 +1,4 @@
 package com.bristol.project.config;
-//import com.changgou.oauth.util.UserJwt;
-//import com.robod.user.feign.UserFeign;
 import com.bristol.project.entity.AuthUser;
 import com.bristol.project.entity.Result;
 import com.bristol.project.entity.Role;
@@ -28,27 +26,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        /*客户端信息认证*/
-        //取出身份，如果身份为空说明没有认证
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        //没有认证统一采用httpbasic认证，httpbasic中存储了client_id和client_secret，开始认证client_id和client_secret
-        // if(authentication == null) {
-        //     // Query table oauth_client_details
-        //     ClientDetails clientDetails = clientDetailsService.loadClientByClientId(username);
-        //     if (clientDetails != null) {
-        //         String clientSecret = clientDetails.getClientSecret();
-        //         System.out.println("-----------------------------"+username);
-        //         System.out.println("-----------------------------"+clientSecret);
-        //         return new User(username, clientSecret, AuthorityUtils.commaSeparatedStringToAuthorityList(""));
-        //     }
-        //     //AuthUser authUser = new AuthUser(username,new BCryptPasswordEncoder().encode("c"),
-        //     //                                AuthorityUtils.commaSeparatedStringToAuthorityList("king"));
-        //     //authUser.setSex(0);
-        //     //authUser.setAddress("University of Bristol");
-        //     //        return authUser;
-        // }
-
-        if (username == null || username.isEmpty()) {
+           if (username == null || username.isEmpty()) {
             return null;
         }
 

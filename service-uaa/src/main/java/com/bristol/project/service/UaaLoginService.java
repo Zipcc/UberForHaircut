@@ -1,7 +1,6 @@
 package com.bristol.project.service;
 
 import com.bristol.project.entity.AuthToken;
-
 import java.io.UnsupportedEncodingException;
 
 public interface UaaLoginService {

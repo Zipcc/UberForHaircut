@@ -35,7 +35,7 @@ public class BookingServiceImpl implements BookingService {
             return new Result<>(StatusCode.CREATE_FAILED,"Create appointment failed, invalid message.");
         }
 
-        //Generate id by timestamp and userId
+        //generate id by timestamp and userId
         Long id = Long.parseLong((TimeUtil.getTime() + TimeUtil.getRandomNum()));
         appointment.setAppointmentId(id);
 
@@ -139,38 +139,4 @@ public class BookingServiceImpl implements BookingService {
         }
         return new Result<>(StatusCode.OK, "Find " + resultList.size() + " appointments", resultList);
     }
-
-/*
-    @Override
-    public Result<Appointment> deleteAppointmentById(String id) {
-
-        int result = bookingDao.deleteAppointmentById(id);
-        if(result == 0){
-            return new Result<>(StatusCode.NOT_EXIST,"Appointment: " + id + " not exist.");
-        }
-        return new Result<>(StatusCode.OK,"Appointment: " + id + " canceled successfully.");
-    }
-
-    @Override
-    public Result<Appointment> getAppointmentById(String id) {
-
-        Appointment appointment = bookingDao.getAppointmentById(id);
-        if(appointment == null){
-            return new Result<>(StatusCode.NOT_EXIST,"Appointment: " + id + " not exist.");
-        }
-        return new Result<>(StatusCode.OK,"Find appointment: " + id + " successfully.", appointment);
-    }
-
-    @Override
-    public Result<List<Appointment>> getAllAppointment() {
-
-        List<Appointment> list;
-        list = bookingDao.getAllAppointment();
-        if(list == null){
-            return new Result<>(StatusCode.NOT_EXIST,"Appointment not exist.");
-        }
-        return new Result<>(StatusCode.OK, "Find " + list.size()+ " appointments", list);
-    }
-
- */
 }

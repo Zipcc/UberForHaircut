@@ -52,20 +52,8 @@ class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
     }
 
     @Override
+    // get client detail from data source
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-
-      //clients.inMemory()
-      //        .withClient("jianchenclient")          //客户端id
-      //        .secret(new BCryptPasswordEncoder().encode("jianchen"))      //秘钥
-      //        .redirectUris("http://localhost")       //重定向地址
-      //        .accessTokenValiditySeconds(3600)          //访问令牌有效期
-      //        .refreshTokenValiditySeconds(3600)         //刷新令牌有效期
-      //        .authorizedGrantTypes(
-      //                "authorization_code",          //根据授权码生成令牌
-      //                "client_credentials",          //客户端认证
-      //                "refresh_token",                //刷新令牌
-      //                "password")                     //密码方式认证
-      //        .scopes("app");                         //客户端范围，名称自定义，必填
         clients.jdbc(dataSource).clients(jdbcclientDetails());
     }
 
@@ -97,7 +85,6 @@ class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
         converter.setKeyPair(keyPair);
         converter.setVerifier(new RsaVerifier((RSAPublicKey)keyPair.getPublic()));
 
-      //  converter.setSigningKey("00367171843C185C043DDFB90AA97677F11D02B629DEAFC04F935419D832E697");
 
         DefaultAccessTokenConverter defaultAccessTokenConverter = (DefaultAccessTokenConverter) converter.getAccessTokenConverter();
         defaultAccessTokenConverter.setUserTokenConverter(customUserAuthenticationConverter);
@@ -109,56 +96,4 @@ class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
         return new JwtTokenStore(jwtAccessTokenConverter);
     }
 
-
-    /*    @Bean("resJwtAccessTokenConverter")
-    public JwtAccessTokenConverter resJwtAccessTokenConverter() {
-        JwtAccessTokenConverter converter = new JwtAccessToken();
-        String publicKey = getPubKey();
-        converter.setVerifierKey(publicKey);
-        //不设置这个会出现 Cannot convert access token to JSON
-        converter.setVerifier(new RsaVerifier(publicKey));
-        return converter;
-    }
-
-
-    private String getPubKey() {
-        Resource resource = new ClassPathResource(ResJWTTokenStore.PUBLIC_KEY);
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(resource.getInputStream()))) {
-            return br.lines().collect(Collectors.joining("\n"));
-        } catch (IOException ioe) {
-            return getKeyFromAuthorizationServer();
-        }
-    }
-
-
-    private String getKeyFromAuthorizationServer() {
-        ObjectMapper objectMapper = new ObjectMapper();
-        String pubKey = new RestTemplate().getForObject(resourceServerProperties.getJwt().getKeyUri(), String.class);
-        try {
-            Map map = objectMapper.readValue(pubKey, Map.class);
-            return map.get("value").toString();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    public JwtAccessTokenConverter jwtAccessTokenConverter(CustomUserAuthenticationConverter customUserAuthenticationConverter) {
-
-        System.out.println(keyProperties.getKeyStore().getLocation());
-        JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-        KeyStoreKeyFactory keyStoreKeyFactory = new KeyStoreKeyFactory(
-                keyProperties.getKeyStore().getLocation(),                          // location: classpath:/bristolproject.jks
-                keyProperties.getKeyStore().getSecret().toCharArray());             // secret: jianchen
-        KeyPair keyPair = keyStoreKeyFactory.getKeyPair(
-                keyProperties.getKeyStore().getAlias(),                     // alias: jianchen
-                keyProperties.getKeyStore().getPassword().toCharArray());   // password: jianchen
-        converter.setKeyPair(keyPair);
-        DefaultAccessTokenConverter defaultAccessTokenConverter = (DefaultAccessTokenConverter) converter.getAccessTokenConverter();
-        defaultAccessTokenConverter.setUserTokenConverter(customUserAuthenticationConverter);
-        return converter;
-    }
-
-
-*/
 }

@@ -23,10 +23,8 @@ spring:
               - DELETE
       routes:
         - id: service-uaa-route
-          #uri: http://localhost:9011
           uri: lb://service-uaa
           predicates:
-          #  - Host=localhost**
             - Path=/ios/uaa/**
           filters:
             - StripPrefix=1
@@ -37,10 +35,8 @@ spring:
                 redis-rate-limiter.burstCapacity: 100
 
         - id: service-user-route
-          #uri: http://localhost:9011
           uri: lb://service-user
           predicates:
-            #  - Host=localhost**
             - Path=/ios/users/**
           filters:
             - StripPrefix=1

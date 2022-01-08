@@ -1,7 +1,7 @@
 package com.bristol.project.filter;
 
 public class URLFilter {
-    // dont forget begin / !!!
+    // dont forget the begin '/'   !!!
     private static final String permittedURL = "/ios/uaa/login,/ios/users";
 
     public static boolean needAuthorize(String url){

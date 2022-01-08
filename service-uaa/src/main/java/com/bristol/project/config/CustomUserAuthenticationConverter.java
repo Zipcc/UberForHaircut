@@ -25,7 +25,7 @@ public class CustomUserAuthenticationConverter extends DefaultUserAuthentication
         response.put("username", name);
 
         Object principal = authentication.getPrincipal();
-        AuthUser authUser = null;
+        AuthUser authUser;
         if(principal instanceof  AuthUser){
             authUser = (AuthUser) principal;
         }else{
