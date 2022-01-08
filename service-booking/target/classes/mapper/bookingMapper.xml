@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bristol.project.dao.BookingDao">
+
+    <insert id="create" parameterType="Appointment">
+        insert into appointment_main(appointment_id, appointment_time, client_username
+        , barber_username, service_name, service_description)
+        values(#{appointmentId},#{appointmentTime},#{clientUsername}
+        ,#{barberUsername},#{serviceName},#{serviceDescription});
+
+        insert into appointment_user(appointment_id, username)
+        values(#{appointmentId},#{clientUsername});
+
+        insert into appointment_user(appointment_id, username)
+        values(#{appointmentId},#{barberUsername});
+    </insert>
+
+    <update id="completeAppointmentById">
+        update appointment_main
+        set is_done=true
+        where appointment_id=#{appointmentId};
+    </update>
+
+    <update id="cancelAppointmentById">
+        update appointment_main
+        set is_canceled=true
+        where appointment_id=#{appointmentId};
+    </update>
+
+    <update id="deleteAppointmentById">
+        update from appointment_user
+        where appointment_id=#{appointmentId};
+    </update>
+
+    <delete id="destroyAppointmentById">
+        delete from appointment_main
+        where appointment_id=#{appointmentId};
+    </delete>
+
+    <select id="getAppointmentById" resultType="Appointment">
+        select * from appointment_main
+        where appointment_id=#{appointmentId};
+    </select>
+
+    <select id="getAllAppointmentByUsername" resultType="Appointment">
+        select * from appointment_main
+        where client_username=#{username} and length(client_username)=length(#{username})
+           or barber_username=#{username} and length(barber_username)=length(#{username})
+    </select>
+
+    <select id="getAllUserAppointmentIdByUsername" resultType="Appointment">
+        select * from appointment_user;
+        where username=#{username} and length(username)=length(#{username});
+
+    </select>
+
+</mapper>

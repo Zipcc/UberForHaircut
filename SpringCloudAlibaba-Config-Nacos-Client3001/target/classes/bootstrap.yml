@@ -1,0 +1,15 @@
+server:
+  port: 3001
+
+spring:
+  application:
+    name: nacos-config-client
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+      config:
+        server-addr: localhost:8848
+        file-extension: yaml
+        group: DEFAULT_GROUP
+        namespace: e08d3876-ccc2-43a2-950a-37d605d26d85

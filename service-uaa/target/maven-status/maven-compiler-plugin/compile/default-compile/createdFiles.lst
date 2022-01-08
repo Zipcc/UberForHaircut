@@ -1,0 +1,14 @@
+com\bristol\project\service\UaaLoginService.class
+com\bristol\project\service\impl\UaaLoginServiceImpl.class
+com\bristol\project\entity\AuthUser.class
+com\bristol\project\util\AdminToken.class
+com\bristol\project\controller\UaaLoginController.class
+com\bristol\project\UaaMain.class
+com\bristol\project\config\WebSecurityConfig.class
+com\bristol\project\entity\AuthToken.class
+com\bristol\project\JwtTokenConfig.class
+com\bristol\project\interceptor\TokenRequestInterceptor.class
+com\bristol\project\config\UserDetailsServiceImpl.class
+com\bristol\project\config\AuthorizationServerConfig.class
+com\bristol\project\config\CustomUserAuthenticationConverter.class
+com\bristol\project\util\AuthToken.class

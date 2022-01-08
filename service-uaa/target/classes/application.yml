@@ -1,0 +1,47 @@
+server:
+  port: 9999
+
+spring:
+  application:
+    name: service-uaa
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+  datasource:
+    url: jdbc:mysql://localhost:3306/user?allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: 'root'
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  web:
+    locale: en_GB
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.bristol.project.entity
+
+auth:
+  ttl: 3600  #token存储到redis的过期时间
+  clientId: jianchenclient
+  clientSecret: jianchen
+  cookieDomain: localhost
+  cookieMaxAge: -1
+
+#encrypt:
+ # key-store:
+  #  location: classpath:/bristolproject.jks
+   # secret: jianchen
+    #alias: jianchen
+    #password: jianchen
+
+logging:
+  level:
+    com: debug

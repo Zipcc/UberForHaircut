@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bristol.project.dao.UserDao">
+
+    <insert id="create" parameterType="User" useGeneratedKeys="true">
+        <selectKey resultType="java.lang.Long" order="AFTER" keyProperty="userId">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into user(username, password, role, age, first_name, last_name,
+                         email_address, sex, phone_number)
+        values(#{username},#{password},#{role},#{age},#{firstName},#{lastName},
+               #{emailAddress},#{sex},#{phoneNumber});
+    </insert>
+
+    <resultMap id="UserResultMap" type="com.bristol.project.entity.User">
+        <id column="username" property="username" jdbcType="VARCHAR"/>
+        <result column="id" property="id" jdbcType="BIGINT"/>
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+        <result column="role" property="role" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <delete id="deleteUserByUsername">
+        delete from user
+        where username=#{username} and length(username)=length(#{username});
+    </delete>
+
+    <update id="updateUserByUsername" parameterType="User">
+        update user
+        set password=#{password},age=#{age},first_name=#{firstName},last_name=#{lastName},
+            email_address=#{emailAddress},phone_number=#{phoneNumber}
+        where username=#{username} and length(username)=length(#{username});
+    </update>
+
+    <select id="getUserByUsername" parameterType="String" resultMap="UserResultMap">
+        select * from user
+        where username=#{username} and length(username)=length(#{username});
+    </select>
+
+    <select id="getAllUser" resultType="User">
+        select * from user;
+    </select>
+
+</mapper>
