@@ -1,12 +1,11 @@
 com\bristol\project\utils\StringUtil.class
 com\bristol\project\APIs\BookingApi.class
-com\bristol\project\utils\StatusCode.class
 com\bristol\project\entity\Role.class
 com\bristol\project\entity\ShopServ.class
 com\bristol\project\entity\User.class
 com\bristol\project\utils\TokenDecoder.class
+com\bristol\project\entity\StatusCode.class
 com\bristol\project\utils\BCrypt.class
-com\bristol\project\entity\Payment.class
 com\bristol\project\APIs\UserApi.class
 com\bristol\project\utils\TimeUtil.class
 com\bristol\project\entity\Result.class
@@ -17,4 +16,3 @@ com\bristol\project\entity\Appointment.class
 com\bristol\project\utils\TokenDecoder$1.class
 com\bristol\project\openFeign\UserFeignApi.class
 com\bristol\project\openFeign\BookingFeignApi.class
-com\bristol\project\utils\Jwt.class

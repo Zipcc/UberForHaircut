@@ -18,6 +18,7 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/UberForHaircut.iml" filepath="$PROJECT_DIR$/.idea/UberForHaircut.iml" />
       <module fileurl="file://$PROJECT_DIR$/api-common/api-common.iml" filepath="$PROJECT_DIR$/api-common/api-common.iml" />
       <module fileurl="file://$PROJECT_DIR$/api-gateway-common/api-gateway-booking/api-gateway-booking.iml" filepath="$PROJECT_DIR$/api-gateway-common/api-gateway-booking/api-gateway-booking.iml" />
+      <module fileurl="file://$PROJECT_DIR$/api-gateway-common/api-gateway-swagger/api-gateway-center.iml" filepath="$PROJECT_DIR$/api-gateway-common/api-gateway-swagger/api-gateway-center.iml" />
       <module fileurl="file://$PROJECT_DIR$/api-gateway-common/api-gateway-common.iml" filepath="$PROJECT_DIR$/api-gateway-common/api-gateway-common.iml" />
       <module fileurl="file://$PROJECT_DIR$/api-gateway-common/api-gateway-shop/api-gateway-shop.iml" filepath="$PROJECT_DIR$/api-gateway-common/api-gateway-shop/api-gateway-shop.iml" />
       <module fileurl="file://$PROJECT_DIR$/api-gateway-common/api-gateway-user/api-gateway-user.iml" filepath="$PROJECT_DIR$/api-gateway-common/api-gateway-user/api-gateway-user.iml" />

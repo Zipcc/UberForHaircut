@@ -15,7 +15,7 @@ public class Shop {
     private String shopName;
     private String locationDescription;
     private String serviceForGender;
-    private String ratePoints;
+    private double ratePoints;
     private String phoneNumber;
     private List<ShopServ> shopServs;
 }

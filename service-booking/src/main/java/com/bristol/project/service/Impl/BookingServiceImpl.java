@@ -7,7 +7,7 @@ import com.bristol.project.entity.Shop;
 import com.bristol.project.entity.ShopServ;
 import com.bristol.project.openFeign.ShopFeignApi;
 import com.bristol.project.service.BookingService;
-import com.bristol.project.utils.StatusCode;
+import com.bristol.project.entity.StatusCode;
 import com.bristol.project.utils.StringUtil;
 import com.bristol.project.utils.TimeUtil;
 import org.springframework.stereotype.Service;

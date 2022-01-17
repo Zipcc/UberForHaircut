@@ -5,7 +5,7 @@ import com.bristol.project.entity.Result;
 import com.bristol.project.entity.Shop;
 import com.bristol.project.entity.ShopServ;
 import com.bristol.project.service.ShopService;
-import com.bristol.project.utils.StatusCode;
+import com.bristol.project.entity.StatusCode;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.List;

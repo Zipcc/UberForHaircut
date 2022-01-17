@@ -4,7 +4,7 @@ import com.bristol.project.APIs.ShopApi;
 import com.bristol.project.entity.Result;
 import com.bristol.project.entity.Shop;
 import com.bristol.project.entity.ShopServ;
-import com.bristol.project.utils.StatusCode;
+import com.bristol.project.entity.StatusCode;
 import com.bristol.project.utils.StringUtil;
 import com.bristol.project.utils.TokenDecoder;
 import org.springframework.web.bind.annotation.RestController;

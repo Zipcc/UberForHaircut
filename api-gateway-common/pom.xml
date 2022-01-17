@@ -15,6 +15,7 @@
         <module>api-gateway-user</module>
         <module>api-gateway-shop</module>
         <module>api-gateway-booking</module>
+        <module>api-gateway-center</module>
     </modules>
 
     <properties>

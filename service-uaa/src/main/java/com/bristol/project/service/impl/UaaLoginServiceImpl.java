@@ -23,6 +23,7 @@ public class UaaLoginServiceImpl implements UaaLoginService {
     @Value("${server.port}")
     private String uaaPort;
 
+    @Override
     public AuthToken login(String username, String password, String clientId, String clientSecret, String grant_type) {
 
         String uaaHost = "localhost";

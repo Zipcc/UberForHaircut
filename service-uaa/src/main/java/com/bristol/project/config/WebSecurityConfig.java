@@ -40,9 +40,6 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/uaa/**").permitAll()
                 .anyRequest().authenticated();
-     //启用表单身份验证name and password
-       //其他请求都需要经过验证
-
     }
 
 }

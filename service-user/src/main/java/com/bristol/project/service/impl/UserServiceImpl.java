@@ -5,7 +5,7 @@ import com.bristol.project.dao.UserDao;
 import com.bristol.project.entity.Result;
 import com.bristol.project.entity.User;
 import com.bristol.project.service.UserService;
-import com.bristol.project.utils.StatusCode;
+import com.bristol.project.entity.StatusCode;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.List;

@@ -3,7 +3,7 @@ package com.bristol.project.controller;
 import com.bristol.project.entity.AuthToken;
 import com.bristol.project.entity.Result;
 import com.bristol.project.service.UaaLoginService;
-import com.bristol.project.utils.StatusCode;
+import com.bristol.project.entity.StatusCode;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;

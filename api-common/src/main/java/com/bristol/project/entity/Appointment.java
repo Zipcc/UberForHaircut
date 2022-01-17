@@ -18,6 +18,7 @@ public class Appointment {
         private String barberShopName;
         private String serviceName;
         private String serviceDescription;
+
         boolean isCanceled;
         boolean isDone;
 }

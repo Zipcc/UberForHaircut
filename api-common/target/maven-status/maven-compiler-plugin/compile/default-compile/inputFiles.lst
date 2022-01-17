@@ -4,16 +4,14 @@ E:\1Project\UberForHaircut\api-common\src\main\java\com\bristol\project\entity\S
 E:\1Project\UberForHaircut\api-common\src\main\java\com\bristol\project\openFeign\UserFeignApi.java
 E:\1Project\UberForHaircut\api-common\src\main\java\com\bristol\project\openFeign\ShopFeignApi.java
 E:\1Project\UberForHaircut\api-common\src\main\java\com\bristol\project\utils\StringUtil.java
-E:\1Project\UberForHaircut\api-common\src\main\java\com\bristol\project\utils\StatusCode.java
 E:\1Project\UberForHaircut\api-common\src\main\java\com\bristol\project\utils\TokenDecoder.java
 E:\1Project\UberForHaircut\api-common\src\main\java\com\bristol\project\entity\Role.java
 E:\1Project\UberForHaircut\api-common\src\main\java\com\bristol\project\entity\User.java
 E:\1Project\UberForHaircut\api-common\src\main\java\com\bristol\project\APIs\ShopApi.java
-E:\1Project\UberForHaircut\api-common\src\main\java\com\bristol\project\entity\Payment.java
 E:\1Project\UberForHaircut\api-common\src\main\java\com\bristol\project\openFeign\BookingFeignApi.java
 E:\1Project\UberForHaircut\api-common\src\main\java\com\bristol\project\utils\BCrypt.java
 E:\1Project\UberForHaircut\api-common\src\main\java\com\bristol\project\entity\Appointment.java
 E:\1Project\UberForHaircut\api-common\src\main\java\com\bristol\project\APIs\BookingApi.java
-E:\1Project\UberForHaircut\api-common\src\main\java\com\bristol\project\utils\Jwt.java
+E:\1Project\UberForHaircut\api-common\src\main\java\com\bristol\project\entity\StatusCode.java
 E:\1Project\UberForHaircut\api-common\src\main\java\com\bristol\project\entity\Shop.java
 E:\1Project\UberForHaircut\api-common\src\main\java\com\bristol\project\utils\TimeUtil.java

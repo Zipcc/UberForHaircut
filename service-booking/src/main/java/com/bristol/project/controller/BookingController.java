@@ -5,7 +5,7 @@ import com.bristol.project.entity.Appointment;
 import com.bristol.project.entity.Result;
 import com.bristol.project.entity.Role;
 import com.bristol.project.service.BookingService;
-import com.bristol.project.utils.StatusCode;
+import com.bristol.project.entity.StatusCode;
 import com.bristol.project.utils.StringUtil;
 import com.bristol.project.utils.TokenDecoder;
 import org.springframework.web.bind.annotation.RestController;

@@ -48,11 +48,11 @@ public interface ShopApi {
     Result<Shop> getShopByUsername(@PathVariable("username") String username);
 
     @PreAuthorize("hasAnyAuthority('admin','client','barber')")
-    @GetMapping("/explore")
+    @GetMapping
     Result<List<Shop>> getSomeShop();
 
     @PreAuthorize("hasAnyAuthority('admin')")
-    @GetMapping
+    @GetMapping("/all")
     Result<List<Shop>> getAllShop();
 
 }

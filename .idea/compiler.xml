@@ -18,6 +18,7 @@
         <module name="SpringCloud-Provider-Hystrix-Payment8001" />
         <module name="SpringCloudAlibaba-provider-payment9002" />
         <module name="service-booking" />
+        <module name="api-gateway-center" />
         <module name="SpringCloud-Eureka-Server7001" />
         <module name="SpringCloud-Eureka-Server7002" />
         <module name="service-user" />
@@ -33,6 +34,7 @@
     <bytecodeTargetLevel>
       <module name="api-common" target="8" />
       <module name="api-gateway-booking" target="8" />
+      <module name="api-gateway-center" target="8" />
       <module name="api-gateway-common" target="8" />
       <module name="api-gateway-shop" target="8" />
       <module name="api-gateway-user" target="8" />
