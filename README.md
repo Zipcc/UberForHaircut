@@ -99,6 +99,7 @@ the application entry IP:Port is http://47.243.165.93:18080
 > 1. The server identifies the current user detail by extracting the user information which is integreted inside the access token, adding other user's username into the request body does not make effect.
 
 ### The response body should be like:
+![image](https://user-images.githubusercontent.com/45266501/149781106-72bd8a5b-a6c1-45de-81e8-102d3db81088.png)
 
 ----
 
