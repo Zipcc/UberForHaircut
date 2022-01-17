@@ -11,8 +11,8 @@ the application entry IP:Port is http://47.243.165.93:18080
   
 ----
 
-# User service
-## 1. Register as an application user
+# 1. User service
+## - Register as an application user
 1. Request method: **POST**  
 2. Request URL: http://47.243.165.93:18080/ios/users
 3. Request Body should contain an [User](/api-common/src/main/java/com/bristol/project/entity/User.java) object, like as follows
@@ -45,7 +45,7 @@ the application entry IP:Port is http://47.243.165.93:18080
 
 ----
 
-## 2. Login
+## - Login
 1. Request method: **POST**  
 2. Request URL: http://47.243.165.93:18080/ios/uaa/login
 3. Request Headers should contain *username* and *password*
@@ -62,7 +62,7 @@ the application entry IP:Port is http://47.243.165.93:18080
 
 ----
 
-## 3. Update your profile
+## - Update your profile
 1. Request method: **PUT**  
 2. Request URL: http://47.243.165.93:18080/ios/users/me?Authorization= ***${The access token}***
 3. {The access token} is like 
@@ -89,7 +89,7 @@ the application entry IP:Port is http://47.243.165.93:18080
 
 ----
 
-## 4. Query your profile
+## - Query your profile
 1. Request method: **GET**  
 2. Request URL: http://47.243.165.93:18080/ios/users/me?Authorization= ***${The access token}***
 3. {The access token} is like 
