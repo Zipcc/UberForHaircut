@@ -5,10 +5,9 @@
 ## The project is depolyed on the cloud server  
 the application entry IP:Port is http://47.243.165.93:18080 
 
-## Try it yourself!
+## Try it !
 ### Please use postman or similar applications to send requests to the server as to try the backend independently from the frontend.
 
-  
 ----
 
 # 1. User service  
@@ -39,7 +38,7 @@ the application entry IP:Port is http://47.243.165.93:18080
 > 4. Other fields are optional, could be edited later.
 
 ### The response body should be like the right hand side in the image:    
-![image](https://user-images.githubusercontent.com/45266501/149774063-3125892f-e5d5-4dda-accd-8d979df2a0ab.png)
+![image](https://user-images.githubusercontent.com/45266501/149817219-f4453941-f73b-4ab3-a36c-d12277d3e43b.png)
 
 > #### NOTE:
 > 1. The *password* is encrypted with BCrypt.
@@ -53,7 +52,7 @@ the application entry IP:Port is http://47.243.165.93:18080
 ![image](https://user-images.githubusercontent.com/45266501/149775057-975c5ef2-1922-434a-954d-ef63cff05da7.png)
 
 > #### NOTE:
-> 1. The username and password are required, should not be empty.
+> 1. The *username* and *password* are required, should not be empty.
 ### The response body should be like:   
 ![image](https://user-images.githubusercontent.com/45266501/149775501-1e011388-d6df-4d19-b775-c7fabafb772a.png)
 
@@ -77,13 +76,14 @@ the application entry IP:Port is http://47.243.165.93:18080
         "lastName": "testlast_UpdateUpdate",
         "emailAddress": "testemail_UpdateUpdate@email.com",
         "phoneNumber": "100000000_UpdateUpdate",
-        "password": "testclient_UpdateUpdate",
+        "password": "testclient_UpdateUpdate"
 }
 ```
 
 > #### NOTE:
-> 1. The server identifies the current user detail by extracting the user information which is integreted inside the access token, adding other user's username into the request body does not make effect.
-> 2. Only the *age*, *firseName*, *lastName*, *emailAddress*, *phoneNumber*, *password* could be updated.
+> 1. The server identifies the current user detail by extracting the user information which is integreted inside the access token, adding other user's *username* into the request body does not make effect.
+> 2. The *phoneNumber* and *emailAddress* are unique, should be different from existing ones.
+> 3. Only the *age*, *firseName*, *lastName*, *emailAddress*, *phoneNumber*, *password* could be updated.
 
 ### The response body should be like:
 ![image](https://user-images.githubusercontent.com/45266501/149779108-2f17fc58-021a-4cd9-88c2-8ee7b577d2da.png)
@@ -123,11 +123,13 @@ the application entry IP:Port is http://47.243.165.93:18080
 ```
 
 > #### NOTE:
-> 1. The current *user* must be of role *barber*, and the registered shop only belongs to the current barber.
+> 1. The current user must be of role barber, and the registered shop only belongs to the current barber.
 > 2. The *shopName* is required, should not be empty.
+> 3. The *shopName* is unique, should be different from existing ones.
+
 
 ### The response body should be like:
-![image](https://user-images.githubusercontent.com/45266501/149788717-e6ea62ee-76bb-4dc4-ac3f-4e5ad4d5e4fd.png)
+![image](https://user-images.githubusercontent.com/45266501/149819080-c250d854-8c7c-4e80-a240-669bf6a0d936.png)
 
 ----
 
@@ -141,16 +143,18 @@ the application entry IP:Port is http://47.243.165.93:18080
 ```
 {
     "serviceName": "testservice1",
-    "description": "testservice1description"
+    "description": "testservice1description1"
 }
 ```
 
 > #### NOTE:
-> 1. The current *user* must be of role *barber* with an existing shop, and the registered barber service only belongs to the current barber's shop.
+> 1. The current user must be of role barber with an existing shop, and the registered barber service only belongs to the current barber's shop.
 > 2. The *serviceName* is required, should not be empty.
+> 3. One shop could add multiple shop services. 
 
 ### The response body should be like:
-![image](https://user-images.githubusercontent.com/45266501/149790209-ffbb2d48-3ffe-4aeb-a39f-1a872f85e2ad.png)
+![image](https://user-images.githubusercontent.com/45266501/149819261-d8d08cb4-2f92-4edb-902d-335e1c4cb57a.png)
+![image](https://user-images.githubusercontent.com/45266501/149819355-cb007265-1c55-497f-94c0-524f2e1dac7a.png)
 
 ----
 
@@ -162,7 +166,7 @@ the application entry IP:Port is http://47.243.165.93:18080
 4. Request path variable should contain a {serviceId} of [ShopServ](/api-common/src/main/java/com/bristol/project/entity/ShopServ.java) object.
 
 > #### NOTE:
-> 1. The current *user* must be of role *barber* with an existing shop, and the deleted barber service should be existing.
+> 1. The current user must be of role barber with an existing shop, and the deleted barber service should be existing.
 
 ### The response body should be like:
 ![image](https://user-images.githubusercontent.com/45266501/149790883-4b1fb9e9-570f-41ef-9067-4fdffc1a647d.png)
@@ -186,7 +190,9 @@ the application entry IP:Port is http://47.243.165.93:18080
 ```
 
 > #### NOTE:
-> 1. The current *user* must be of role *barber*, and the updated shop only belongs to the current barber.
+> 1. The current user must be of role barber, and the updated shop only belongs to the current barber.
+> 2. The *shopName* is unique, should be different from existing ones.
+
 
 ### The response body should be like:
 ![image](https://user-images.githubusercontent.com/45266501/149793046-ed4f0b4a-e9f9-4662-802b-527134f065f0.png)
@@ -208,7 +214,7 @@ the application entry IP:Port is http://47.243.165.93:18080
 ```
 
 > #### NOTE:
-> 1. The current *user* must be of role *barber* with an existing shop, and the updated barber service should be existing inside the shop.
+> 1. The current user must be of role barber with an existing shop, and the updated barber service should be existing inside the barber's own shop.
 
 
 ### The response body should be like:
@@ -223,10 +229,11 @@ the application entry IP:Port is http://47.243.165.93:18080
 `eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoyLCJzY29wZSI6WyJpb3MiXSwibmFtZSI6ImJhcmJlciIsImlkIjoyNiwiZXhwIjoxNjQyNjg4MjQwLCJhdXRob3JpdGllcyI6WyJiYXJiZXIiXSwianRpIjoiNmE2MDU3NWItMTUwNy00YTkzLThmYmMtMjJiMmE4ZTNiNGIwIiwiY2xpZW50X2lkIjoiamlhbmNoZW5jbGllbnQiLCJ1c2VybmFtZSI6ImJhcmJlciJ9.UDVOkL5SG33KQLBCDHQtsi3RpwVYuLGzikplzJU3eKuovRqD1SBwWCoIi8AcWzP_khrNMHkv0LV4lDFEI2kjmy-xWthm0jmxrC0JvXnhMnYF-ZE96qEE_kXEJNFL12GwEH7Et2nzOCIvsY6pSv_PyPbhuJcuZ7j6qh_H-NQ_U9MToPhfDNRbWywGVIhAGugByHV0cAfXo-_0QCwxATQGQ54o4UgYzL0_XcK89uuV2P5lUiBpk7wXV4H2eNRikt7Pi3-WmHN80RVOZCQCUxsOYdAPM0H5pHCGyazImuYCXGfaUwC0dhihaklpZINwjcGRFyUOn29d4R3bysCVlBL9yg`
 
 > #### NOTE:
-> 1. The current *user* must be of role *barber* with an existing shop.
+> 1. The current user must be of role barber with an existing shop.
 
 ### The response body should be like:
-![image](https://user-images.githubusercontent.com/45266501/149805699-d6d4de81-dc1e-4173-b3e8-3a36b2a1e7ec.png)
+![image](https://user-images.githubusercontent.com/45266501/149820491-48c81e36-b823-4cb9-9656-701cb9f48377.png)
+
 
 ----
 
@@ -237,11 +244,38 @@ the application entry IP:Port is http://47.243.165.93:18080
 `eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoyLCJzY29wZSI6WyJpb3MiXSwibmFtZSI6ImJhcmJlciIsImlkIjoyNiwiZXhwIjoxNjQyNjg4MjQwLCJhdXRob3JpdGllcyI6WyJiYXJiZXIiXSwianRpIjoiNmE2MDU3NWItMTUwNy00YTkzLThmYmMtMjJiMmE4ZTNiNGIwIiwiY2xpZW50X2lkIjoiamlhbmNoZW5jbGllbnQiLCJ1c2VybmFtZSI6ImJhcmJlciJ9.UDVOkL5SG33KQLBCDHQtsi3RpwVYuLGzikplzJU3eKuovRqD1SBwWCoIi8AcWzP_khrNMHkv0LV4lDFEI2kjmy-xWthm0jmxrC0JvXnhMnYF-ZE96qEE_kXEJNFL12GwEH7Et2nzOCIvsY6pSv_PyPbhuJcuZ7j6qh_H-NQ_U9MToPhfDNRbWywGVIhAGugByHV0cAfXo-_0QCwxATQGQ54o4UgYzL0_XcK89uuV2P5lUiBpk7wXV4H2eNRikt7Pi3-WmHN80RVOZCQCUxsOYdAPM0H5pHCGyazImuYCXGfaUwC0dhihaklpZINwjcGRFyUOn29d4R3bysCVlBL9yg`
 
 > #### NOTE:
-> 1. The current *user* could any role logged in.
+> 1. The current user could be any role logged in and request with a valid access token.
 
 ### The response body should be like:
-![image](https://user-images.githubusercontent.com/45266501/149806320-4d380a21-b1c8-4c78-a129-c537fecf9f77.png)
+![image](https://user-images.githubusercontent.com/45266501/149820783-e3e9022e-ae57-4efa-8b63-baa0420815e9.png)
 
 > #### NOTE:
 > 1. The response contains an array of shops which are the most 10 rated shops in the application, ordered by the ratepoints.
 
+# 3. Booking service  
+    
+- ## Book an appointment
+1. Request method: **POST**  
+2. Request URL: http://47.243.165.93:18080/ios/bookings
+3. Request Body should contain an [Appointment](/api-common/src/main/java/com/bristol/project/entity/Appointment.java) object, containing fields like as follows
+
+```
+{
+        "clientUsername": "testclient",
+        "barberUsername": "testbarber",
+        "serviceName": "testservice1",
+        "appointmentTime": "Tomorrow (2011.11.11) At 10am, maybe a bit later..."
+}
+```
+
+> #### NOTE:
+> 1. The current user must be of role client.
+> 2. The *clientUsername*, *barberUsername*, *serviceName* and *appointmentTime* are required, should not be empty.
+> 3. There is no need to add such fields into request body: *appointmentId*, *bookingTime* are generated automatically by the service, *barberShopName*,  *serviceDescription* are queried from other micro services and filled automatically by the service.
+
+### The response body should be like the right hand side in the image:    
+
+
+> #### NOTE:
+
+----
