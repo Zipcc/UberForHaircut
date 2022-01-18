@@ -256,8 +256,10 @@ the application entry IP:Port is http://47.243.165.93:18080
     
 - ## Book an appointment
 1. Request method: **POST**  
-2. Request URL: http://47.243.165.93:18080/ios/bookings
-3. Request Body should contain an [Appointment](/api-common/src/main/java/com/bristol/project/entity/Appointment.java) object, containing fields like as follows
+2. Request URL: http://47.243.165.93:18080/ios/bookings?Authorization= ***${The access token}***
+3. {The access token} is like 
+`eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoxLCJzY29wZSI6WyJpb3MiXSwibmFtZSI6InRlc3RjbGllbnQiLCJpZCI6MzIsImV4cCI6MTY0MjY4ODE1NywiYXV0aG9yaXRpZXMiOlsiY2xpZW50Il0sImp0aSI6IjY3Y2YyZTU3LTY3NWYtNDllZi05ZmQ2LTdiYjY4MGE2NGZkOCIsImNsaWVudF9pZCI6ImppYW5jaGVuY2xpZW50IiwidXNlcm5hbWUiOiJ0ZXN0Y2xpZW50In0.hlrfks_eOJ6kzKvWmDrjODv7N65tdCzyX-OaUyXMoJw52foUI7iVWy6Zgbc_ygXeNYCqew5DNIY19_8K-cTGeAhBbVXoK7f7hjXB0g8sT7rAplnW9uMVYuccLFn69gbftvuE6J0NNmw9fqEBPqKrxOagIq50jgXtb07oAx7-XCSaTl4IbliCd0B_IDADz6j9KGCqO5DS5-4ih_CvGpi-3xou6NNXOaOzUxmRCUZxIzTcfntowFOtATLIpkc41YiOoBLOsJQwgHDzLNTKPWr6NQXeWDvGCxcnuKIpBEVc9YVqf5RMYB5xgQxS3dU05aoWOgJNO-ug3Jg0Y2yQni_Rnw`
+4. Request Body should contain an [Appointment](/api-common/src/main/java/com/bristol/project/entity/Appointment.java) object, containing fields like as follows
 
 ```
 {
@@ -270,12 +272,68 @@ the application entry IP:Port is http://47.243.165.93:18080
 
 > #### NOTE:
 > 1. The current user must be of role client.
-> 2. The *clientUsername*, *barberUsername*, *serviceName* and *appointmentTime* are required, should not be empty.
+> 2. The *clientUsername*, *barberUsername*, *serviceName* and *appointmentTime* are required, should not be empty and should be existing in the application.
 > 3. There is no need to add such fields into request body: *appointmentId*, *bookingTime* are generated automatically by the service, *barberShopName*,  *serviceDescription* are queried from other micro services and filled automatically by the service.
 
-### The response body should be like the right hand side in the image:    
-
-
-> #### NOTE:
+### The response body should be like :    
+![image](https://user-images.githubusercontent.com/45266501/149889764-df876b26-1521-490d-92b3-0fa54a84f387.png)
 
 ----
+
+- ## Delete an appointment
+1. Request method: **DELETE**  
+2. Request URL: http://47.243.165.93:18080/ios/bookings/deletion/{appointmentId}?Authorization= ***${The access token}***
+3. {The access token} is like 
+`eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoyLCJzY29wZSI6WyJpb3MiXSwibmFtZSI6ImJhcmJlciIsImlkIjoyNiwiZXhwIjoxNjQyNjg4MjQwLCJhdXRob3JpdGllcyI6WyJiYXJiZXIiXSwianRpIjoiNmE2MDU3NWItMTUwNy00YTkzLThmYmMtMjJiMmE4ZTNiNGIwIiwiY2xpZW50X2lkIjoiamlhbmNoZW5jbGllbnQiLCJ1c2VybmFtZSI6ImJhcmJlciJ9.UDVOkL5SG33KQLBCDHQtsi3RpwVYuLGzikplzJU3eKuovRqD1SBwWCoIi8AcWzP_khrNMHkv0LV4lDFEI2kjmy-xWthm0jmxrC0JvXnhMnYF-ZE96qEE_kXEJNFL12GwEH7Et2nzOCIvsY6pSv_PyPbhuJcuZ7j6qh_H-NQ_U9MToPhfDNRbWywGVIhAGugByHV0cAfXo-_0QCwxATQGQ54o4UgYzL0_XcK89uuV2P5lUiBpk7wXV4H2eNRikt7Pi3-WmHN80RVOZCQCUxsOYdAPM0H5pHCGyazImuYCXGfaUwC0dhihaklpZINwjcGRFyUOn29d4R3bysCVlBL9yg`
+4. Request path variable should contain a {appointmentId} of [Appointment](/api-common/src/main/java/com/bristol/project/entity/Appointment.java) object.
+
+> #### NOTE:
+> 1. The current user could be any role logged in and request with a valid access token.
+> 2. The appointment would be deleted from the user's application, which means the frontend would not fetch such appointment and show to the user, however, for later analysis, the appointment would still be stored in the appointment_main table untill the admin destroyed the record.
+    
+### The response body should be like:
+![image](https://user-images.githubusercontent.com/45266501/149895389-ca46b324-142f-4446-a601-28dd41a417af.png)
+
+----
+
+- ## Complete an appointment
+1. Request method: **PUT**  
+2. Request URL: http://47.243.165.93:18080/ios/bookings/completion/{appointmentId}?Authorization= ***${The access token}***
+3. {The access token} is like 
+`eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoyLCJzY29wZSI6WyJpb3MiXSwibmFtZSI6ImJhcmJlciIsImlkIjoyNiwiZXhwIjoxNjQyNjg4MjQwLCJhdXRob3JpdGllcyI6WyJiYXJiZXIiXSwianRpIjoiNmE2MDU3NWItMTUwNy00YTkzLThmYmMtMjJiMmE4ZTNiNGIwIiwiY2xpZW50X2lkIjoiamlhbmNoZW5jbGllbnQiLCJ1c2VybmFtZSI6ImJhcmJlciJ9.UDVOkL5SG33KQLBCDHQtsi3RpwVYuLGzikplzJU3eKuovRqD1SBwWCoIi8AcWzP_khrNMHkv0LV4lDFEI2kjmy-xWthm0jmxrC0JvXnhMnYF-ZE96qEE_kXEJNFL12GwEH7Et2nzOCIvsY6pSv_PyPbhuJcuZ7j6qh_H-NQ_U9MToPhfDNRbWywGVIhAGugByHV0cAfXo-_0QCwxATQGQ54o4UgYzL0_XcK89uuV2P5lUiBpk7wXV4H2eNRikt7Pi3-WmHN80RVOZCQCUxsOYdAPM0H5pHCGyazImuYCXGfaUwC0dhihaklpZINwjcGRFyUOn29d4R3bysCVlBL9yg`
+4. Request path variable should contain a {appointmentId} of [Appointment](/api-common/src/main/java/com/bristol/project/entity/Appointment.java) object.
+
+> #### NOTE:
+> 1. The current user must be of role barber.
+> 2. The appointment in the appointment_main table would be set completed, both the involved client and barber could see the synchronized status from frontend.
+    
+### The response body should be like:
+![image](https://user-images.githubusercontent.com/45266501/149896771-9bb7ccae-96a4-44b5-baf0-3f71443e81f5.png)
+
+----
+
+- ## Cancel an appointment
+1. Request method: **PUT**  
+2. Request URL: http://47.243.165.93:18080/ios/bookings/cancellation/{appointmentId}?Authorization= ***${The access token}***
+3. {The access token} is like 
+`eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoyLCJzY29wZSI6WyJpb3MiXSwibmFtZSI6ImJhcmJlciIsImlkIjoyNiwiZXhwIjoxNjQyNjg4MjQwLCJhdXRob3JpdGllcyI6WyJiYXJiZXIiXSwianRpIjoiNmE2MDU3NWItMTUwNy00YTkzLThmYmMtMjJiMmE4ZTNiNGIwIiwiY2xpZW50X2lkIjoiamlhbmNoZW5jbGllbnQiLCJ1c2VybmFtZSI6ImJhcmJlciJ9.UDVOkL5SG33KQLBCDHQtsi3RpwVYuLGzikplzJU3eKuovRqD1SBwWCoIi8AcWzP_khrNMHkv0LV4lDFEI2kjmy-xWthm0jmxrC0JvXnhMnYF-ZE96qEE_kXEJNFL12GwEH7Et2nzOCIvsY6pSv_PyPbhuJcuZ7j6qh_H-NQ_U9MToPhfDNRbWywGVIhAGugByHV0cAfXo-_0QCwxATQGQ54o4UgYzL0_XcK89uuV2P5lUiBpk7wXV4H2eNRikt7Pi3-WmHN80RVOZCQCUxsOYdAPM0H5pHCGyazImuYCXGfaUwC0dhihaklpZINwjcGRFyUOn29d4R3bysCVlBL9yg`
+4. Request path variable should contain a {appointmentId} of [Appointment](/api-common/src/main/java/com/bristol/project/entity/Appointment.java) object.
+
+> #### NOTE:
+> 1. The current user could be any role logged in and request with a valid access token.
+> 2. The appointment in the appointment_main table would be set canceled, both the involved client and barber could see the synchronized status from frontend.
+    
+### The response body should be like:
+![image](https://user-images.githubusercontent.com/45266501/149897253-a7a309a3-f7db-4204-a859-a2e00be90bf7.png)
+
+- ## Query your appointment 
+1. Request method: **GET**  
+2. Request URL: http://47.243.165.93:18080/ios/bookings/me?Authorization= ***${The access token}***
+3. {The access token} is like 
+`eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoxLCJzY29wZSI6WyJpb3MiXSwibmFtZSI6InRlc3RjbGllbnQiLCJpZCI6MzIsImV4cCI6MTY0MjY4ODE1NywiYXV0aG9yaXRpZXMiOlsiY2xpZW50Il0sImp0aSI6IjY3Y2YyZTU3LTY3NWYtNDllZi05ZmQ2LTdiYjY4MGE2NGZkOCIsImNsaWVudF9pZCI6ImppYW5jaGVuY2xpZW50IiwidXNlcm5hbWUiOiJ0ZXN0Y2xpZW50In0.hlrfks_eOJ6kzKvWmDrjODv7N65tdCzyX-OaUyXMoJw52foUI7iVWy6Zgbc_ygXeNYCqew5DNIY19_8K-cTGeAhBbVXoK7f7hjXB0g8sT7rAplnW9uMVYuccLFn69gbftvuE6J0NNmw9fqEBPqKrxOagIq50jgXtb07oAx7-XCSaTl4IbliCd0B_IDADz6j9KGCqO5DS5-4ih_CvGpi-3xou6NNXOaOzUxmRCUZxIzTcfntowFOtATLIpkc41YiOoBLOsJQwgHDzLNTKPWr6NQXeWDvGCxcnuKIpBEVc9YVqf5RMYB5xgQxS3dU05aoWOgJNO-ug3Jg0Y2yQni_Rnw`
+
+> #### NOTE:
+> 1. The server identifies the current user detail by extracting the user information which is integreted inside the access token.
+
+### The response body should be like:
+![image](https://user-images.githubusercontent.com/45266501/149898537-984a46b1-86e7-4b67-9e4a-465aaf57123a.png)
