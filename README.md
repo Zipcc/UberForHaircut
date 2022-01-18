@@ -1,11 +1,12 @@
-# UberForHaircut
-
+# UberForHaircut-Backend
 
 
 ## The project is depolyed on the cloud server  
-the application entry IP:Port is http://47.243.165.93:18080 
+the application basic entry IP:Port is http://47.243.165.93:18080, but do not straight click into the website, the frontend is not developed here. 
 
-### Try it !
+Currently this application does not return visual pages, as is now developed as the IOS application backend, the return value are all in JSON style for the frontend to read.
+
+### Try without frontend
     
 #### Please use postman or similar applications to send requests to the server as to try the backend independently from the frontend.
 
