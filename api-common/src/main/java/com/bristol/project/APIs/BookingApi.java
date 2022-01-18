@@ -15,20 +15,20 @@ public interface BookingApi {
     Result<Appointment> create(@RequestBody Appointment appointment);
 
     @PreAuthorize("hasAnyAuthority('admin')")
-    @DeleteMapping("/{id}")
-    Result<Integer> destroyAppointmentById(@PathVariable(value = "id") Long id);
+    @DeleteMapping("/{appointmentId}")
+    Result<Integer> destroyAppointmentById(@PathVariable(value = "appointmentId") Long appointmentId);
 
     @PreAuthorize("hasAnyAuthority('admin','barber','client')")
-    @DeleteMapping("/deletion/{id}")
-    Result<Integer> deleteAppointmentById(@PathVariable(value = "id") Long id);
+    @DeleteMapping("/deletion/{appointmentId}")
+    Result<Integer> deleteAppointmentById(@PathVariable(value = "appointmentId") Long appointmentId);
 
     @PreAuthorize("hasAnyAuthority('admin','barber')")
-    @PutMapping("/completion/{id}")
-    Result<Integer> completeAppointmentById(@PathVariable(value = "id") Long id);
+    @PutMapping("/completion/{appointmentId}")
+    Result<Integer> completeAppointmentById(@PathVariable(value = "appointmentId") Long appointmentId);
 
     @PreAuthorize("hasAnyAuthority('admin','barber','client')")
-    @PutMapping("/cancellation/{id}")
-    Result<Integer> cancelAppointmentById(@PathVariable(value = "id") Long id);
+    @PutMapping("/cancellation/{appointmentId}")
+    Result<Integer> cancelAppointmentById(@PathVariable(value = "appointmentId") Long appointmentId);
 
     @PreAuthorize("hasAnyAuthority('admin')")
     @GetMapping("/{username}")

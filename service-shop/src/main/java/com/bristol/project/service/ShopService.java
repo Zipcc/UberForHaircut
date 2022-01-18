@@ -15,7 +15,7 @@ public interface ShopService {
 
     Result<Integer> deleteServiceByServiceId(Long serviceId);
 
-    Result<Integer> updateShopService(ShopServ shopServ);
+    Result<Integer> updateShopService(String username, ShopServ shopServ);
 
     Result<Integer> updateShopByUsername(String username, Shop shop);
 

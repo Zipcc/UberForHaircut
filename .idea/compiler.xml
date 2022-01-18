@@ -7,28 +7,15 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="SpringCloud-Consumer-Order80" />
         <module name="service-uaa" />
-        <module name="SpringCloud-Consumer-Feign-Order80" />
         <module name="api-common" />
-        <module name="SpringCloud-Api-Commons" />
-        <module name="SpringCloud-Gateway-Gateway9500" />
-        <module name="SpringCloudAlibaba-Consumer-Nacos-Order90" />
         <module name="api-gateway-shop" />
-        <module name="SpringCloud-Provider-Hystrix-Payment8001" />
-        <module name="SpringCloudAlibaba-provider-payment9002" />
         <module name="service-booking" />
         <module name="api-gateway-center" />
-        <module name="SpringCloud-Eureka-Server7001" />
-        <module name="SpringCloud-Eureka-Server7002" />
         <module name="service-user" />
-        <module name="SpringCloudAlibaba-provider-payment9001" />
         <module name="api-gateway-user" />
-        <module name="SpringCloudAlibaba-Config-Nacos-Client3001" />
         <module name="service-shop" />
-        <module name="SpringCloud-Provider-Payment8001" />
         <module name="api-gateway-booking" />
-        <module name="SpringCloud-Provider-Payment8002" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

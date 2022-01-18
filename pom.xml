@@ -10,19 +10,6 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>SpringCloud-Eureka-Server7001</module>
-        <module>SpringCloud-Provider-Payment8001</module>
-        <module>SpringCloud-Consumer-Order80</module>
-        <module>SpringCloud-Api-Commons</module>
-        <module>SpringCloud-Eureka-Server7002</module>
-        <module>SpringCloud-Provider-Payment8002</module>
-        <module>SpringCloud-Consumer-Feign-Order80</module>
-        <module>SpringCloud-Provider-Hystrix-Payment8001</module>
-        <module>SpringCloud-Gateway-Gateway9500</module>
-        <module>SpringCloudAlibaba-provider-payment9001</module>
-        <module>SpringCloudAlibaba-provider-payment9002</module>
-        <module>SpringCloudAlibaba-Consumer-Nacos-Order90</module>
-        <module>SpringCloudAlibaba-Config-Nacos-Client3001</module>
         <module>service-user</module>
         <module>api-common</module>
         <module>service-uaa</module>

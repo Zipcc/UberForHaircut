@@ -75,12 +75,13 @@ public class ShopController implements ShopApi {
     }
 
     @Override
-    public Result<Integer> updateShopService(ShopServ shopServ) {
+    public Result<Integer> updateShopService(Long serviceId, ShopServ shopServ) {
 
-        if(shopServ == null || shopServ.getShopId() == 0){
+        if(serviceId == null || shopServ == null){
             return new Result<>(StatusCode.NOT_EXIST,"Shop service not exist.");
         }
-        return shopService.updateShopService(shopServ);
+        shopServ.setServiceId(serviceId);
+        return shopService.updateShopService(TokenDecoder.tokenUsername(), shopServ);
     }
 
     @Override

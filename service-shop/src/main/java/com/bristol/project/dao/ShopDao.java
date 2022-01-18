@@ -24,6 +24,8 @@ public interface ShopDao{
 
     Shop getShopByShopId(Long shopId);
 
+    Shop getShopByShopName(String shopName);
+
     List<Shop> getSomeShop();
 
     List<Shop> getAllShop();

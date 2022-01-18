@@ -35,13 +35,6 @@ auth:
   cookieDomain: localhost
   cookieMaxAge: -1
 
-#encrypt:
- # key-store:
-  #  location: classpath:/bristolproject.jks
-   # secret: jianchen
-    #alias: jianchen
-    #password: jianchen
-
 logging:
   level:
     com: debug

@@ -22,10 +22,10 @@ public class UserServiceImpl implements UserService {
         //new username
         if(userDao.getUserByUsername(user.getUsername()) == null){
             user.setPassword(BCrypt.hashpw(user.getPassword()));
-            Long userId = userDao.create(user);
+            userDao.create(user);
+            Long userId = user.getUserId();
             if (userId != null) {
                 //success
-                user.setUserId(userId);
                 return new Result<>(StatusCode.OK, "Register successfully!",user);
             }else{
                 //create failed

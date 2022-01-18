@@ -6,7 +6,6 @@ com\bristol\project\controller\UaaLoginController.class
 com\bristol\project\UaaMain.class
 com\bristol\project\config\WebSecurityConfig.class
 com\bristol\project\entity\AuthToken.class
-com\bristol\project\JwtTokenConfig.class
 com\bristol\project\interceptor\TokenRequestInterceptor.class
 com\bristol\project\config\UserDetailsServiceImpl.class
 com\bristol\project\config\AuthorizationServerConfig.class

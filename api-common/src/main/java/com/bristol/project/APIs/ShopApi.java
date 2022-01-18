@@ -33,7 +33,7 @@ public interface ShopApi {
 
     @PreAuthorize("hasAnyAuthority('admin','barber')")
     @PutMapping ("services/{serviceId}")
-    Result<Integer> updateShopService(@RequestBody ShopServ shopServ);
+    Result<Integer> updateShopService(@PathVariable("serviceId") Long serviceId, @RequestBody ShopServ shopServ);
 
     @PreAuthorize("hasAnyAuthority('admin')")
     @PutMapping("/{username}")

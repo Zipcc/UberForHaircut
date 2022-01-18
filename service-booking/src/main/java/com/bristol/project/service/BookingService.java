@@ -13,9 +13,9 @@ public interface BookingService {
 
     Result<Appointment> create(Appointment appointment);
 
-    Result<Integer> destroyAppointmentById(Long id);
+    Result<Integer> destroyAppointmentById(Long appointmentId);
 
-    Result<Integer> updateAppointmentById(Long id, UPDATE_TYPE update_type);
+    Result<Integer> updateAppointmentById(Long appointmentId, UPDATE_TYPE update_type, String username);
 
     Result<List<Appointment>> getAllAppointmentByUsername(String username);
 

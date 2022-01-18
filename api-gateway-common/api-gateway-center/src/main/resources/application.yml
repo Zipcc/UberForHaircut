@@ -46,9 +46,6 @@ spring:
             - Path=/ios/users/**
           filters:
             - StripPrefix=1
-swagger:
-  services: /ios/bookings,/ios/shops,/ios/uaa,/ios/users
-
 management:
   endpoints:
     gateway:

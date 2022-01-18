@@ -28,43 +28,46 @@ public class BookingController implements BookingApi {
     }
 
     @Override
-    public Result<Integer> destroyAppointmentById(Long id) {
+    public Result<Integer> destroyAppointmentById(Long appointmentId) {
 
-        if(id == null){
+        if(appointmentId == null){
             return new Result<>(StatusCode.NOT_EXIST, "Please enter appointment id.");
         }
-        return bookingService.destroyAppointmentById(id);
+        return bookingService.destroyAppointmentById(appointmentId);
     }
 
     @Override
-    public Result<Integer> deleteAppointmentById(Long id) {
+    public Result<Integer> deleteAppointmentById(Long appointmentId) {
 
-        if(id == null){
+        if(appointmentId == null){
             return new Result<>(StatusCode.NOT_EXIST, "Please enter appointment id.");
         }
         int role = TokenDecoder.tokenRole();
         if(role == Role.ADMIN_NUM){
             return new Result<>(StatusCode.ERROR, "Admins could destroy records.");
         }
-            return bookingService.updateAppointmentById(id, BookingService.UPDATE_TYPE.DELETE);
+        String username = TokenDecoder.tokenUsername();
+            return bookingService.updateAppointmentById(appointmentId, BookingService.UPDATE_TYPE.DELETE, username);
     }
 
     @Override
-    public Result<Integer> completeAppointmentById(Long id) {
+    public Result<Integer> completeAppointmentById(Long appointmentId) {
 
-        if(id == null){
+        if(appointmentId == null){
             return new Result<>(StatusCode.NOT_EXIST, "Please enter appointment id.");
         }
-        return bookingService.updateAppointmentById(id, BookingService.UPDATE_TYPE.COMPLETE);
+        String username = TokenDecoder.tokenUsername();
+        return bookingService.updateAppointmentById(appointmentId, BookingService.UPDATE_TYPE.COMPLETE, username);
     }
 
     @Override
-    public Result<Integer> cancelAppointmentById(Long id) {
+    public Result<Integer> cancelAppointmentById(Long appointmentId) {
 
-        if(id == null){
+        if(appointmentId == null){
             return new Result<>(StatusCode.NOT_EXIST, "Please enter appointment id.");
         }
-        return bookingService.updateAppointmentById(id, BookingService.UPDATE_TYPE.CANCEL);
+        String username = TokenDecoder.tokenUsername();
+        return bookingService.updateAppointmentById(appointmentId, BookingService.UPDATE_TYPE.CANCEL,username);
     }
 
     @Override

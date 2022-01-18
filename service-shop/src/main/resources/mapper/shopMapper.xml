@@ -2,21 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.bristol.project.dao.ShopDao">
 
-    <insert id="create" parameterType="Shop" useGeneratedKeys="true">
-        <selectKey resultType="java.lang.Long" order="AFTER" keyProperty="shopId">
-            SELECT LAST_INSERT_ID()
-        </selectKey>
-        insert into shop(shop_name, location_description,
+    <insert id="create" parameterType="Shop" useGeneratedKeys="true" keyProperty="shopId" keyColumn="shop_id">
+        insert into shop(username, shop_name, location_description,
                          service_for_gender,phone_number)
-        values(#{shopName},#{locationDescription},
+        values(#{username},#{shopName},#{locationDescription},
                #{serviceForGender},#{phoneNumber});
     </insert>
 
 
-    <insert id="createServ" parameterType="ShopServ" useGeneratedKeys="true">
-        <selectKey resultType="java.lang.Long" order="AFTER" keyProperty="serviceId">
-            SELECT LAST_INSERT_ID()
-        </selectKey>
+    <insert id="createServ" parameterType="ShopServ" useGeneratedKeys="true" keyProperty="serviceId" keyColumn="service_id">
         insert into shop_service(shop_id, service_name, description)
         values(#{shopId},#{serviceName},
                #{description});
@@ -53,6 +47,10 @@
         where shop_id=#{shopId};
     </select>
 
+    <select id="getShopByShopName" resultType="Shop">
+        select * from shop
+        where shop_name=#{shopName};
+    </select>
 
     <select id="getShopByUsername" resultMap="shopWithService">
         select * from shop

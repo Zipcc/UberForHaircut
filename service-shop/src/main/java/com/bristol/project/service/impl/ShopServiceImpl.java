@@ -24,8 +24,12 @@ public class ShopServiceImpl implements ShopService {
         if (shopDao.getShopByUsername(username) != null) {
             return new Result<>(StatusCode.ALREADY_EXIST, "Shop of user: " + shop.getUsername() + " already exists.");
         }
+        if (shopDao.getShopByShopName(shop.getShopName()) != null) {
+            return new Result<>(StatusCode.ALREADY_EXIST, "Shop name: " + shop.getShopName() + " already exists.");
+        }
         //shop not exist
-        Long shopId = shopDao.create(shop);
+        shopDao.create(shop);
+        Long shopId = shop.getShopId();
         if (shopId != null) {
             //success
             shop.setShopId(shopId);
@@ -39,11 +43,12 @@ public class ShopServiceImpl implements ShopService {
     @Override
     public Result<ShopServ> createServ(ShopServ shopServ) {
 
-        Long shopServId = shopDao.createServ(shopServ);
+        shopDao.createServ(shopServ);
+        Long shopServId = shopServ.getServiceId();
         if (shopServId != null) {
             //success
             shopServ.setServiceId(shopServId);
-            return new Result<>(StatusCode.OK, "Shop of user: " + shopServ.getServiceName() + " created successfully.", shopServ);
+            return new Result<>(StatusCode.OK, "Service: " + shopServ.getServiceName() + " created successfully.", shopServ);
         } else {
             //create failed
             return new Result<>(StatusCode.CREATE_FAILED, "Failed to create service.");
@@ -81,8 +86,20 @@ public class ShopServiceImpl implements ShopService {
     }
 
     @Override
-    public Result<Integer> updateShopService(ShopServ shopServ) {
+    public Result<Integer> updateShopService(String username, ShopServ shopServ) {
 
+        Shop shop = shopDao.getShopByUsername(username);
+        List<ShopServ> shopServList = shop.getShopServs();
+        boolean hasService = false;
+        for(ShopServ s:shopServList){
+            if (s.getServiceId().equals(shopServ.getServiceId())) {
+                hasService = true;
+                break;
+            }
+        }
+        if(!hasService){
+            return new Result<>(StatusCode.NOT_EXIST,"Shop service not exist in your shop.");
+        }
         int result = shopDao.updateShopService(shopServ);
         if (result > 0) {
             //success.
@@ -102,6 +119,10 @@ public class ShopServiceImpl implements ShopService {
         }
         if (shop.getShopName() == null) {
             shop.setShopName(oldShop.getShopName());
+        }else{
+            if (!shopDao.getShopByShopName(shop.getShopName()).getUsername().equals(username)) {
+                return new Result<>(StatusCode.ALREADY_EXIST, "Shop name: " + shop.getShopName() + " already exists.");
+            }
         }
         if (shop.getLocationDescription() == null) {
             shop.setLocationDescription(oldShop.getLocationDescription());
@@ -109,7 +130,7 @@ public class ShopServiceImpl implements ShopService {
         if (shop.getServiceForGender() == null) {
             shop.setServiceForGender(oldShop.getServiceForGender());
         }
-        if (shop.getShopServs().size() != oldShop.getShopServs().size()) {
+        if (shop.getShopServs() == null ||shop.getShopServs().size() != oldShop.getShopServs().size()) {
             shop.setShopServs(oldShop.getShopServs());
         }
         int result = shopDao.updateShopByUsername(shop);

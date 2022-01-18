@@ -10,6 +10,7 @@ public class TokenRequestInterceptor implements RequestInterceptor {
 
     @Override
     public void apply(RequestTemplate requestTemplate) {
+
         String token = AdminToken.CreateAdminToken();
         requestTemplate.header("Authorization","Bearer " + token);
     }

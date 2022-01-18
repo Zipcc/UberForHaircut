@@ -2,19 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/SpringCloud-Api-Commons/SpringCloud-Api-Commons.iml" filepath="$PROJECT_DIR$/SpringCloud-Api-Commons/SpringCloud-Api-Commons.iml" />
-      <module fileurl="file://$PROJECT_DIR$/SpringCloud-Consumer-Feign-Order80/SpringCloud-Consumer-Feign-Order80.iml" filepath="$PROJECT_DIR$/SpringCloud-Consumer-Feign-Order80/SpringCloud-Consumer-Feign-Order80.iml" />
-      <module fileurl="file://$PROJECT_DIR$/SpringCloud-Consumer-Order80/SpringCloud-Consumer-Order80.iml" filepath="$PROJECT_DIR$/SpringCloud-Consumer-Order80/SpringCloud-Consumer-Order80.iml" />
-      <module fileurl="file://$PROJECT_DIR$/SpringCloud-Eureka-Server7001/SpringCloud-Eureka-Server7001.iml" filepath="$PROJECT_DIR$/SpringCloud-Eureka-Server7001/SpringCloud-Eureka-Server7001.iml" />
-      <module fileurl="file://$PROJECT_DIR$/SpringCloud-Eureka-Server7002/SpringCloud-Eureka-Server7002.iml" filepath="$PROJECT_DIR$/SpringCloud-Eureka-Server7002/SpringCloud-Eureka-Server7002.iml" />
-      <module fileurl="file://$PROJECT_DIR$/SpringCloud-Gateway-Gateway9500/SpringCloud-Gateway-Gateway9500.iml" filepath="$PROJECT_DIR$/SpringCloud-Gateway-Gateway9500/SpringCloud-Gateway-Gateway9500.iml" />
-      <module fileurl="file://$PROJECT_DIR$/SpringCloud-Provider-Hystrix-Payment8001/SpringCloud-Provider-Hystrix-Payment8001.iml" filepath="$PROJECT_DIR$/SpringCloud-Provider-Hystrix-Payment8001/SpringCloud-Provider-Hystrix-Payment8001.iml" />
-      <module fileurl="file://$PROJECT_DIR$/SpringCloud-Provider-Payment8001/SpringCloud-Provider-Payment8001.iml" filepath="$PROJECT_DIR$/SpringCloud-Provider-Payment8001/SpringCloud-Provider-Payment8001.iml" />
-      <module fileurl="file://$PROJECT_DIR$/SpringCloud-Provider-Payment8002/SpringCloud-Provider-Payment8002.iml" filepath="$PROJECT_DIR$/SpringCloud-Provider-Payment8002/SpringCloud-Provider-Payment8002.iml" />
-      <module fileurl="file://$PROJECT_DIR$/SpringCloudAlibaba-Config-Nacos-Client3001/SpringCloudAlibaba-Config-Nacos-Client3001.iml" filepath="$PROJECT_DIR$/SpringCloudAlibaba-Config-Nacos-Client3001/SpringCloudAlibaba-Config-Nacos-Client3001.iml" />
-      <module fileurl="file://$PROJECT_DIR$/SpringCloudAlibaba-Consumer-Nacos-Order90/SpringCloudAlibaba-Consumer-Nacos-Order90.iml" filepath="$PROJECT_DIR$/SpringCloudAlibaba-Consumer-Nacos-Order90/SpringCloudAlibaba-Consumer-Nacos-Order90.iml" />
-      <module fileurl="file://$PROJECT_DIR$/SpringCloudAlibaba-provider-payment9001/SpringCloudAlibaba-provider-payment9001.iml" filepath="$PROJECT_DIR$/SpringCloudAlibaba-provider-payment9001/SpringCloudAlibaba-provider-payment9001.iml" />
-      <module fileurl="file://$PROJECT_DIR$/SpringCloudAlibaba-provider-payment9002/SpringCloudAlibaba-provider-payment9002.iml" filepath="$PROJECT_DIR$/SpringCloudAlibaba-provider-payment9002/SpringCloudAlibaba-provider-payment9002.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/UberForHaircut.iml" filepath="$PROJECT_DIR$/.idea/UberForHaircut.iml" />
       <module fileurl="file://$PROJECT_DIR$/api-common/api-common.iml" filepath="$PROJECT_DIR$/api-common/api-common.iml" />
       <module fileurl="file://$PROJECT_DIR$/api-gateway-common/api-gateway-booking/api-gateway-booking.iml" filepath="$PROJECT_DIR$/api-gateway-common/api-gateway-booking/api-gateway-booking.iml" />

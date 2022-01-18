@@ -19,18 +19,22 @@ public class TokenDecoder {
 
     private static final String PUBLIC_KEY = "public.key";
 
+
+    //get current role of the token holder
     public static int tokenRole(){
 
         Map<String, Object> currentUserInfo = TokenDecoder.getUserInfo();
         return  (int)currentUserInfo.get("role");
     }
 
+    //get current username of the token holder
     public static String tokenUsername(){
 
         Map<String, Object> currentUserInfo = TokenDecoder.getUserInfo();
         return  (String)currentUserInfo.get("username");
     }
 
+    //get current info of the token holder
     private static Map<String, Object> getUserInfo(){
 
         OAuth2AuthenticationDetails details = (OAuth2AuthenticationDetails) SecurityContextHolder.getContext().getAuthentication().getDetails();

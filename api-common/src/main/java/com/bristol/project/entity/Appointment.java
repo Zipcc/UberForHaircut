@@ -11,8 +11,8 @@ import java.sql.Timestamp;
 public class Appointment {
 
         private Long appointmentId;
-        private String appointmentTime;
         private Timestamp bookingTime;
+        private String appointmentTime;
         private String clientUsername;
         private String barberUsername;
         private String barberShopName;

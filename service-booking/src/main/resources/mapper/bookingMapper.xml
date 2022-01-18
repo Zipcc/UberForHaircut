@@ -27,10 +27,10 @@
         where appointment_id=#{appointmentId};
     </update>
 
-    <update id="deleteAppointmentById">
-        update from appointment_user
-        where appointment_id=#{appointmentId};
-    </update>
+    <delete id="deleteAppointmentById" >
+        delete from appointment_user
+        where appointment_id=#{arg0} and username=#{arg1} and length(username)=length(#{arg1})
+    </delete>
 
     <delete id="destroyAppointmentById">
         delete from appointment_main
@@ -45,11 +45,11 @@
     <select id="getAllAppointmentByUsername" resultType="Appointment">
         select * from appointment_main
         where client_username=#{username} and length(client_username)=length(#{username})
-           or barber_username=#{username} and length(barber_username)=length(#{username})
+           or barber_username=#{username} and length(barber_username)=length(#{username});
     </select>
 
     <select id="getAllUserAppointmentIdByUsername" resultType="Appointment">
-        select * from appointment_user;
+        select * from appointment_user
         where username=#{username} and length(username)=length(#{username});
 
     </select>

@@ -1,32 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding" native2AsciiForPropertiesFiles="true" defaultCharsetForPropertiesFiles="UTF-8">
-    <file url="file://$PROJECT_DIR$/SpringCloud-Api-Commons/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/SpringCloud-Api-Commons/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/SpringCloud-Consumer-Feign-Order80/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/SpringCloud-Consumer-Feign-Order80/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/SpringCloud-Consumer-Order80/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/SpringCloud-Consumer-Order80/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/SpringCloud-Eureka-Server7001/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/SpringCloud-Eureka-Server7001/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/SpringCloud-Eureka-Server7002/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/SpringCloud-Eureka-Server7002/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/SpringCloud-Gateway-Gateway9500/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/SpringCloud-Gateway-Gateway9500/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/SpringCloud-Provider-Hystrix-Payment8001/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/SpringCloud-Provider-Hystrix-Payment8001/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/SpringCloud-Provider-Payment8001/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/SpringCloud-Provider-Payment8001/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/SpringCloud-Provider-Payment8002/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/SpringCloud-Provider-Payment8002/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/SpringCloudAlibaba-Config-Nacos-Client3001/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/SpringCloudAlibaba-Config-Nacos-Client3001/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/SpringCloudAlibaba-Consumer-Nacos-Order90/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/SpringCloudAlibaba-Consumer-Nacos-Order90/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/SpringCloudAlibaba-provider-payment9001/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/SpringCloudAlibaba-provider-payment9001/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/SpringCloudAlibaba-provider-payment9002/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/SpringCloudAlibaba-provider-payment9002/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/api-common/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/api-common/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/api-gateway-common/api-gateway-booking/src/main/java" charset="UTF-8" />

@@ -9,15 +9,15 @@ public interface BookingDao {
 
         int create(Appointment appointment);
 
-        int completeAppointmentById(Long id);
+        int completeAppointmentById(Long appointmentId);
 
-        int cancelAppointmentById(Long id);
+        int cancelAppointmentById(Long appointmentId);
 
-        int deleteAppointmentById(Long id);
+        int deleteAppointmentById(Long appointmentId, String username);
 
-        int destroyAppointmentById(Long id);
+        int destroyAppointmentById(Long appointmentId);
 
-        Appointment getAppointmentById(Long id);
+        Appointment getAppointmentById(Long appointmentId);
 
         List<Appointment> getAllAppointmentByUsername(String username);
 

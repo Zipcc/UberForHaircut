@@ -2,7 +2,6 @@ E:\1Project\UberForHaircut\service-uaa\src\main\java\com\bristol\project\config\
 E:\1Project\UberForHaircut\service-uaa\src\main\java\com\bristol\project\interceptor\TokenRequestInterceptor.java
 E:\1Project\UberForHaircut\service-uaa\src\main\java\com\bristol\project\service\UaaLoginService.java
 E:\1Project\UberForHaircut\service-uaa\src\main\java\com\bristol\project\config\CustomUserAuthenticationConverter.java
-E:\1Project\UberForHaircut\service-uaa\src\main\java\com\bristol\project\JwtTokenConfig.java
 E:\1Project\UberForHaircut\service-uaa\src\main\java\com\bristol\project\config\WebSecurityConfig.java
 E:\1Project\UberForHaircut\service-uaa\src\main\java\com\bristol\project\UaaMain.java
 E:\1Project\UberForHaircut\service-uaa\src\main\java\com\bristol\project\entity\AuthToken.java

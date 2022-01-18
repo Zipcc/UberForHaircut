@@ -11,7 +11,20 @@
     </option>
     <option name="ignoredFiles">
       <set>
+        <option value="$PROJECT_DIR$/SpringCloud-Api-Commons/pom.xml" />
+        <option value="$PROJECT_DIR$/SpringCloud-Consumer-Feign-Order80/pom.xml" />
+        <option value="$PROJECT_DIR$/SpringCloud-Consumer-Order80/pom.xml" />
+        <option value="$PROJECT_DIR$/SpringCloud-Eureka-Server7001/pom.xml" />
+        <option value="$PROJECT_DIR$/SpringCloud-Eureka-Server7002/pom.xml" />
+        <option value="$PROJECT_DIR$/SpringCloud-Gateway-Gateway9500/pom.xml" />
+        <option value="$PROJECT_DIR$/SpringCloud-Provider-Hystrix-Payment8001/pom.xml" />
+        <option value="$PROJECT_DIR$/SpringCloud-Provider-Payment8001/pom.xml" />
+        <option value="$PROJECT_DIR$/SpringCloud-Provider-Payment8002/pom.xml" />
         <option value="$PROJECT_DIR$/SpringCloud-eureka-server/pom.xml" />
+        <option value="$PROJECT_DIR$/SpringCloudAlibaba-Config-Nacos-Client3001/pom.xml" />
+        <option value="$PROJECT_DIR$/SpringCloudAlibaba-Consumer-Nacos-Order90/pom.xml" />
+        <option value="$PROJECT_DIR$/SpringCloudAlibaba-provider-payment9001/pom.xml" />
+        <option value="$PROJECT_DIR$/SpringCloudAlibaba-provider-payment9002/pom.xml" />
         <option value="$PROJECT_DIR$/gateway-user/pom.xml" />
       </set>
     </option>
